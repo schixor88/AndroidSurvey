@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--2.3-->
+    <RelativeLayout
+
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="7dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="जाति, भाषा, धर्म विवरण"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <!--Radio Jatiya Samuha-->
+            <LinearLayout
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="जातीय समूह"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioGroup
+                    android:id="@+id/rg_jatiya_samuha"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rb_jatiya_gone"
+                        android:visibility="gone"
+                        android:text="none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="17dp"
+                        android:id="@+id/rb_jat_dalit"
+                        android:padding="5dp"
+                        android:text="दलित"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="17dp"
+                        android:id="@+id/rb_jat_sanyasi"
+                        android:text="सन्यासी (दशनामी)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <RadioButton
+                        android:textSize="17dp"
+                        android:id="@+id/rb_jat_janjati"
+                        android:text="जनजाती"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <RadioButton
+                        android:textSize="17dp"
+                        android:id="@+id/rb_jat_anya"
+                        android:text="अन्य"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RadioGroup>
+            </LinearLayout>
+
+
+
+            <!--Spinner Jatjati-->
+            <LinearLayout
+                android:padding="7dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="जातजाती"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:padding="5dp"
+                    android:textAlignment="center"
+                    android:id="@+id/spin_jatjati"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </Spinner>
+
+            </LinearLayout>
+
+            <!--Spinner Dharma-->
+            <LinearLayout
+                android:padding="7dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="धर्म"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:padding="5dp"
+                    android:textAlignment="center"
+                    android:id="@+id/spin_dharma"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </Spinner>
+
+
+
+
+            </LinearLayout>
+
+            <!--Spinner matri vasa-->
+            <LinearLayout
+                android:padding="7dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="मातृभाषा"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+                    android:padding="5dp"
+                    android:textAlignment="center"
+                    android:id="@+id/spin_m_vasa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </Spinner>
+
+
+
+
+            </LinearLayout>
+
+            <!--Surname-->
+            <EditText
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText"
+                android:hint="थर"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

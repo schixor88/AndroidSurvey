@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:background="#caeccf"
+        android:layout_margin="9dp"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="#000000"
+            android:paddingLeft="5dp"
+            android:textSize="18dp"
+            android:text="क्रम: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="#000000"
+            android:paddingLeft="5dp"
+            android:textSize="18dp"
+            android:text="ID"
+            android:id="@+id/row_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="#000000"
+            android:paddingLeft="5dp"
+            android:textSize="18dp"
+            android:text="घर नं कोड: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="#000000"
+            android:paddingLeft="5dp"
+            android:textSize="18dp"
+            android:text="Code"
+            android:id="@+id/row_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="अक्षांशः: "
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/row_lat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Latitude"
+                android:textColor="#000000"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="#000000"
+            android:paddingLeft="5dp"
+            android:textSize="18dp"
+            android:text="देशान्तरः "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="#000000"
+            android:paddingLeft="5dp"
+            android:textSize="18dp"
+            android:text="Longitude"
+            android:id="@+id/row_lng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="उँचाइः "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="Altitude"
+                android:id="@+id/row_alt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="प्रदेश नं "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <TextView
+            android:textColor="#000000"
+            android:paddingLeft="5dp"
+            android:textSize="18dp"
+            android:text="pradesh"
+            android:id="@+id/row_pradesh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="जिल्ला"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="Road"
+                android:id="@+id/row_jilla"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="गाउँपालिका/नगरपालिका: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="Np"
+                android:id="@+id/row_nagarpalika"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="बार्ड नं"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="Ward"
+                android:id="@+id/row_ward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="बस्तीको नाम"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="basti"
+                android:id="@+id/row_basti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:paddingLeft="7dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="जाती"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textColor="#000000"
+                android:paddingLeft="5dp"
+                android:textSize="18dp"
+                android:text="jati"
+                android:id="@+id/row_jati"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

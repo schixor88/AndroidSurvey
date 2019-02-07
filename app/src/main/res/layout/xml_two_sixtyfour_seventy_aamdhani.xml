@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="आम्दानी खर्चको विवरण"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/title_fontSize" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="परिवारको गत वर्षको बार्षिक आम्दानी कति थियो? (रकम)"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_around">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="कृषि तथा पशुपालन (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="व्यापार तथा उद्योग (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="नोकरी तथा पेन्सन (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="सामाजिक भत्ता (रकम)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="बैदेशिक रोजगार (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ज्याला मजदुरी (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="घरभाडा (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="बचत तथा लगानी व्याज (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="अन्य (रकम)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="परिवारको गत वर्षको बार्षिक खर्च कति थियो? (रकम)"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_around">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="खाना (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="लत्ता कपडा (रकम)  "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="शिक्षा (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="स्वास्थ्य (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="मनोरञ्जन, चाडपर्व तथा सामाजिक कार्य (रकम)  "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="घरभाडा (रकम)  "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="कृषि तथा पशुपालन (रकम)  "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="किस्ता भुक्तानी (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="इन्धन (रकम)  "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="यातायात (रकम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="अन्य (रकम)  "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="70%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="27%" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="घरमा कोही बैदिशिक रोजगारको लागि जानुभएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="छ भने"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="गत १ बर्षभित्र प्राप्त रेमिट्यान्स के के मा खर्च गर्नुभयो?"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="space_evenly">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="दैनिक उपभोग"
+                app:layout_flexBasisPercent="40%" />
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="व्यवसाय लगानी"
+                app:layout_flexBasisPercent="40%" />
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ऋण तिर्न"
+                app:layout_flexBasisPercent="40%" />
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="सामाजिक कार्य"
+                app:layout_flexBasisPercent="40%" />
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="शिक्षा स्वास्थ्य"
+                app:layout_flexBasisPercent="40%" />
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="अन्य"
+                app:layout_flexBasisPercent="40%" />
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="घरायसी सम्पत्ति"
+                app:layout_flexBasisPercent="40%" />
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="बचत"
+                app:layout_flexBasisPercent="40%" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="परिवारले गत वर्षसम्म गरेका आर्थिक लगानीका क्षेत्रहरू"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="घरजग्गा" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="शेयर कारोवार" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="सहकारी" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="उद्योग तथा व्यापार" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="अन्य" />
+
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="आफ्नो खाद्यान्न उत्पादनले मात्र वर्षमा कति महिना खान पुग्छ?"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="३ महिनाभन्दा कम खान पुग्ने"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="४–६ महिना खान पुग्ने"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="७–९ महिना खान पुग्ने"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="१०–१२ महिना खान पुग्ने"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="आफ्नो उत्पादन खान पुगेर बेच विखन गर्ने"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="उत्पादन नभएको"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको कूल आम्दानीले वार्षिक खर्च धान्न पुग्छ वा पुग्दैन?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="पुग्छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="पुग्दैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="पुग्दैन भने थप व्यवस्थापन (बहुउत्तर)"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="संचित धनको प्रयोग"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="ऋण"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="पैंचो सापटी"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="चलअचल सम्पत्ति बिक्री"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="अन्य"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="परिवारमा हाल कतैबाट ऋण सापटी लिएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ "
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="यदि छ भने कता बाट"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="बैंक वा वित्तीय संस्था" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="सहकारी संस्था" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="समुह वा सामुदायिक संस्था" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="साहु महाजन" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="इष्टमित्र" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="नातेदार" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="उक्त  ऋण कुन उद्देश्यका लागि लिनु भएको थियो?"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/question_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="घरायसी वा घर खर्च"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="कृषि तथा पशुपालन"
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="उद्योग व्यापार"
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="सामाजिक, धार्मिक कार्य"
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="शिक्षा"
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="औषधि उपचार"
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="घरजग्गा खरिद वा निर्माण "
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="शेयर लगानी"
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="सवारी साधन"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="अन्य"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ऋण चुक्ता गर्न कति समय लाग्छ?"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/question_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="६ महिना देखि १ वर्ष"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="१ वर्ष देखि २ वर्ष"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="२ वर्ष देखि ४ वर्ष"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="४ बर्ष देखि ६ वर्ष"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="६ वर्ष भन्दा माथि"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+</LinearLayout>

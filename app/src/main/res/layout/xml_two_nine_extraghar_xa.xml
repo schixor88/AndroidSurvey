@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--2.9 afno vanda aru ghar xa?-->
+    <RelativeLayout
+
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="7dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाई वा परिवार बसोबास गरेको घर भवन बाहेक यस नगरपालिकामा अन्य भवन पनि छ? "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+            <RadioGroup
+                android:id="@+id/rg_aru_ghar_xa"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rb_aru_ghar_gone"
+                    android:visibility="gone"
+                    android:text="none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_aru_ghar_xa"
+                    android:padding="5dp"
+                    android:text="छ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_aru_ghar_xaina"
+                    android:text="छैन"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+            <!--2.7.1 If cha then-->
+
+
+            <RadioGroup
+                android:id="@+id/rg_aru_ghar_if_xa"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+
+                    android:background="@color/colorGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"/>
+
+                <TextView
+                    android:padding="3dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="छ भने, के का लागि?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioButton
+                    android:id="@+id/rb_aru_ghar_xa_gone"
+                    android:visibility="gone"
+                    android:text="none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_aru_ghar_xa_vada"
+                    android:text="आवासीय भाडा"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_aru_ghar_xa_byapar"
+                    android:padding="5dp"
+                    android:text="व्यापारिक"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_aru_ghar_xa_industry"
+                    android:text="उद्योग"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_aru_ghar_xa_office"
+                    android:text="कार्यलय संचालन"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_aru_ghar_xa_other"
+                    android:text="अन्य"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="सामाजिक "
+        android:textAlignment="center"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/title_fontSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="कुनै एउटा परिचयपत्रको विवरण"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:id="@+id/t3_rg_social_identity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="कुनै नभएको"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="नागरिकता"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="पासपोर्ट"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="जन्मदर्ता"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="विवाह दर्ता"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="जग्गाधनी पूर्जा"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="पेन्सन पट्टा"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="भूकम्प पीडित कार्ड"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:id="@+id/t3_rb_social_security"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="सामाजिक सुरक्षा परिचयपत्र"
+            android:textSize="@dimen/radio_fontSize" />
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/t3_social_layout_socialsecurity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <RadioGroup
+            android:id="@+id/t3_rg_social_security"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="बृद्ध भत्ता"
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="विधवा भत्ता"
+                android:textSize="@dimen/radio_fontSize" />
+
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="एकल महिला भत्ता"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="अपांग भत्ता"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="पोषण भत्ता"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="लोपोन्मुख समूह भत्ता"
+                android:textSize="@dimen/radio_fontSize" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <LinearLayout
+        android:id="@+id/t3_social_layout_maritalstatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="वैबाहिक विवरण – बैबाहिक अवस्था (१६ वर्षमाथि)"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <RadioGroup
+            android:id="@+id/t3_rg_marital_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="अविवाहित"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="एक विवाहित"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="बहुविवाह"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="पुनः विवाह"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="एकल"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="सम्बन्ध विच्छेद"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छुट्टिएको"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+        <include layout="@layout/separator" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="सामाजिक संलग्नता – कुन संघ संस्था वा समुहमा अवद्ध"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="टोल विकास संस्था"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="कृषि वा पशुपालन समुह"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="सामुदायिक वा कबुलियती वन समुह"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="सहकारी संस्था"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="गैर सरकारी संस्था"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="सांस्कृतिक समूह (गुठी, कुल, धर्म)"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="महिला समुह"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="आमा समुह"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="लघुबित्त समुह"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="उपभोक्ता समुह वा समिति"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="कतै आवद्ध नभएको"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <CheckBox
+        android:id="@+id/t3_social_inv_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="बालक्लब"
+        android:textSize="@dimen/radio_fontSize" />
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="जनचेतना तथा सीपमूलक तालिम प्राप्त"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:id="@+id/t3_rg_received_training"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/t3_rb_has_received_training"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/t3_layout_trainings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="छ भने"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <CheckBox
+            android:id="@+id/t3_train_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="नेतृत्व तथा संस्थागत विकास"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <CheckBox
+            android:id="@+id/t3_train_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="व्यवसायिक सीप विकास"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <CheckBox
+            android:id="@+id/t3_train_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="पोषण तथा मातृ शिशु स्याहार"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <CheckBox
+            android:id="@+id/t3_train_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="विपद् जोखिम न्यूनीकरण"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <CheckBox
+            android:id="@+id/t3_train_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="खानेपानी र स्वास्थ्य र सरसफार्इ"
+            android:textSize="@dimen/radio_fontSize" />
+
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <LinearLayout
+        android:id="@+id/t3_social_layout_political_involvement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="राजनीतिक दलको निर्णायक पदमा आबद्ध (२१ बर्षमाथि)"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <RadioGroup
+            android:id="@+id/t3_social_rg_politicalinvolvement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/t3_social_rb_has_politicalinvolvement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छ"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छैन"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/t3_layout_involvement_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightGray"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding_left"
+            android:paddingRight="@dimen/padding_right">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="छ भने"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/question_fontSize" />
+
+            <RadioGroup
+                android:id="@+id/t3_rg_political_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="केन्द्रीय तह"
+                    android:textSize="@dimen/radio_fontSize" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="प्रदेश तह"
+                    android:textSize="@dimen/radio_fontSize" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="जिल्ला तह"
+                    android:textSize="@dimen/radio_fontSize" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="पालिका तह"
+                    android:textSize="@dimen/radio_fontSize" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="बार्ड तह"
+                    android:textSize="@dimen/radio_fontSize" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

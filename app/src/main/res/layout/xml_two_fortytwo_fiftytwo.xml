@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:textAlignment="center"
+        android:textColor="@color/colorBlackText"
+        android:textSize="20sp"
+        android:padding="7dp"
+        android:textStyle="bold"
+        android:text="खानेपानी सम्बन्धी विवरण"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--2.42 khanepani ko pramukh srowt -->
+    <RelativeLayout
+        android:id="@+id/rl_khanepani_pramukhsrowt"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाईको परिवारको खानेपानीको प्रमुख स्रोत कुन हो?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+            <RadioGroup
+                android:id="@+id/rg_khanepani_srowt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pipe_dhara"
+                    android:text="पाइप धारा"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_dhungedhara"
+                    android:text="ढुङ्गेधारा"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_kuwa_mul"
+                    android:text="कुवा, जरूवा वा मूल"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_nadi_kulo_pokhari"
+                    android:text="नदी, कुलो वा पोखरी"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_deep_boring"
+                    android:text="डिप बोरिङ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_hand_pump"
+                    android:text="हाते पम्प"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_eenar"
+                    android:text="इनार"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_lift"
+                    android:text="लिफ्ट"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+            </RadioGroup>
+
+            <View
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.43 Record byawsathapan -->
+    <RelativeLayout
+        android:id="@+id/rl_hidera_gadima_hosp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="रेकर्ड व्यवस्थापन"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <LinearLayout
+                android:paddingTop="5dp"
+                android:paddingLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="पानीको लागि मिटर जडान छ?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioGroup
+                    android:id="@+id/rg_paniko_meter_yesno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pani_meter_yes"
+                        android:text="छ"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pani_meter_no"
+                        android:text="छैन"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                </RadioGroup>
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="5dp"
+                android:paddingLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="गाडीमा जान्छु (मीनेट) "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/et_time_gadima_hosp"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.44 Khanepani aapurti bill -->
+    <RelativeLayout
+        android:id="@+id/rl_khop_pura_xakixaina"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="खानेपानी आपूर्ति र बील"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_pani_paryapta_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="3dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="पानी पर्याप्त हुन्छ? "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pani_paryapta_yes"
+                    android:text="हुन्छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pani_paryapta_no"
+                    android:text="हुन्दैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RadioGroup>
+
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/if_no_vaccine_why"
+                android:paddingTop="5dp"
+                android:paddingLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="खोप पुरा गरेको छैन भने किन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/et_why_khop_apuro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.45 khanepani lyauna jagne time -->
+    <RelativeLayout
+        android:id="@+id/rl_khanepani_lyaunalagne_time"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="खानेपानी ल्याउन (जाँदा आउँदा) लाग्ने समय"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_khanepani_lyaunalagne_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_gharmai_dhara"
+                    android:text="घरमै धारा भएको"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_5_min"
+                    android:text="५ मिनेटसम्मको दुरीमान"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_15min"
+                    android:text="५ देखि १५ मिनेटको दुरीमा"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_morethan_15"
+                    android:text="१५ मिनेटभन्दा बढी समय लाग्नने"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.46 khanepani quality gunastar -->
+    <RelativeLayout
+        android:id="@+id/rl_khanepani_gunastar"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="खानेपानीको गुणस्तर कस्तो छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_khanepani_gunastar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_khanepani_gunastar_safa"
+                    android:text="सफा"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_khanepani_gunastar_dhamilo"
+                    android:text="धमिलो"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.47 khanepani suddhikaran_yesno_with_hidden -->
+    <RelativeLayout
+        android:id="@+id/rl_khanepani_suddhikaran"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="पानी शुद्धिकरण गरेर खानुहुन्छ कि नगरी खानुहुन्छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_khanepani_suddhikaran"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_suddhikaran_nagari"
+                    android:text="शुद्धिकरण नगरी"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_suddhikaran_garera"
+                    android:text="शुद्धिकरण गरेर"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+            <!--if khane pani suddhikaran is yes-->
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_khanepani_suddhikaran_ifyes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="3dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="पानी शुद्धिकरण गरेर खानुहुन्छ कि नगरी खानुहुन्छ?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                        <RadioButton
+                            android:textSize="15dp"
+                            android:id="@+id/rb_suddhikaran_bitarantanki"
+                            android:text="वितरण ट्यांकीमा"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:textSize="15dp"
+                            android:id="@+id/rb_suddhikaran_gharkotanki"
+                            android:text="घरको ट्यांकीमा"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:textSize="15dp"
+                            android:id="@+id/rb_suddhikaran_gharayesi"
+                            android:text="घरायसी विधि फिल्टर, वाटर गार्ड, क्लोरिन, अन्य"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.48 aakash pani sankalan -->
+    <RelativeLayout
+        android:id="@+id/rl_aakhaspani_sankalan"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="घरमा आकाशे पानी संकलनको व्यवस्था गरिएको छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_aakhaspani_sankalan_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_aaksahpani_sankalan_yes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_aaksahpani_sankalan_no"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+            <!--if aakhaspani yes-->
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_aakhaspani_sankalan_ifyes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="3dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="छ भने"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <RadioButton
+                    android:textSize="15dp"
+                    android:id="@+id/rb_aaksahpani_sankalan_kausi"
+                    android:text="कौसीमा संकलन गरी घरायसी काममा प्रयोग गर्ने"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="15dp"
+                    android:id="@+id/rb_aaksahpani_sankalan_prabidhik"
+                    android:text="प्राविधिक रूपमा संकलन गरी सबै कार्यमा प्रयोग गर्ने"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.49 ghar ma dhal jodeko xa -->
+    <RelativeLayout
+        android:id="@+id/rl_gharma_dhal"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाईको घरमा ढल जोडिएको छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_gharma_dhal_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_gharma_dhal_yes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_gharma_dhal_no"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+            <!--if dhal yes-->
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_ghar_dhal_ifyes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="3dp"
+                    android:textSize="17sp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="छ भने"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <RadioButton
+                    android:textSize="15dp"
+                    android:id="@+id/rb_banda_dhal"
+                    android:text="बन्द ढल"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="15dp"
+                    android:id="@+id/rb_khula_dhal"
+                    android:text="खुल्ला ढल"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.50 fohor pani ko byawastha -->
+    <RelativeLayout
+        android:id="@+id/rl_fohorpani_mgmt"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="फोहोर पानीको व्यवस्थापन कसरी गर्नु भएको छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_fohorpani_byawastha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_fhoropani_safty_tanki"
+                    android:text="सेफ्टीक टेंक"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_fhoropani_tarkaribari"
+                    android:text="तरकारी ৴ करेसाबारी"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_fhoropani_sataha_dhal"
+                    android:text="सतह ढल"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_fhoropani_khalto_khani"
+                    android:text="खाल्डो खनी"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_nadi_kholsa"
+                    android:text="नदी वा खोल्सामा"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_fhoropani_else"
+                    android:text="अन्य"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.51 kuhiney nakuhiney fohor chuttyaunu hunxa -->
+    <RelativeLayout
+        android:id="@+id/rl_khuhiney_nakuhiney_fohor"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाईले कुहिने र नकुहिने फोहर छुटाउने गर्नुहुन्छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_kuhiney_fohor_chuttuney_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_kuhineyfohor_yes"
+                    android:text="गर्छु"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_kuhineyfohor_no"
+                    android:text="गर्दिन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.52 तपाईको घरबाट निस्किने ठोस फोहर मैला कसरी बिसर्जन गर्नुहुन्छ? बहुउत्तर -->
+    <RelativeLayout
+        android:id="@+id/rl_12mnth_kiddie"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाईको घरबाट निस्किने ठोस फोहर मैला कसरी बिसर्जन गर्नुहुन्छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/fb_gharbataniskey_fhoro_mgmt"
+                app:flexDirection="column"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <CheckBox
+                    android:id="@+id/cb_fhoro_compoundma_jalauney"
+                    android:text="आफ्नै घर कम्पाउण्ड भित्र जलाउने गाड्ने"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <CheckBox
+                    android:id="@+id/cb_fohor_thuparney_container"
+                    android:text="फोहर थुपार्ने पर्ने ठाउँमा कन्टेनरमा"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/cb_fohor_lina_aauxa"
+                    android:text="घरमै लिन आउँछन्"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/cb_fohor_compost"
+                    android:text="कम्पष्ट मल बनाउने"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/cb_fohor_sadakma"
+                    android:text="सडकमा"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/cb_fohor_sarbajanik"
+                    android:text="सार्वजनिक स्थलमा"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/cb_fohor_nadi"
+                    android:text="नदी वा खोल्सामा"
+                    android:textSize="17dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

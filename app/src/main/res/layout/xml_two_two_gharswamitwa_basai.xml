@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--2.2-->
+    <RelativeLayout
+
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="7dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="घरको स्वामित्व र बसाइ अवधि"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+            <!--Radio Swamittwa-->
+
+            <LinearLayout
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="स्वामित्व"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioGroup
+                    android:id="@+id/rg_swamitwa"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rb_swamitwa_none"
+                        android:visibility="gone"
+                        android:text="none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="17dp"
+                        android:id="@+id/rb_swamitwa_ghardhani"
+                        android:padding="5dp"
+                        android:text="घरधनी"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="17dp"
+                        android:id="@+id/rb_swamitwa_vada"
+                        android:text="भाडा"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                </RadioGroup>
+
+
+
+            </LinearLayout>
+
+
+            <!--Radio Basai Aabadhi-->
+
+            <LinearLayout
+                android:padding="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="बसाई अवधि"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioGroup
+                    android:id="@+id/rg_basai_abadhi"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rb_basai_none"
+                        android:visibility="gone"
+                        android:text="none"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="17dp"
+                        android:id="@+id/rb_basai_less6"
+                        android:padding="5dp"
+                        android:text="६ महिना भन्दा कम "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="17dp"
+                        android:id="@+id/rb_basai_more6"
+                        android:text="६ महिना भन्दा बढी"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RadioGroup>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

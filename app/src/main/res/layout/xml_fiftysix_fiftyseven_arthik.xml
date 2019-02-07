@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="आर्थिक पहुँचको अवस्था"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/title_fontSize" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="परिवारको मुख्य पेशा?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="कृषि तथा पशुपालन"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="नोकरी"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="व्यापार"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="उद्यम, व्यवसाय"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="अन्य"
+            android:textSize="@dimen/radio_fontSize" />
+
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="भू स्वामित्व र उपयोगको अवस्था"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="देशभर जग्गा तथा घडेरी छ?"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="छ भने "
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/content_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="नपामा मात्र भएको"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="नपा र अन्यत्र पनि भएको"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="अन्यत्र मात्र भएको"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="जग्गा कसको स्वामित्वमा छ? (रोपनी৴आना)"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="पुरूष"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="महिला"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="जग्गाको प्रयोग कसरी भएको छ? "
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="आफैले कमाएको"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="अधियाँ ठेक्कामा कमाउन दिएको"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="जग्गा भाडामा दिएको"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="घडेरी"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="पाखो तथा बाँझो"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="निजी वन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="अरूको जग्गा कमाएको वा भाडामा लिएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ "
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="छ भने "
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="जग्गाको किसिमः खेत, बारी, पाखे, अधियाँ ठेक्कामा कमाएको"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="ज्यालामा कमाएको"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="मोहियानी"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="भाडामा लिएको"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+</LinearLayout>

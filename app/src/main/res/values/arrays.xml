@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="family_size">
+        <item>१</item>
+        <item>२</item>
+        <item>३</item>
+        <item>४</item>
+        <item>५</item>
+        <item>६</item>
+        <item>७</item>
+        <item>८</item>
+        <item>९</item>
+        <item>१०</item>
+        <item>११</item>
+        <item>१२</item>
+        <item>१३</item>
+        <item>१४</item>
+        <item>१५</item>
+    </string-array>
+
+
+</resources>

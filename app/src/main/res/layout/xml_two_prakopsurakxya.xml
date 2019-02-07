@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="प्रकोप सुरक्षाको अवस्था"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/title_fontSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="आवासीय सुरक्षा"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईलाई भवन संहितको बारेमा थाहा छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको घर भवन संहिता अनुसार निर्माण भएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="थाहा छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईले घर निर्माण गर्दा नपाबाट अनुमति पत्र, नक्सा पास लिनु भएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको घर छेउमा खुल्ला सुरक्षित क्षेत्र छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको घर प्राकृतिक प्रकोप जस्तै बाढी, पहिरो आदी जोखिम क्षेत्रमा छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="के तपाईले रेडियो लगायतका संचार माध्यम मार्फत भूकम्पिय जोखिम न्यूनिकरणबारे प्रभावकारी सूचना प्राप्त गर्नु भएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="भूकम्प आएको बेलाको अवस्थाको लागि घरभित्रका सुरक्षित स्थानहरू पहिचान गर्नुभएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="के तपाईल्रे आपतकालिन समयका लागि काम लाग्ने सामानहरू जुटाएर राख्नुभएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="प्रकोपको असर"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="१० वर्ष यता परिवारलाई कस्ता प्रकोपहरूबाट क्षति भएको छ"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_between">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="बाढी पहिरो"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="खँडेरी"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="जनावर आतंक "
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="आगलागी"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="असिना, चटयांक, करेन्ट"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="महामारीबाट"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="भूकम्प"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="चोरी, डकैती, काटमार दुर्घटना"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="हुरी बतास"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="अन्य दुर्घटना"
+            app:layout_flexBasisPercent="40%" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="पछिल्लो पटक भोग्नुपरेको सबैभन्दा असरयुक्त प्रकोप के थियो?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="प्रकोप"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="साल"
+            android:textSize="@dimen/radio_fontSize" />
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="क्षति"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="सम्पत्ति वीमा गरेको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="छ भने के को वीमा गरिएको"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="column">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="पशु" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="घर" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="मेसिन तथा औजार" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="बाली" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="अन्य" />
+        </com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="प्राकृतिक प्रकोप जोखिम न्युनीकरणका लागि कस्ता पूर्व तयारीहरू गर्नुभएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="column">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="पूर्व चेतावनी" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="सुरक्षा तथा उद्धार सामाग्री" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="प्राथमिक उपचार सेवा" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="पुनस्थापना" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="वीमा" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="उद्धार सेवा तथा संयन्त्र" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="द्वन्द्व"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="परिवार द्वन्द्व पीडित हो?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="हो"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="हैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="हो भने"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:flexWrap="wrap">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="मृत्यु संख्या"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="घाइते संख्या "
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="वेपत्ता संख्या"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="धन सम्पत्ति क्षति (रकम) "
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <include layout="@layout/separator" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="मुद्दा"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छ"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छैन"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="विस्थापित"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="हो"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="हैन"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="यौन दुर्व्यवहार"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छ"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छैन"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="व्यक्ति हराएको"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="नपा क्षेत्रभित्र सुरक्षित  महसुस गर्नुहुन्छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="गर्छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="गर्दैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="गर्छ भने किन"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="सुरक्षा निकाय सक्रिय रहेको"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="अन्य"
+            android:textSize="@dimen/radio_fontSize" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="गर्दैन भने "
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="असुरक्षित महसुस गर्नुको कारण"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="बाढी पहिरो"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="जनावर आतंक"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="असिना, चटयांक, करेन्ट"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="भूकम्प"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="हुरी बतास"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="खँडेरी"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="आगलागी"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="महामारीबाट"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="चोरी, डकैती, काटमार दुर्घटना"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="सडक दुर्घटना"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="सडक दुर्घटना"
+                android:textSize="@dimen/radio_fontSize" />
+
+        </RadioGroup>
+
+        <include layout="@layout/separator" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="असुरक्षित महसुस गरिने स्थान ( कुनै छ भने)"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:flexWrap="wrap">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="वडा नं"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="बस्तीको नाम"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:inputType="textPersonName"
+                app:layout_flexBasisPercent="40%" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+</LinearLayout>

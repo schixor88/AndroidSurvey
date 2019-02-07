@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">Data Demo</string>
+
+
+    <string-array name="religion">
+        <item>हिन्दू</item>
+        <item>बौद्ध</item>
+        <item>इस्लाम</item>
+        <item>क्रिश्चियन</item>
+        <item>किराँत</item>
+        <item>शिख</item>
+        <item>जैन</item>
+        <item>बताउन नचाहेको</item>
+        <item>अन्य</item>
+    </string-array>
+
+
+    <string name="A">टामान्ो वववरण </string>
+    <string name="a1">घरधनीकज वववरण </string>
+    <string name="ghardhani_name">1. घरधनीको नाम </string>
+    <string name="ghardhani_sex">2. मलङ्ग </string>
+    <string name="ghardhani_contact">3. मोबाइल नं </string>
+    
+    
+    <string-array name="swamittwa">
+        <item>घरधनी</item>
+        <item>भाडा</item>
+    </string-array>
+
+
+    <string-array name="jatjati">
+        <item>-</item>
+        <item>बाहुन</item>
+        <item>क्षेत्री</item>
+        <item>नेवार</item>
+        <item>तामाङ</item>
+        <item>मगर</item>
+        <item>सुनुवार</item>
+        <item>माझी</item>
+        <item>शेर्पा</item>
+        <item>हायु</item>
+        <item>पहारी</item>
+        <item>भुजेल</item>
+        <item>गुरूङ</item>
+        <item>राई</item>
+        <item>लिम्बु</item>
+        <item>जिरेल</item>
+        <item>थामी</item>
+        <item>सन्यासी</item>
+        <item>कामी</item>
+        <item>दमाई</item>
+        <item>सार्की</item>
+        <item>बादी</item>
+        <item>मुसलमान</item>
+
+    </string-array>
+
+
+
+    <string-array name="dharma">
+        <item>-</item>
+        <item>हिन्दू</item>
+        <item>बौद्ध</item>
+        <item>इस्लाम</item>
+        <item>क्रिश्चियन</item>
+        <item>किराँत</item>
+        <item>शिख</item>
+        <item>जैन</item>
+        <item>अन्य</item>
+
+
+
+    </string-array>
+
+
+    <string-array name="vasa">
+        <item>-</item>
+        <item>नेपाली</item>
+        <item>तामाङ</item>
+        <item>मगर</item>
+        <item>थामी</item>
+        <item>नेवारी</item>
+        <item>सुनुवार</item>
+        <item>माझी</item>
+        <item>शेर्पा</item>
+        <item>गुरूङ</item>
+        <item>राई</item>
+        <item>लिम्बु</item>
+        <item>मैथिली</item>
+        <item>भोजपुरी</item>
+        <item>थारू</item>
+        <item>उर्दू</item>
+        <item>अवधि</item>
+        <item>राजवंशी</item>
+    </string-array>
+
+
+
+
+
+</resources>

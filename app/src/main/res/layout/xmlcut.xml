@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--2.32 past 12mnth any kid 5 yr died -->
+        <RelativeLayout
+            android:id="@+id/rl_12mnth_kiddie"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:padding="8dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:padding="3dp"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="गत १२ महिना भित्र तपाईको परिवारमा ५ वर्ष मुनिका कुनै केटाकेटीको मृत्यु भएको थियो?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+
+                    android:background="@color/colorGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"/>
+
+                <RadioGroup
+                    android:padding="5dp"
+                    android:id="@+id/rg_12mnth_kiddie_yesno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_12mnth_kidide_yes"
+                        android:text="थियो"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_12mnth_kidide_no"
+                        android:text="थिएन"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                </RadioGroup>
+
+
+                <View
+
+                    android:background="@color/colorGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"/>
+
+
+
+
+
+
+
+                <RadioGroup
+                    android:padding="5dp"
+                    android:id="@+id/rg_if_yes_deadkid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <TextView
+                        android:textSize="19dp"
+                        android:text="यदि थियो भने  कुन उमेरमा के कारणले मृत्यु भयो?"
+                        android:textColor="@color/colorBlackText"
+                        android:paddingTop="3dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+
+                    <EditText
+                        android:id="@+id/et_yes_deadkid_sex"
+                    android:textSize="18dp"
+                    android:textColorHint="@color/colorBlackText"
+                    android:hint="लिङ्ग"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/et_yes_deadkid_age"
+                        android:textSize="18dp"
+                        android:textColorHint="@color/colorBlackText"
+                        android:hint="उमेर (वर्ष)"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/et_yes_deadkid_reason"
+                        android:textSize="18dp"
+                        android:textColorHint="@color/colorBlackText"
+                        android:hint="कारण"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

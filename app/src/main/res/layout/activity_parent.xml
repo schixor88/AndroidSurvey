@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <!--1 Samanya Bibaran-->
+
+        <TextView
+            android:textAlignment="center"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhiteText"
+            android:textSize="24sp"
+            android:padding="7dp"
+            android:text="सामान्य विवरण"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <include layout="@layout/xml_one_two_prasasanik"/>
+        <include layout="@layout/xml_one_three_ghar"/>
+        <include layout="@layout/xml_one_four_ghardhani"/>
+        <include layout="@layout/xml_one_five_vada"/>
+
+        <!--TV 2 Pariwarik bibaran-->
+        <TextView
+            android:textAlignment="center"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhiteText"
+            android:textSize="24sp"
+            android:padding="7dp"
+            android:text="पारिवारिक विवरण"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/xml_two_one_suchanadata"/>
+        <include layout="@layout/xml_two_two_gharswamitwa_basai"/>
+
+        <LinearLayout
+            android:id="@+id/offline"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <include layout="@layout/xml_two_three_jati_dharma" />
+
+        <!--Basai Sarai TItle-->
+        <TextView
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="22sp"
+            android:padding="7dp"
+            android:textStyle="bold"
+            android:text="बसाइ सराइ सम्बन्धी विवरण"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <include layout="@layout/xml_two_four_basobas_awasta"/>
+        <include layout="@layout/xml_two_five_kunsthanbata_ako"/>
+        <include layout="@layout/xml_two_six_basaisarnu_karan"/>
+        <include layout="@layout/xml_two_seven_basaiabadhi"/>
+
+
+        <!--Srot sadhan awasta-->
+        <TextView
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="22sp"
+            android:padding="7dp"
+            android:textStyle="bold"
+            android:text="घर तथा घरायसी स्रोत साधनहरूको पहुँचको अवस्था"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/xml_two_eight_ghar_xa"/>
+        <include layout="@layout/xml_two_nine_extraghar_xa"/>
+
+         <!--Sarbekxan sthan ma vayeko ghar-->
+        <TextView
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="22sp"
+            android:padding="7dp"
+            android:textStyle="bold"
+            android:text="सर्वेक्षण स्थानमा भएको घरसम्बन्धी विवरण"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/xml_two_ten_to_twenty"/>
+
+            <!--Gharayesi samagri taha sadhanko bibaran-->
+        <TextView
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="22sp"
+            android:padding="7dp"
+            android:textStyle="bold"
+            android:text="घरायसी सामाग्री तथा साधनहरूको विवरण"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/xml_two_tentyone_tewntyfour"/>
+
+        <!--Khanepani swastha tatha sarsafai-->
+        <TextView
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="22sp"
+            android:padding="7dp"
+            android:textStyle="bold"
+            android:text="खानेपानी, स्वास्थ्य तथा सरसफाइ पहुँचको अवस्था"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/xml_two_twentyfive_foutryone"/>
+
+            <!--Khanepani subtitle-->
+            <include layout="@layout/xml_two_fortytwo_fiftytwo"/>
+
+            <!--Toilet subtitle-->
+            <include layout="@layout/xml_fiftythree_fiftyfour_toilet"/>
+
+            <!--Electicity-->
+            <include layout="@layout/xml_fifityfive_electricity"/>
+
+            <!--Arthik-->
+            <include layout="@layout/xml_fiftysix_fiftyseven_arthik"/>
+
+            <!--Agriculture-->
+            <include layout="@layout/xml_fiftyeight_sixty_agriculture"/>
+
+            <!--Aamdhani-->
+            <include layout="@layout/xml_two_sixtyfour_seventy_aamdhani"/>
+
+            <!--Prakop Surakxya-->
+            <include layout="@layout/xml_two_prakopsurakxya"/>
+
+
+            <!--Samajik surakxya taha sahavhagi-->
+            <include layout="@layout/xml_two_samajiksurakxya"/>
+
+
+            <!--TV 3 Byaktigat bibaran-->
+            <TextView
+                android:textAlignment="center"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/colorWhiteText"
+                android:textSize="24sp"
+                android:padding="7dp"
+                android:text="व्यक्तिगत विवरण"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <include layout="@layout/t3_bayktigat_bibaron"/>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</ScrollView>

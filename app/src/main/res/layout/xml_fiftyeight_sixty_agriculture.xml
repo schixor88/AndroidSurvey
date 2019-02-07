@@ -1,0 +1,1406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="कृषिजन्य उत्पादन तथा खाद्य सुरक्षा (पेशा छ भने)"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/title_fontSize" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको परिवारले मुख्यता के कस्तो कृषि उत्पादन गर्छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="अन्न (मकै, कोदो, गहुँ, धान)"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="दुध तथा दुग्ध पदार्थ"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="तरकारी "
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="महुरी पालन"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="माछा पालन"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="फलफुल"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="पशुपंक्षी पालन"
+            app:layout_flexBasisPercent="40%" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="कुनै पनि छैन"
+            app:layout_flexBasisPercent="40%" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="खेतीपातीबाट गत वर्षको उत्पादन"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_evenly">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="नाम"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="संख्या"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/colorBlackText"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="मुरी/केजी"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_flexBasisPercent="25%" />
+
+        <include layout="@layout/table_separator" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="अन्नबाली"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(मुरी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="धान "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(मुरी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="मकै "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(मुरी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="कोदो "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(मुरी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="गहुँ"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(मुरी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="फापर "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(मुरी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="अन्य (नाम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य (संख्या)"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(मुरी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य (नाम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य (संख्या)"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(मुरी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <include layout="@layout/table_separator" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="तेलहन बाली "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="दालहन वाली "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="तरकारी बाली "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ताजा तरकारी "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="आलु "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="मसलाबाली "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="फलफूल खेती "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="कन्दमूल "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य (नाम) "
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य (संख्या)"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य (नाम) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य (संख्या)"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="30%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="(केजी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="25%" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="परिवारको पशुपंक्षी धन कति छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="पशुधन"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/content_fontSize"
+        android:textStyle="bold" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_evenly">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="गार्इ गोरू"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="स्थानीय संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="उन्नत संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="भैंसी राँगा"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="स्थानीय संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="उन्नत संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="बोका खसी बाख्रा"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="स्थानीय संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="उन्नत संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="भेडा च्याङ्रग्रा"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="स्थानीय संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="उन्नत संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="सुँगुर बँगुर"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="स्थानीय संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="उन्नत संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य(नाम)"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="स्थानीय संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="उन्नत संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="पंक्षी"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/content_fontSize"
+        android:textStyle="bold" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_evenly">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="कुखुरा हाँस"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="स्थानीय संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="उन्नत संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="परेवा"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="64%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य(नाम)"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="स्थानीय संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="उन्नत संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="32%" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="अन्य"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/content_fontSize"
+        android:textStyle="bold" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_evenly">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="माछा पोखरी"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="64%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="मौरी घार"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="64%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="अन्य(नाम)"
+            app:layout_flexBasisPercent="32%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="संख्या"
+            android:inputType="number"
+            app:layout_flexBasisPercent="64%" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="पशुपंक्षीबाट गत बर्ष कति उत्पादन भयो?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="space_around">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="दूध वा दही (लि)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="घिउ (केजी)"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="अन्य दुग्ध पदार्थ (केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="मासु (केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="मल (क्वीन्टल) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="मूत्र (लि) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="ऊन (केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="अण्डा (क्रेट) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="माछा (केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="मह (केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="अन्य (केजी) "
+            android:textAlignment="center"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/radio_fontSize"
+            app:layout_flexBasisPercent="40%" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number"
+            app:layout_flexBasisPercent="40%" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="उत्पादनहरू बिक्री गर्नुहुन्छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="गर्छु"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="गर्दिन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="गर्छु भने के के? "
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="space_around">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="दूध वा दही "
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="घिउ"
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="अन्य दुग्ध पदार्थ "
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="मासु"
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="मल "
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="मूत्र "
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ऊन "
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="अण्डा "
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="माछा "
+                app:layout_flexBasisPercent="40%" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="मह "
+                app:layout_flexBasisPercent="40%" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <include layout="@layout/separator" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="कहाँ बेच्नुहुन्छ?"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/content_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="घरमै आउँछ "
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="स्थानीय बजार"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="बाहिर"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="बजारबासी भए"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="तपाईको घरमा फलफूलका विरूवाहरू रोपिएका छन्? (घरधनी)"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छ"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text=" छैन"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+        <include layout="@layout/separator" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="तपाईको घरमा तरकारी बाली लगाइन्छ?"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="छ "
+                android:textSize="@dimen/radio_fontSize" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text=" छैन"
+                android:textSize="@dimen/radio_fontSize" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+</LinearLayout>

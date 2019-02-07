@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="1dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="2dp"></LinearLayout>
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:orientation="vertical" android:layout_width="match_parent"-->
+    <!--android:weightSum="6"-->
+    <!--android:layout_height="match_parent">-->
+    <!---->
+    <!--<ScrollView-->
+        <!--android:id="@+id/scroll_v_1"-->
+        <!--android:layout_weight="3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="300dp">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:id="@+id/linear_1"-->
+            <!--android:gravity="center"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<LinearLayout-->
+
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="अक्षांशः"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:editable="false"-->
+                    <!--android:id="@+id/et_lat"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="देशान्तरः"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:editable="false"-->
+                    <!--android:id="@+id/et_lng"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="उँचाइः"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:editable="false"-->
+                    <!--android:id="@+id/et_alt"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="घरधनीको नाम"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:id="@+id/et_owner"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="बस्तिको नाम"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                <!--<EditText-->
+                    <!--android:padding="10dp"-->
+                    <!--android:id="@+id/et_town"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:text="1"-->
+                    <!--android:editable="false"-->
+                    <!--android:id="@+id/et_id"-->
+                    <!--android:padding="0dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="सडक मार्गको नाम: "-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:id="@+id/et_road"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="गाउँपालिका/नगरपालिका: "-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:id="@+id/et_vdc"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+
+                <!--<TextView-->
+                    <!--android:padding="10dp"-->
+                    <!--android:text="जिल्ला: "-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content" />-->
+                <!--<EditText-->
+                    <!--android:id="@+id/et_district"-->
+                    <!--android:padding="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+            <!--</LinearLayout>-->
+
+
+
+
+        <!--</LinearLayout>-->
+
+
+
+
+    <!--</ScrollView>-->
+    <!---->
+    <!---->
+    <!--<LinearLayout-->
+        <!--android:paddingLeft="20dp"-->
+        <!--android:layout_below="@id/scroll_v_1"-->
+        <!--android:id="@+id/linear_btn"-->
+
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="55dp">-->
+        <!--<Button-->
+            <!--android:text="SAVE"-->
+            <!--android:id="@+id/btn_add"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <!--<Button-->
+            <!--android:text="UPDATE"-->
+            <!--android:id="@+id/btn_update"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<Button-->
+            <!--android:text="DELETE"-->
+            <!--android:id="@+id/btn_delete"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+        <!--<Button-->
+            <!--android:text="EXPORT"-->
+            <!--android:id="@+id/btn_export"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+    <!--</LinearLayout>-->
+    <!---->
+
+
+
+        <!--<ListView-->
+            <!--android:layout_below="@id/linear_btn"-->
+            <!--android:choiceMode="singleChoice"-->
+            <!--android:id="@+id/list"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"></ListView>-->
+
+
+
+
+<!--</RelativeLayout>-->

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--2.7 MP ma ghar xa?-->
+    <RelativeLayout
+
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="7dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="20sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाईको परिवारको नाममा यस नगरपालिकामा घरहरू छ कि छैन?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+            <RadioGroup
+                android:id="@+id/rg_ghar_xa"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rb_ghar_gone"
+                    android:visibility="gone"
+                    android:text="none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_ghar_xa"
+                    android:padding="5dp"
+                    android:text="छ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_ghar_xaina"
+                    android:text="छैन"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+            <!--2.7.1 If cha then-->
+
+
+            <RadioGroup
+                android:id="@+id/rg_ghar_if_xa"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <View
+
+                    android:background="@color/colorGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"/>
+
+                <TextView
+                    android:padding="3dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="छ भने, घर जग्गाके स्वामित्वको किसिम (दर्ता) कस्तो छ?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <RadioButton
+                    android:id="@+id/rb_ghar_if_xa_gone"
+                    android:visibility="gone"
+                    android:text="none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_ghar_ifxa_numbari"
+                    android:padding="5dp"
+                    android:text="नम्बरी"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_ghar_ifxa_yelani"
+                    android:text="ऐलानी"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_ghar_ifxa_other"
+                    android:text="अन्य"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

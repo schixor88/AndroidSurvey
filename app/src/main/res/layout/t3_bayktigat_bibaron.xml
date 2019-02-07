@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/title_padding"
+        android:text="व्यक्तिगत विवरण"
+        android:textAlignment="center"
+        android:textColor="@color/colorWhiteText"
+        android:textSize="@dimen/title_fontSize" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="परिवार सदस्य संख्या"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/question_fontSize" />
+
+        <Spinner
+            android:id="@+id/t3_familyCount"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhiteText"
+            android:entries="@array/family_size"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/t3_individualDataLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

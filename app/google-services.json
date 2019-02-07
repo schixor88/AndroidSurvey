@@ -1,0 +1,187 @@
+{
+  "project_info": {
+    "project_number": "640154867616",
+    "firebase_url": "https://smart-193e9.firebaseio.com",
+    "project_id": "smart-193e9",
+    "storage_bucket": "smart-193e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640154867616:android:c6bb4cbc791639c8",
+        "android_client_info": {
+          "package_name": "com.example.kushagra.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640154867616-dpcf40el1pkem195j25dkkn1osfs6jfr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kushagra.application",
+            "certificate_hash": "70f7c106cc81c54ced165235fab6618e4bf3fb98"
+          }
+        },
+        {
+          "client_id": "640154867616-6gme5iv76af02u4oq89vk1fr8lc18l0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7hDba2Lh5M5BRNHbtqA-MDDXILPk7q5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640154867616-6gme5iv76af02u4oq89vk1fr8lc18l0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640154867616:android:da2ac5db02e928a4",
+        "android_client_info": {
+          "package_name": "com.example.kushagra.dataapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640154867616-uqcuim8itqjfr46uven3bnfoi89pjgee.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kushagra.dataapp",
+            "certificate_hash": "70f7c106cc81c54ced165235fab6618e4bf3fb98"
+          }
+        },
+        {
+          "client_id": "640154867616-6gme5iv76af02u4oq89vk1fr8lc18l0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7hDba2Lh5M5BRNHbtqA-MDDXILPk7q5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640154867616-6gme5iv76af02u4oq89vk1fr8lc18l0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640154867616:android:71e85012dc954c48",
+        "android_client_info": {
+          "package_name": "com.example.kushagra.smart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640154867616-jsib3oi1fqf960oltl46unke6kd2cuni.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kushagra.smart",
+            "certificate_hash": "70f7c106cc81c54ced165235fab6618e4bf3fb98"
+          }
+        },
+        {
+          "client_id": "640154867616-6gme5iv76af02u4oq89vk1fr8lc18l0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7hDba2Lh5M5BRNHbtqA-MDDXILPk7q5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640154867616-6gme5iv76af02u4oq89vk1fr8lc18l0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640154867616:android:1ace22de651d2240",
+        "android_client_info": {
+          "package_name": "com.kushagra.kushagra.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640154867616-j5fnof2ailkns259t2uhqpvc275kh5og.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kushagra.kushagra.test",
+            "certificate_hash": "70f7c106cc81c54ced165235fab6618e4bf3fb98"
+          }
+        },
+        {
+          "client_id": "640154867616-6gme5iv76af02u4oq89vk1fr8lc18l0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7hDba2Lh5M5BRNHbtqA-MDDXILPk7q5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640154867616-6gme5iv76af02u4oq89vk1fr8lc18l0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

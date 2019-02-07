@@ -1,0 +1,1672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--2.25 Birami and birami huda -->
+    <RelativeLayout
+        android:id="@+id/rl_birami_yesno"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="विगत 1 वर्षयता परिवारका सदस्यहरू विरामी भएका छन्?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+            <RadioGroup
+                android:id="@+id/rg_birami_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_birami_yes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_birami_no"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RadioGroup>
+
+            <View
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <!--if birami vako xa vnai-->
+
+            <LinearLayout
+                android:id="@+id/linear_layout_if_biramixa_vane"
+                android:paddingTop="5dp"
+                android:paddingLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="छ भने"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:padding="5dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="18dp"
+                        android:textColor="@color/colorBlackText"
+                        android:text="विरामी हुँदा उपचारको लागि शुरूमा कहाँ लानुभयो?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <RadioGroup
+                        android:id="@+id/rg_birami_yes_1sttreat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RadioButton
+                            android:textSize="18dp"
+                            android:id="@+id/rb_birami_1st_chauki"
+                            android:text="स्वास्थ्य चौकी"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:textSize="18dp"
+                            android:id="@+id/rb_birami_1st_hosp"
+                            android:text="अस्पताल"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:textSize="18dp"
+                            android:id="@+id/rb_birami_1st_medical"
+                            android:text="औषधी पसल"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <RadioButton
+                            android:textSize="18dp"
+                            android:id="@+id/rb_birami_1st_ayru"
+                            android:text="प्राकृतिक चिकित्सालय"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                        <RadioButton
+                            android:textSize="18dp"
+                            android:id="@+id/rb_birami_1st_dhami"
+                            android:text="धामी, झाँक्री, ज्योतिषी"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+
+
+
+                    </RadioGroup>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.26 Hidera/gadi ma hospital -->
+    <RelativeLayout
+        android:id="@+id/rl_hidera_gadima_hosp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="घरबाट नजिकको स्वास्थ्य संस्थामा कसरी जानुहुन्छ, पुग्न कति समय लाग्छ? (मीनेट)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+
+
+
+
+            <LinearLayout
+                android:paddingTop="5dp"
+                android:paddingLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="हिंडेर जान्छु (मीनेट) "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/et_time_hidera_hosp"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:paddingTop="5dp"
+                android:paddingLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="गाडीमा जान्छु (मीनेट) "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/et_time_gadima_hosp"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.27 Khop pura xa ki xaina -->
+    <RelativeLayout
+        android:id="@+id/rl_khop_pura_xakixaina"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="भर्खरै २ वर्ष उमेर पुरा भएका बच्चाहरूले सबै खोपहरू (विसिजी, डिपिटि, हेपाटाइटिस, दादुरा, पोलियो आदि) पुरा गरेका छन्?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_vaccine_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_2yrs_child_no"
+                    android:text="२ वर्षसम्मका बच्चाहरू छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_vaccine_yes"
+                    android:text="खोप पुरा गरेको छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_vaccine_no"
+                    android:text="खोप पुरा गरेको छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RadioGroup>
+
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/if_no_vaccine_why"
+                android:paddingTop="5dp"
+                android:paddingLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="खोप पुरा गरेको छैन भने किन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/et_why_khop_apuro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.28 pregenent 2 yrs and test done -->
+    <RelativeLayout
+        android:id="@+id/rl_pregnent"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="विगत २ वर्षयता परिवारमा गर्भवती भएका छन्?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_pregnent_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_yes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_no"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+            <!--Garwawati swasta parikxan?-->
+            <LinearLayout
+                android:id="@+id/if_yes_pregnent"
+                android:paddingTop="5dp"
+                android:paddingLeft="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="18dp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="गर्भवतीको स्वास्थ्य परीक्षण गराउनु भएको छ?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioGroup
+                    android:padding="5dp"
+                    android:id="@+id/rg_preg_test_yesno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregnent_tes_yes"
+                        android:text="छ"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregnent_test_no"
+                        android:text="छैन"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+
+                </RadioGroup>
+
+                <!--If case of why no?-->
+
+                <RadioGroup
+                    android:id="@+id/if_pregtest_no_why"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:textSize="18dp"
+                        android:textColor="@color/colorBlackText"
+                        android:text="छैन भने किन छैन"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <View
+
+                        android:background="@color/colorGray"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"/>
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregtest_no_taker"
+                        android:text="लैजाने मानिस नभएर"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregtest_no_dontknow"
+                        android:text="थाहा नभएर"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregtest_no_far"
+                        android:text="टाढा भएर"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregtest_no_nomney"
+                        android:text="खर्च नभएर"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregtest_no_other"
+                        android:text="अन्य"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/if_pregtest_yes_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:paddingTop="10dp"
+                        android:textSize="18dp"
+                        android:textColor="@color/colorBlackText"
+                        android:text="छ भने कति पटक छ ?"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <View
+
+                        android:background="@color/colorGray"
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"/>
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregtest_yes_2"
+                        android:text="२ पटक"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregtest_yes_3"
+                        android:text="३ पटक"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:textSize="18dp"
+                        android:id="@+id/rb_pregtest_yes_4plus"
+                        android:text="४ वा सो भन्दा बढी पटक"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+
+                </RadioGroup>
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.29 pregenent iron chakki -->
+    <RelativeLayout
+        android:id="@+id/rl_pregnent_ironchakki"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="गर्भवती महिलाको लागि आइरन चक्की लिने गरेको छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_pregnent_ironyesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_ironyes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_ironno"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.30 pregenent jukachakki -->
+    <RelativeLayout
+        android:id="@+id/rl_pregnent_jukachakki"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="गर्भवती महिलाले जुकाको औषधि लिनेगरेको छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_pregnent_juka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_jukanyes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_jukanno"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.31 pregenent vitaminchakki -->
+    <RelativeLayout
+        android:id="@+id/rl_pregnent_vitaminchakki"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="सुत्केरी महिलाको लागि भिटामिन ए लिने गरेको छ??"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_pregnent_vitamin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_vitaminyes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_vitaminno"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.32 pregenent deliveryplace -->
+    <RelativeLayout
+        android:id="@+id/rl_pregnent_delivery"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="गर्भवती महिलाले बच्चा कहाँ जन्माउने गरेका छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_pregnent_deliveryplace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_delivery_hosp"
+                    android:text="अस्पताल"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_delivery_clicnic"
+                    android:text="क्लिनिक"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_delivery_chauki"
+                    android:text="क्स्वास्थ्य चौकी"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_delivery_home"
+                    android:text="घरमा"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_pregnent_delivery_else"
+                    android:text="अन्यत्र"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.33 pregenent delivery_byhelp -->
+    <RelativeLayout
+        android:id="@+id/rl_pregnent_deliveryhelp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="बच्चा जन्माउँदा कसले सहयोग गरेको थियो?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_pregnent_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_helpdocnurse"
+                    android:text="डाक्टर ৴अनमी৴नर्स"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_helpasstitant"
+                    android:text="स्वास्थ्य सहायक का.स्वा.ग्रा৴ब.हे.अ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_helpmatrisisu"
+                    android:text="मातृशिशु स्व कार्यकर्ता"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_helpfamily"
+                    android:text="परिवारका सदस्य साथी৴छिमेकी"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_helpsudeni"
+                    android:text="सुडेनी (ABT)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_elsehelp"
+                    android:text="अन्य"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_nohelp"
+                    android:text="कसैको सहयोग नलिएको"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.34 pregenent why no delivery_byhelp -->
+    <RelativeLayout
+        android:id="@+id/rl_pregnent_whydelivery_nohelp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="यदि तालिम प्राप्त स्वास्थ्यकर्मिबाट सहयोग नलिनु भए किन नलिनु भएको हो?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_pregnent_whynohelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_no_knowledge"
+                    android:text="जान नभ्याएर"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_no_placefar"
+                    android:text="सेवा दिने संस्था टाढा भएर"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_no_money"
+                    android:text="सेवा शुल्क तिर्न नसकेर"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_delivery_no_other"
+                    android:text="अन्य"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.35 past 12mnth any kid 5 yr died -->
+    <RelativeLayout
+        android:id="@+id/rl_12mnth_kiddie"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="गत १२ महिना भित्र तपाईको परिवारमा ५ वर्ष मुनिका कुनै केटाकेटीको मृत्यु भएको थियो?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_12mnth_kiddie_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_12mnth_kidide_yes"
+                    android:text="थियो"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_12mnth_kidide_no"
+                    android:text="थिएन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+            </RadioGroup>
+
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+
+
+
+
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_if_yes_deadkid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <TextView
+                    android:textSize="19dp"
+                    android:text="यदि थियो भने  कुन उमेरमा के कारणले मृत्यु भयो?"
+                    android:textColor="@color/colorBlackText"
+                    android:paddingTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <EditText
+                    android:id="@+id/et_yes_deadkid_sex"
+                    android:textSize="18dp"
+                    android:textColorHint="@color/colorBlackText"
+                    android:hint="लिङ्ग"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/et_yes_deadkid_age"
+                    android:textSize="18dp"
+                    android:textColorHint="@color/colorBlackText"
+                    android:hint="उमेर (वर्ष)"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/et_yes_deadkid_reason"
+                    android:textSize="18dp"
+                    android:textColorHint="@color/colorBlackText"
+                    android:hint="कारण"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+    <!--2.36 Posan condition in 5yrs-->
+    <RelativeLayout
+        android:id="@+id/rl_5yrs_posan_condn"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="विगत ३ वर्षको पोषणको स्थिति"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_5yrs_posan_condn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="19dp"
+                    android:text="५ वर्ष भन्दा मुनिको वृद्धि अनुगमन मापन हुन्छ ?"
+                    android:textColor="@color/colorBlackText"
+                    android:paddingTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_5yrsless_angaman_napan_yes"
+                    android:text="हुन्छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_5yrsless_anugaman_napan_no"
+                    android:text="हुँदैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+            </RadioGroup>
+
+
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_6mnthdekhi_6yrs_vitaminA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="19dp"
+                    android:text="६ महिनादेखि छ वर्ष सम्मका बच्चालाई भिटामिन ए खुवाउने गरेको छ?"
+                    android:textColor="@color/colorBlackText"
+                    android:paddingTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_6mnth_vitaminA_yes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_6mnth_vitaminA_no"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+            </RadioGroup>
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_1to6yrs_juka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="19dp"
+                    android:text="१ वर्ष देखि छ वर्ष सम्मका बच्चालाई जुकाको औषधि खुवाएको छ?"
+                    android:textColor="@color/colorBlackText"
+                    android:paddingTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_1to6yrs_juka_yes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_1to6yrs_juka_no"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+            </RadioGroup>
+
+
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.37 nyano luga odney oochauney joho garna sakxa?-->
+    <RelativeLayout
+        android:id="@+id/rl_jadoma_odney_oochaune"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाई वा तपाईको परिवारले आवश्यक अनुसार जाडोमा न्यानो लुगा तताउने ओड्ने, ओछ्याउने जोहो गर्न सक्छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_jadoma_odney_ochauney"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_jadoma_odney_yes"
+                    android:text="सक्छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_5yrsless_jadoma_odney_no"
+                    android:text="सक्दैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+            </RadioGroup>
+
+            </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.38 aawaskyakta anusar jhul ko byawasta-->
+    <RelativeLayout
+        android:id="@+id/rl_awaskyta_jul_byabasta"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाईको परिवारले आवश्यकता अनुसार झुलको व्यवस्था गर्न सक्छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_jhulko_byawsta_yesno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_jhulko_byawasta_yes"
+                    android:text="सक्छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_jhulko_byawasta_no"
+                    android:text="सक्दैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.39 basrma kati patak niyamit swasta praikshyan-->
+    <RelativeLayout
+        android:id="@+id/rl_barsa_swasta_check_count"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाईको परिवारको सदस्यहरूलार्इ वर्षमा कतिपटक नियमित स्वास्थ्य परीक्षण गराउनुहुन्छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_basra_swastacheck_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_swastacheck_count_1"
+                    android:text="१ पटक"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_swastacheck_count_2"
+                    android:text="२ पटक"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_swastacheck_count_when_ill"
+                    android:text="विरामी हुँदा मात्र"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--2.40 gata12 mnth kunai sadasya ko mrityu?-->
+    <RelativeLayout
+        android:id="@+id/rl_in12mnth_anydeath"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="गत १२ महिनामा परिवारको कुनै सदस्यको मृत्यु भएको छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_in12mthn_death"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_in12mnth_death_yes"
+                    android:text="छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_in12mnth_death_no"
+                    android:text="छैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <!--2.41 aaspatal bahek najik ko yog etc janxa?-->
+    <RelativeLayout
+        android:id="@+id/rl_exceptHospital_yog_etc"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="तपाईका परिवारका सदस्य अस्पतालबाहेक नजिकको योग तथा आध्यात्मिक केन्द्रहरूमा जानुहुन्छ?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+            <RadioGroup
+                android:padding="5dp"
+                android:id="@+id/rg_exceptHospital_yog_etc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_exceptHospital_yog_yes"
+                    android:text="जान्छ"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="18dp"
+                    android:id="@+id/rb_exceptHospital_yog_no"
+                    android:text="जान्दैन"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+
+
+
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

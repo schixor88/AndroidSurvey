@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="7dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:padding="3dp"
+                android:textSize="22sp"
+                android:textColor="@color/colorBlackText"
+                android:text="प्रशासनिक विवरण"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <View
+
+                android:background="@color/colorGray"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"/>
+
+
+            <EditText
+                android:inputType="number"
+                android:id="@+id/et_pradesh_no"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText"
+                android:hint="प्रदेश नं"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_jilla"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText"
+                android:hint="जिल्ला"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/et_nagarpalika"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText"
+                android:hint="नगरपालिका"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_ward"
+                android:padding="15dp"
+                android:inputType="number"
+                android:textColorHint="@color/colorBlackText"
+                android:hint="बार्ड नं"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:inputType="textPersonName"
+                android:id="@+id/et_bastiname"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText"
+                android:hint="बस्तीको नाम"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/et_tolename"
+                android:inputType="textPersonName"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText"
+                android:hint="टोलको नाम"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:inputType="textPersonName"
+                android:id="@+id/et_sadakname"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText"
+                android:hint="सडक मार्गको नाम"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:text="1"
+                android:editable="false"
+                android:id="@+id/et_id"
+                android:padding="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

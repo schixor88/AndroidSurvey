@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Non Raithney-->
+    <!--2.6 Basnu ko karan k hola?-->
+    <RelativeLayout
+
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:padding="7dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+
+            <RadioGroup
+                android:id="@+id/rg_sarnu_reason"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:padding="3dp"
+                    android:textSize="22sp"
+                    android:textColor="@color/colorBlackText"
+                    android:text="यहाँ बसाइ सर्नुको कारण के होला? (रैथाने बाहेकलाई)?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+
+                    android:background="@color/colorGray"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"/>
+
+
+                <RadioButton
+                    android:id="@+id/rb_sarnu_gone"
+                    android:visibility="gone"
+                    android:text="none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_sarnu_rojgar"
+                    android:padding="5dp"
+                    android:text="रोजगारी"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_sarnu_edu"
+                    android:text="शिक्षा"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_sarnu_income"
+                    android:text="आर्थिक अवसर"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_sarnu_security"
+                    android:text="सुरक्षा"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_sarnu_marriage"
+                    android:text="विवाह"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_sarnu_job"
+                    android:text="नोकरी व्यवसाय ৴शिप"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:textSize="17dp"
+                    android:id="@+id/rb_sarnu_other"
+                    android:text="अन्य"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>
