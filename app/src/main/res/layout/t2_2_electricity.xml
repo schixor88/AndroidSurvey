@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="विद्युतीय सेवाहरूमा पहुँच"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/title_fontSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको परिवारले के के सेवाहरू अनलाइन तथा एप्स् मार्फत लिने गरेको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="row"
+        app:flexWrap="wrap">
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="बैंक৴एटीएम"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="पर्यटन"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="सामाजिक सुरक्षा भत्ता"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="उद्योग"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="व्यनक्तिगत घटना दर्ता"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="खरीद"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="कर प्रणाली"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="बिक्री"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="दैनिक उपभोग सामग्री"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="स्वास्थ्य"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="स्वास्थ्य"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="सञ्चार"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="खानेपानी"
+            app:layout_flexBasisPercent="50%" />
+
+        <CheckBox
+            android:id="@+id/t2_onlineServices_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="कृषि"
+            app:layout_flexBasisPercent="50%" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+</LinearLayout>

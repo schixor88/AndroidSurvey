@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:text="सामाजिक सुरक्षा तथा सहभागिता"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/title_fontSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="बालश्रमको अवस्था"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको घरबाट १६ बर्षसम्मका केटाकेटी अरूको घरमा काम गर्न गएका छन्?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:id="@+id/t2_social_rg_work16FromHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/t2_social_rb_work16FromHome_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/t2_social_layout_work16FromHome_y"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="छ भने कति जना"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:flexWrap="wrap">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="बालक"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:id="@+id/t2_social_edit_workingBoyCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="जना "
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="बालिका"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:id="@+id/t2_social_edit_workingGirlCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="जना "
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको घरमा १६ वर्षसम्मका केटाकेटी काम गर्न राखेको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:id="@+id/t2_social_rg_work16InHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/t2_social_rb_work16InHome_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/t2_social_layout_work16InHome_y"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="छ भने कति जना"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="row"
+            app:flexWrap="wrap">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="केटा "
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:id="@+id/t2_social_edit_hiredBoyCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="जना "
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="केटी "
+                android:textAlignment="center"
+                android:textColor="@color/colorBlackText"
+                android:textSize="@dimen/radio_fontSize"
+                app:layout_flexBasisPercent="40%" />
+
+            <EditText
+                android:id="@+id/t2_social_edit_hiredGirlCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="जना "
+                android:inputType="number"
+                app:layout_flexBasisPercent="40%" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="कुनै बालबालिका कुलतमा फसेका छन्?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:id="@+id/t2_social_rg_childInfluenced"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/t2_social_rb_childInfluenced_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/t2_social_layout_childInfluenced_y"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightGray"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="छ भने"
+            android:textColor="@color/colorBlackText"
+            android:textSize="@dimen/content_fontSize" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexDirection="column">
+
+            <CheckBox
+                android:id="@+id/t2_social_chk_influence_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="धुम्रपान"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <CheckBox
+                android:id="@+id/t2_social_chk_influence_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="मदपान"
+                android:textSize="@dimen/radio_fontSize" />
+
+            <CheckBox
+                android:id="@+id/t2_social_chk_influence_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="लागुपदार्थ"
+                android:textSize="@dimen/radio_fontSize" />
+        </com.google.android.flexbox.FlexboxLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="निर्णयमा लैंगिक सहभागिता"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="परिवारमा महत्वपूर्ण विषयमा कसरी निर्णय हुने गरेको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:id="@+id/t2_social_rg_familyDecision"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="घरमुली आफैले एकल निर्णयबाट"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="घरका पुरूष सदस्यतामात्रको छलफलबाट"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="परिवारका महिला सदस्य मात्रको छलफलबाट"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="परिवारका सबै सदस्यको छलफलबाट"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="महिलाको नाममा कस्ता सम्पत्तिहरू रहेका छन्?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="column">
+
+        <CheckBox
+            android:id="@+id/t2_social_chk_femaleAsset_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="जग्गा" />
+
+        <CheckBox
+            android:id="@+id/t2_social_chk_femaleAsset_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="घर" />
+
+        <CheckBox
+            android:id="@+id/t2_social_chk_femaleAsset_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="सवारी साधन" />
+
+        <CheckBox
+            android:id="@+id/t2_social_chk_femaleAsset_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="बैंक व्यालेन्स" />
+
+        <CheckBox
+            android:id="@+id/t2_social_chk_femaleAsset_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="गरगहना" />
+
+        <CheckBox
+            android:id="@+id/t2_social_chk_femaleAsset_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="अन्य" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="सामाजिक विकास"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको परिवारले कुन कुन सामाजिक सुरक्षा भत्ता लिने गरेको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexDirection="column">
+
+        <CheckBox
+            android:id="@+id/t2_socail_chk_allowance_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ज्येष्ठ नागरिक" />
+
+        <CheckBox
+            android:id="@+id/t2_socail_chk_allowance_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="एकल पुरूप" />
+
+        <CheckBox
+            android:id="@+id/t2_socail_chk_allowance_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="एकल महिला" />
+
+        <CheckBox
+            android:id="@+id/t2_socail_chk_allowance_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="अपांगता" />
+
+        <CheckBox
+            android:id="@+id/t2_socail_chk_allowance_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="द्वन्द्व पीडित" />
+
+        <CheckBox
+            android:id="@+id/t2_socail_chk_allowance_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="अन्य" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको परिवारको कुनै सदस्य नगरपालिकाद्वारा सञ्चालित बिकासको कार्यमा सहभागी हुनुभएको छ?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:id="@+id/t2_social_rg_involveInDev"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/t2_social_rb_involveInDev_y"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छ"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="छैन"
+            android:textSize="@dimen/radio_fontSize" />
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="तपाईको बिचारमा तपार्इको सहरको पहिलो बिकास प्राथमिकता के हो?"
+        android:textColor="@color/colorBlackText"
+        android:textSize="@dimen/question_fontSize" />
+
+    <RadioGroup
+        android:id="@+id/t2_social_rg_devPriority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="कृषि"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="पर्यटकीय"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="व्यापारिक"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="औद्योगिक"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="आबासिय"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Medical City"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Cultural Tourism"
+            android:textSize="@dimen/radio_fontSize" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Regional Connectivity – Nodal City"
+            android:textSize="@dimen/radio_fontSize" />
+
+    </RadioGroup>
+
+    <include layout="@layout/separator" />
+
+</LinearLayout>

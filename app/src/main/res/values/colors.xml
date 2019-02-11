@@ -2,12 +2,14 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorBlackText">#000000</color>
-    <color name="colorWhiteText">#ffffff</color>
-    <color name="white">#ffffff</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorGray">#cdcdcd</color>
-    <color name="lightGray">#cdcdcd</color>
+
+    <color name="subCardColor">#ffffff</color>
+    <color name="colorWhiteText">#ffffff</color>
+    <color name="colorBlackText">#000</color>
+    <color name="colorGray">#f4f4f4</color>
+    <color name="white">#fff</color>
+    <color name="lightGray">#89d1d1d1</color>
 
 
 

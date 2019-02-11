@@ -30,7 +30,7 @@
             android:id="@+id/t3_familyCount"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorWhiteText"
+            android:background="@color/white"
             android:entries="@array/family_size"
             android:textAlignment="center" />
 
@@ -41,6 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <!--layout will be dynamically added here-->
 
     </LinearLayout>
 

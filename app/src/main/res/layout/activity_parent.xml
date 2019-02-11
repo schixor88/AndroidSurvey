@@ -8,8 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
         <!--1 Samanya Bibaran-->
 
         <TextView
@@ -124,27 +122,32 @@
             <include layout="@layout/xml_two_fortytwo_fiftytwo"/>
 
             <!--Toilet subtitle-->
-            <include layout="@layout/xml_fiftythree_fiftyfour_toilet"/>
+            <!--<include layout="@layout/xml_fiftythree_fiftyfour_toilet"/>-->
+            <include layout="@layout/t2_1_toilet" />
 
             <!--Electicity-->
-            <include layout="@layout/xml_fifityfive_electricity"/>
+            <!--<include layout="@layout/xml_fifityfive_electricity"/>-->
+            <include layout="@layout/t2_2_electricity" />
 
             <!--Arthik-->
-            <include layout="@layout/xml_fiftysix_fiftyseven_arthik"/>
+            <!--<include layout="@layout/xml_fiftysix_fiftyseven_arthik"/>-->
+            <include layout="@layout/t2_3_finance" />
 
             <!--Agriculture-->
-            <include layout="@layout/xml_fiftyeight_sixty_agriculture"/>
+            <!--<include layout="@layout/xml_fiftyeight_sixty_agriculture"/>-->
+            <include layout="@layout/t2_4_agriculture" />
 
             <!--Aamdhani-->
-            <include layout="@layout/xml_two_sixtyfour_seventy_aamdhani"/>
+            <!--<include layout="@layout/xml_two_sixtyfour_seventy_aamdhani"/>-->
+            <include layout="@layout/t2_5_income_expense" />
 
             <!--Prakop Surakxya-->
-            <include layout="@layout/xml_two_prakopsurakxya"/>
-
+            <!--<include layout="@layout/xml_two_prakopsurakxya"/>-->
+            <include layout="@layout/t2_6_prakop" />
 
             <!--Samajik surakxya taha sahavhagi-->
-            <include layout="@layout/xml_two_samajiksurakxya"/>
-
+            <!--<include layout="@layout/xml_two_samajiksurakxya"/>-->
+            <include layout="@layout/t2_7_socail_security" />
 
             <!--TV 3 Byaktigat bibaran-->
             <TextView
@@ -157,16 +160,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-
             <include layout="@layout/t3_bayktigat_bibaron"/>
 
-
-
-
         </LinearLayout>
-
-
-
 
     </LinearLayout>
 
