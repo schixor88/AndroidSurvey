@@ -1,106 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-android:layout_height="match_parent">
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <RelativeLayout
 
-        android:padding="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
 
         <LinearLayout
-            android:padding="7dp"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="7dp">
 
 
             <TextView
-                android:padding="3dp"
-                android:textSize="22sp"
-                android:textColor="@color/colorBlackText"
-                android:text="प्रशासनिक विवरण"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="3dp"
+                android:text="प्रशासनिक विवरण"
+                android:textColor="@color/colorBlackText"
+                android:textSize="22sp" />
 
             <View
 
-                android:background="@color/colorGray"
                 android:layout_width="match_parent"
-                android:layout_height="3dp"/>
+                android:layout_height="3dp"
+                android:background="@color/colorGray" />
 
 
             <EditText
-                android:inputType="number"
                 android:id="@+id/et_pradesh_no"
-                android:padding="15dp"
-                android:textColorHint="@color/colorBlackText"
-                android:hint="प्रदेश नं"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="प्रदेश नं"
+                android:inputType="number"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText" />
 
             <EditText
                 android:id="@+id/et_jilla"
-                android:padding="15dp"
-                android:textColorHint="@color/colorBlackText"
-                android:hint="जिल्ला"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="जिल्ला"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText" />
 
             <EditText
                 android:id="@+id/et_nagarpalika"
-                android:padding="15dp"
-                android:textColorHint="@color/colorBlackText"
-                android:hint="नगरपालिका"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="नगरपालिका"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText" />
+
             <EditText
                 android:id="@+id/et_ward"
-                android:padding="15dp"
-                android:inputType="number"
-                android:textColorHint="@color/colorBlackText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="बार्ड नं"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <EditText
-                android:inputType="textPersonName"
-                android:id="@+id/et_bastiname"
+                android:inputType="number"
                 android:padding="15dp"
-                android:textColorHint="@color/colorBlackText"
-                android:hint="बस्तीको नाम"
+                android:textColorHint="@color/colorBlackText" />
+
+            <EditText
+                android:id="@+id/et_bastiname"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="बस्तीको नाम"
+                android:inputType="textPersonName"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText" />
+
             <EditText
                 android:id="@+id/et_tolename"
-                android:inputType="textPersonName"
-                android:padding="15dp"
-                android:textColorHint="@color/colorBlackText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="टोलको नाम"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <EditText
                 android:inputType="textPersonName"
-                android:id="@+id/et_sadakname"
                 android:padding="15dp"
-                android:textColorHint="@color/colorBlackText"
-                android:hint="सडक मार्गको नाम"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:textColorHint="@color/colorBlackText" />
 
             <EditText
-                android:text="1"
-                android:editable="false"
-                android:id="@+id/et_id"
-                android:padding="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:id="@+id/et_sadakname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="सडक मार्गको नाम"
+                android:inputType="textPersonName"
+                android:padding="15dp"
+                android:textColorHint="@color/colorBlackText" />
 
+            <EditText
+                android:id="@+id/et_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:padding="0dp"
+                android:text="1" />
 
 
         </LinearLayout>

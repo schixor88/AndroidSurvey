@@ -35,6 +35,7 @@
 
 
             <EditText
+                android:id="@+id/d2_et_informer_name"
                 android:padding="15dp"
                 android:textColorHint="@color/colorBlackText"
                 android:hint="नाम"
@@ -42,6 +43,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:id="@+id/d2_et_informer_gender"
                 android:padding="15dp"
                 android:textColorHint="@color/colorBlackText"
                 android:hint="लिङ्ग"
@@ -49,6 +51,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:id="@+id/d2_et_informer_age"
                 android:padding="15dp"
                 android:textColorHint="@color/colorBlackText"
                 android:hint="उमेर"
@@ -56,24 +59,14 @@
                 android:layout_height="wrap_content" />
 
             <EditText
+                android:id="@+id/d2_et_informer_email"
                 android:padding="15dp"
                 android:textColorHint="@color/colorBlackText"
                 android:hint="घरधुरीके सम्पर्क इमेल"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-
-
-
         </LinearLayout>
-
-
-
-
-
-
-
-
 
     </RelativeLayout>
 
