@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -46,7 +48,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.kushagra.kushagra.test.adapter.DetailAdapter;
 import com.kushagra.kushagra.test.database.DBHelper;
+import com.kushagra.kushagra.test.helper.CSVWriter;
 import com.kushagra.kushagra.test.model.Details;
+import com.kushagra.kushagra.test.model.Details2;
 import com.kushagra.kushagra.test.model.FamilyMemberData;
 import com.kushagra.kushagra.test.model.HouseholdData;
 import com.kushagra.kushagra.test.model.User;
@@ -55,6 +59,7 @@ import com.nabinbhandari.android.permissions.Permissions;
 import com.rey.material.widget.FloatingActionButton;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -105,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
+    //Pariwarik babaran, Details 2
+    Details2 details2;
 
     //Topic 2
     HouseholdData houseData;
@@ -122,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        details2 = new Details2();
         houseData = new HouseholdData();
 
         getSupportActionBar().setTitle("Data Space");
@@ -170,6 +178,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton selected = findViewById(i);
+                String value = selected.getText().toString();
+                details2.setBasai_abadhi(value);
+
                 switch (i) {
                     case R.id.rb_basai_less6:
 
@@ -191,6 +203,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton selected = findViewById(i);
+                String value = selected.getText().toString();
+                details2.setPariwar_basobas_avastha(value);
 
                 switch (i) {
                     case R.id.rb_basobas_raithaney:
@@ -219,6 +234,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton selected = findViewById(i);
+                String value = selected.getText().toString();
+                details2.setNagarpalika_ma_ghar_bhayeko(value);
 
                 switch (i) {
                     case R.id.rb_ghar_xa:
@@ -241,6 +259,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton selected = findViewById(i);
+                String value = selected.getText().toString();
+                details2.setNagarpalika_ma_anya_ghar_bhayeko(value);
 
                 switch (i) {
 
@@ -268,12 +289,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
                     case R.id.rb_elec_con_yes:
                         rg_elec_con_ifno.setVisibility(View.GONE);
+                        details2.setElectricity_jadan_bhayeko("1");
                         break;
 
                     case R.id.rb_elec_con_no:
                         rg_elec_con_ifno.setVisibility(View.VISIBLE);
+                        details2.setElectricity_jadan_bhayeko("0");
                         break;
-
                 }
 
             }
@@ -286,7 +308,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
+                RadioButton selected = findViewById(i);
+                String value = selected.getText().toString();
+                details2.setPakaune_fuel(value);
                 switch (i) {
 
                     case R.id.rb_fuel_daura:
@@ -487,6 +511,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         });
 
 
+        handleDetails2RadioValues();
         // For topic 2, listen radio group event
         handleHouseHoldRadioGroups();
         // For topic 3, dymanic rendering of layout
@@ -498,8 +523,44 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         et_ghardhaniname = (EditText) findViewById(R.id.et_ghardhaniname);
         et_ghardhanisex = (EditText) findViewById(R.id.et_ghardhanisex);
         et_ghardhaniphone = (EditText) findViewById(R.id.et_ghardhaniphone);
+    }
 
+    private void exportDB() {
 
+        DBHelper dbhelper = new DBHelper(getApplicationContext());
+        File exportDir = null;
+        if (Build.VERSION.SDK_INT > 19) {
+            exportDir = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOCUMENTS);
+        } else {
+            exportDir = new File(Environment.getExternalStorageDirectory(), "");
+        }
+        if (!exportDir.exists()) {
+            exportDir.mkdirs();
+        }
+
+        File file = new File(directory_path, "data" + date + ".csv");
+        try {
+            file.createNewFile();
+            CSVWriter csvWrite = new CSVWriter(new FileWriter(file));
+            SQLiteDatabase db = dbhelper.getReadableDatabase();
+            Cursor curCSV = db.rawQuery("SELECT * FROM Details", null);
+            csvWrite.writeNext(curCSV.getColumnNames());
+            int columnCount = curCSV.getColumnCount();
+            while (curCSV.moveToNext()) {
+                //Which column you want to exprort
+//                String arrStr[] = {curCSV.getString(0), curCSV.getString(1), curCSV.getString(2)};
+                String arrStr[] = new String[columnCount];
+                for (int i = 0; i < columnCount; i++) {
+                    arrStr[i] = curCSV.getString(i);
+                }
+                csvWrite.writeNext(arrStr);
+            }
+            csvWrite.close();
+            curCSV.close();
+            Toast.makeText(this, "Successfully exported to " + file.toString(), Toast.LENGTH_LONG).show();
+        } catch (Exception sqlEx) {
+            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
+        }
     }
 
     private void exportSQLtoExcel() {
@@ -507,14 +568,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             @Override
             public void onClick(View view) {
 
+                exportDB();
 
                 sqliteToExcel = new SQLiteToExcel(getApplicationContext(), "KUSHAGRA", directory_path);
 
                 //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
-                final String filename_e = "data" + date + ".xls";
-
-
+                final String filename_e = "data" + date + ".csv";
                 sqliteToExcel.exportAllTables(filename_e, new SQLiteToExcel.ExportListener() {
                     @Override
                     public void onStart() {
@@ -555,7 +614,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                             }
 
                         }
-
                     }
 
                     @Override
@@ -606,6 +664,37 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             @Override
             public void onClick(View view) {
 
+                //Details2
+                getDetails2EditTextValues();
+                getDetials2CheckboxValues();
+
+                // Household
+                getHouseHoldCheckboxValues();
+                getHouseHoldEditTextValues();
+
+                // For 15 family members
+                getCheckBoxValues0(0);
+                getCheckBoxValues1(1);
+                getCheckBoxValues2(2);
+                getCheckBoxValues3(3);
+                getCheckBoxValues4(4);
+                getCheckBoxValues5(5);
+                getCheckBoxValues6(6);
+                getCheckBoxValues7(7);
+                getCheckBoxValues8(8);
+                getCheckBoxValues9(9);
+
+                getEditTextValues0(0);
+                getEditTextValues1(1);
+                getEditTextValues2(2);
+                getEditTextValues3(3);
+                getEditTextValues4(4);
+                getEditTextValues5(5);
+                getEditTextValues6(6);
+                getEditTextValues7(7);
+                getEditTextValues8(8);
+                getEditTextValues9(9);
+
                 String test = "";
                 test = et_ghardhaniname.getText().toString() + ""
                         + et_ghardhaniphone.getText().toString() + ""
@@ -630,9 +719,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                         et_ghardhaniname.getText().toString(),
                         et_ghardhanisex.getText().toString(),
                         et_ghardhaniphone.getText().toString()
-                        );
+                );
 
-                db.addDetail(details);
+                db.addDetail(details, details2, houseData, familyData);
 
                 refreshData();
 
@@ -747,7 +836,272 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         spin_vasa = "";
         spin_jati = "";
         spin_dharrma = "";
+    }
 
+    private void getDetails2EditTextValues() {
+        EditText tenant_family_count, informer_name, informer_gender, informer_age, informer_email, thar, kitchen_nirman_barsa,
+                gas_cylinder_tikne_din, old_chulo_ko_lagi_daaura_kg, modern_chulo_ko_lagi_daaura_kg, mattitel_permonth_litre,
+                induction_heater_hoursperday, oven_hoursperday, paani_tatauna_cylinderperyear, paani_tatauna_wood_kgpermonth_old_chulo,
+                paani_tatauna_wood_kgpermonth_modern, paani_tatauna_mattitel_permonth, paani_tatauna_induction_hoursperday,
+                paani_tatauna_oven_hoursperday, fan_count, fan_watt, fan_hoursperday, aircondition_count, aircondition_watt,
+                aircondition_hoursperday, bijuli_unit, washingmachine_count, fridge_count, solar_count, vacuum_count, inverter_count,
+                generator_count, dishwasher_count, cable_count, other_house_gadget_count, radio_count, television_count, telephone_count,
+                cellphone_count, smartphone_count, computer_laptop_count, internet_count, other_communication_count, internet_speed_mbps,
+                cycle_count, bike_count, lightweight_vehicle_count, heavyweight_vehicle_count, public_transport_vehicle_count,
+                license_bhayeko_count, license_count_2_wheeler, license_count_4_wheeler,
+                healthpost_jana_hidera_time, healthpost_jana_gaadi_time, vaccine_nagareko_karan,
+                under_5yr_death_gender, under_5yr_death_age, under_5yr_death_karan;
+
+        tenant_family_count = findViewById(R.id.d2_et_tenant_family_count);
+        informer_name = findViewById(R.id.d2_et_informer_name);
+        informer_gender = findViewById(R.id.d2_et_informer_gender);
+        informer_age = findViewById(R.id.d2_et_informer_age);
+        informer_email = findViewById(R.id.d2_et_informer_email);
+        thar = findViewById(R.id.d2_et_thar);
+        kitchen_nirman_barsa = findViewById(R.id.d2_et_kitchen_nirman_barsa);
+        gas_cylinder_tikne_din = findViewById(R.id.d2_et_gas_cylinder_tikne_din);
+        old_chulo_ko_lagi_daaura_kg = findViewById(R.id.d2_et_old_chulo_ko_lagi_daaura_kg);
+        modern_chulo_ko_lagi_daaura_kg = findViewById(R.id.d2_et_modern_chulo_ko_lagi_daaura_kg);
+        mattitel_permonth_litre = findViewById(R.id.d2_et_mattitel_permonth_litre);
+        induction_heater_hoursperday = findViewById(R.id.d2_et_induction_heater_hoursperday);
+        oven_hoursperday = findViewById(R.id.d2_et_oven_hoursperday);
+        paani_tatauna_cylinderperyear = findViewById(R.id.d2_et_paani_tatauna_cylinderperyear);
+        paani_tatauna_wood_kgpermonth_old_chulo = findViewById(R.id.d2_et_paani_tatauna_wood_kgpermonth_old_chulo);
+        paani_tatauna_wood_kgpermonth_modern = findViewById(R.id.d2_et_paani_tatauna_wood_kgpermonth_modern);
+        paani_tatauna_mattitel_permonth = findViewById(R.id.d2_et_paani_tatauna_mattitel_permonth);
+        paani_tatauna_induction_hoursperday = findViewById(R.id.d2_et_paani_tatauna_induction_hoursperday);
+        paani_tatauna_oven_hoursperday = findViewById(R.id.d2_et_paani_tatauna_oven_hoursperday);
+        fan_count = findViewById(R.id.d2_et_fan_count);
+        fan_watt = findViewById(R.id.d2_et_fan_watt);
+        fan_hoursperday = findViewById(R.id.d2_et_fan_hoursperday);
+        aircondition_count = findViewById(R.id.d2_et_aircondition_count);
+        aircondition_watt = findViewById(R.id.d2_et_aircondition_watt);
+        aircondition_hoursperday = findViewById(R.id.d2_et_aircondition_hoursperday);
+        bijuli_unit = findViewById(R.id.d2_et_bijuli_unit);
+        washingmachine_count = findViewById(R.id.d2_et_washingmachine_count);
+        fridge_count = findViewById(R.id.d2_et_fridge_count);
+        solar_count = findViewById(R.id.d2_et_solar_count);
+        vacuum_count = findViewById(R.id.d2_et_vacuum_count);
+        inverter_count = findViewById(R.id.d2_et_inverter_count);
+        generator_count = findViewById(R.id.d2_et_generator_count);
+        dishwasher_count = findViewById(R.id.d2_et_dishwasher_count);
+        cable_count = findViewById(R.id.d2_et_cable_count);
+        other_house_gadget_count = findViewById(R.id.d2_et_other_house_gadget_count);
+        radio_count = findViewById(R.id.d2_et_radio_count);
+        television_count = findViewById(R.id.d2_et_television_count);
+        telephone_count = findViewById(R.id.d2_et_telephone_count);
+        cellphone_count = findViewById(R.id.d2_et_cellphone_count);
+        smartphone_count = findViewById(R.id.d2_et_smartphone_count);
+        computer_laptop_count = findViewById(R.id.d2_et_computer_laptop_count);
+        internet_count = findViewById(R.id.d2_et_internet_count);
+        other_communication_count = findViewById(R.id.d2_et_other_communication_count);
+        internet_speed_mbps = findViewById(R.id.d2_et_internet_speed_mbps);
+        cycle_count = findViewById(R.id.d2_et_cycle_count);
+        bike_count = findViewById(R.id.d2_et_bike_count);
+        lightweight_vehicle_count = findViewById(R.id.d2_et_lightweight_vehicle_count);
+        heavyweight_vehicle_count = findViewById(R.id.d2_et_heavyweight_vehicle_count);
+        public_transport_vehicle_count = findViewById(R.id.d2_et_public_transport_vehicle_count);
+        license_bhayeko_count = findViewById(R.id.d2_et_license_bhayeko_count);
+        license_count_2_wheeler = findViewById(R.id.d2_et_license_count_2_wheeler);
+        license_count_4_wheeler = findViewById(R.id.d2_et_license_count_4_wheeler);
+        healthpost_jana_hidera_time = findViewById(R.id.d2_et_healthpost_jana_hidera_time);
+        healthpost_jana_gaadi_time = findViewById(R.id.d2_et_healthpost_jana_gaadi_time);
+        vaccine_nagareko_karan = findViewById(R.id.d2_et_vaccine_nagareko_karan);
+        under_5yr_death_gender = findViewById(R.id.d2_et_under_5yr_death_gender);
+        under_5yr_death_age = findViewById(R.id.d2_et_under_5yr_death_age);
+        under_5yr_death_karan = findViewById(R.id.d2_et_under_5yr_death_karan);
+
+        details2.setTenant_family_count(tenant_family_count.getText().toString());
+        details2.setInformer_name(informer_name.getText().toString());
+        details2.setInformer_gender(informer_gender.getText().toString());
+        details2.setInformer_age(informer_age.getText().toString());
+        details2.setInformer_email(informer_email.getText().toString());
+        details2.setThar(thar.getText().toString());
+        details2.setKitchen_nirman_barsa(kitchen_nirman_barsa.getText().toString());
+        details2.setGas_cylinder_tikne_din(gas_cylinder_tikne_din.getText().toString());
+        details2.setOld_chulo_ko_lagi_daaura_kg(old_chulo_ko_lagi_daaura_kg.getText().toString());
+        details2.setModern_chulo_ko_lagi_daaura_kg(modern_chulo_ko_lagi_daaura_kg.getText().toString());
+        details2.setMattitel_permonth_litre(mattitel_permonth_litre.getText().toString());
+        details2.setInduction_heater_hoursperday(induction_heater_hoursperday.getText().toString());
+        details2.setOven_hoursperday(oven_hoursperday.getText().toString());
+        details2.setPaani_tatauna_cylinderperyear(paani_tatauna_cylinderperyear.getText().toString());
+        details2.setPaani_tatauna_wood_kgpermonth_old_chulo(paani_tatauna_wood_kgpermonth_old_chulo.getText().toString());
+        details2.setPaani_tatauna_wood_kgpermonth_modern(paani_tatauna_wood_kgpermonth_modern.getText().toString());
+        details2.setPaani_tatauna_mattitel_permonth(paani_tatauna_mattitel_permonth.getText().toString());
+        details2.setPaani_tatauna_induction_hoursperday(paani_tatauna_induction_hoursperday.getText().toString());
+        details2.setPaani_tatauna_oven_hoursperday(paani_tatauna_oven_hoursperday.getText().toString());
+        details2.setFan_count(fan_count.getText().toString());
+        details2.setFan_watt(fan_watt.getText().toString());
+        details2.setFan_hoursperday(fan_hoursperday.getText().toString());
+        details2.setAircondition_count(aircondition_count.getText().toString());
+        details2.setAircondition_watt(aircondition_watt.getText().toString());
+        details2.setAircondition_hoursperday(aircondition_hoursperday.getText().toString());
+        details2.setBijuli_unit(bijuli_unit.getText().toString());
+        details2.setWashingmachine_count(washingmachine_count.getText().toString());
+        details2.setFridge_count(fridge_count.getText().toString());
+        details2.setSolar_count(solar_count.getText().toString());
+        details2.setVacuum_count(vacuum_count.getText().toString());
+        details2.setInverter_count(inverter_count.getText().toString());
+        details2.setGenerator_count(generator_count.getText().toString());
+        details2.setDishwasher_count(dishwasher_count.getText().toString());
+        details2.setCable_count(cable_count.getText().toString());
+        details2.setOther_house_gadget_count(other_house_gadget_count.getText().toString());
+        details2.setRadio_count(radio_count.getText().toString());
+        details2.setTelevision_count(television_count.getText().toString());
+        details2.setTelephone_count(telephone_count.getText().toString());
+        details2.setCellphone_count(cellphone_count.getText().toString());
+        details2.setSmartphone_count(smartphone_count.getText().toString());
+        details2.setComputer_laptop_count(computer_laptop_count.getText().toString());
+        details2.setInternet_count(internet_count.getText().toString());
+        details2.setOther_communication_count(other_communication_count.getText().toString());
+        details2.setInternet_speed_mbps(internet_speed_mbps.getText().toString());
+        details2.setCycle_count(cycle_count.getText().toString());
+        details2.setBike_count(bike_count.getText().toString());
+        details2.setLightweight_vehicle_count(lightweight_vehicle_count.getText().toString());
+        details2.setHeavyweight_vehicle_count(heavyweight_vehicle_count.getText().toString());
+        details2.setPublic_transport_vehicle_count(public_transport_vehicle_count.getText().toString());
+        details2.setLicense_bhayeko_count(license_bhayeko_count.getText().toString());
+        details2.setLicense_count_2_wheeler(license_count_2_wheeler.getText().toString());
+        details2.setLicense_count_4_wheeler(license_count_4_wheeler.getText().toString());
+        details2.setHealthpost_jana_hidera_time(healthpost_jana_hidera_time.getText().toString());
+        details2.setHealthpost_jana_gaadi_time(healthpost_jana_gaadi_time.getText().toString());
+        details2.setVaccine_nagareko_karan(vaccine_nagareko_karan.getText().toString());
+        details2.setUnder_5yr_death_gender(under_5yr_death_gender.getText().toString());
+        details2.setUnder_5yr_death_age(under_5yr_death_age.getText().toString());
+        details2.setUnder_5yr_death_karan(under_5yr_death_karan.getText().toString());
+
+
+    }
+
+    private void handleDetails2RadioValues() {
+        RadioGroup swamitto, basai_abadhi, jatiya_samuha, pariwar_basobas_avastha, basai_sarnu_karan, basai_avadhi,
+                nagarpalika_ma_ghar_bhayeko, ghar_jagga_swamitto_kisim, nagarpalika_ma_anya_ghar_bhayeko, anya_ghar_k_ko_lagi,
+                kitchen_alaggai_bhayeko, kitchen_nirman_avastha, batti_main_source, electricity_jadan_bhayeko,
+                electricity_jadan_kina_nabhayeko, culo_ko_prakar, pakaune_fuel, daaura_ko_source, bijuli_load_ampere,
+                family_ma_yatayat_license_bhayeko, one_year_ma_birami, birami_huda_kata_lageko,
+                two_year_le_vaccine_lagayeko, two_year_ma_pregnant, pregnant_ko_health_checkup,
+                pregnant_ko_check_nagarne_karan, pregnant_ko_check_gareko_count, pregnant_le_icon_pill_linegareko,
+                pregnant_le_juka_medicine_linegareko, pregnant_le_vitamin_linegareko, baccha_janmaaune_sthan, baccha_janmaauna_sahayog_garne,
+                baccha_janmaauna_help_nalinukaran, last12Monthma_under_5yr_ko_death, under_5yr_ko_development_measure_huncha,
+                age6month_to_6yr_vitamin_A, age1yr_to_6yr_juka_medicine, winter_ma_warm_cloth, jhuul_ko_babyastha,
+                regular_health_checkup_peryear, past12month_ma_death_bhayeko, yog_ra_adhyatmik_kendra_ma_janegareko,
+                khanepaani_source, paani_meter_jadan_gareyeko, paani_sufficient_hune, paani_lina_jane_aaune_time,
+                khanepaani_quality, pani_purify_garne_gareko, rain_water_collect_gareko, rainwater_ko_use,
+                ghaar_ma_dhaal_attach_bhayeko, dhaal_attach_bhayeko_type, waste_water_management,
+                decompose_nodecompose_separate_garne;
+
+        swamitto = findViewById(R.id.rg_swamitwa);
+//        basai_abadhi = findViewById(R.id.rg_basai_abadhi);
+        jatiya_samuha = findViewById(R.id.rg_jatiya_samuha);
+//        pariwar_basobas_avastha = findViewById(R.id.rg_basobas);
+//        basai_sarnu_karan = findViewById(R.id.rg_sarnu_reason);
+        basai_avadhi = findViewById(R.id.rg_basai_time);
+//        nagarpalika_ma_ghar_bhayeko = findViewById(R.id.rg_ghar_xa);
+//        ghar_jagga_swamitto_kisim = findViewById(R.id.rg_ghar_if_xa);
+//        nagarpalika_ma_anya_ghar_bhayeko = findViewById(R.id.rg_aru_ghar_xa);
+//        anya_ghar_k_ko_lagi = findViewById(R.id.rg_aru_ghar_if_xa);
+        kitchen_alaggai_bhayeko = findViewById(R.id.rg_vanxa_xa);
+        kitchen_nirman_avastha = findViewById(R.id.rg_make_condn);
+        batti_main_source = findViewById(R.id.rg_light);
+//        electricity_jadan_bhayeko = findViewById(R.id.rg_elec_con);
+//        electricity_jadan_kina_nabhayeko = findViewById(R.id.rg_if_no_elec_con);
+        culo_ko_prakar = findViewById(R.id.rg_chulo_type);
+//        pakaune_fuel = findViewById(R.id.rg_fuel_type);
+//        daaura_ko_source = findViewById(R.id.rg_if_daura_use);
+        bijuli_load_ampere = findViewById(R.id.rg_elec_aapurti);
+//        family_ma_yatayat_license_bhayeko = findViewById(R.id.rg_license);
+//        one_year_ma_birami = findViewById(R.id.rg_birami_yesno);
+        birami_huda_kata_lageko = findViewById(R.id.rg_birami_yes_1sttreat);
+        two_year_le_vaccine_lagayeko = findViewById(R.id.rg_vaccine_yesno);
+        two_year_ma_pregnant = findViewById(R.id.rg_pregnent_yesno);
+//        pregnant_ko_health_checkup = findViewById(R.id.rg_preg_test_yesno);
+//        pregnant_ko_check_nagarne_karan = findViewById(R.id.if_pregtest_no_why);
+//        pregnant_ko_check_gareko_count = findViewById(R.id.if_pregtest_yes_count);
+        pregnant_le_icon_pill_linegareko = findViewById(R.id.rg_pregnent_ironyesno);
+        pregnant_le_juka_medicine_linegareko = findViewById(R.id.rg_pregnent_juka);
+        pregnant_le_vitamin_linegareko = findViewById(R.id.rg_pregnent_vitamin);
+        baccha_janmaaune_sthan = findViewById(R.id.rg_pregnent_deliveryplace);
+//        baccha_janmaauna_sahayog_garne = findViewById(R.id.rg_pregnent_help);
+        baccha_janmaauna_help_nalinukaran = findViewById(R.id.rg_pregnent_whynohelp);
+        last12Monthma_under_5yr_ko_death = findViewById(R.id.rg_12mnth_kiddie_yesno);
+        under_5yr_ko_development_measure_huncha = findViewById(R.id.rg_5yrs_posan_condn);
+        age6month_to_6yr_vitamin_A = findViewById(R.id.rg_6mnthdekhi_6yrs_vitaminA);
+        age1yr_to_6yr_juka_medicine = findViewById(R.id.rg_1to6yrs_juka);
+        winter_ma_warm_cloth = findViewById(R.id.rg_jadoma_odney_ochauney);
+        jhuul_ko_babyastha = findViewById(R.id.rg_jhulko_byawsta_yesno);
+        regular_health_checkup_peryear = findViewById(R.id.rg_basra_swastacheck_count);
+        past12month_ma_death_bhayeko = findViewById(R.id.rg_in12mthn_death);
+        yog_ra_adhyatmik_kendra_ma_janegareko = findViewById(R.id.rg_exceptHospital_yog_etc);
+        khanepaani_source = findViewById(R.id.rg_khanepani_srowt);
+        paani_meter_jadan_gareyeko = findViewById(R.id.rg_paniko_meter_yesno);
+        paani_sufficient_hune = findViewById(R.id.rg_pani_paryapta_yesno);
+        paani_lina_jane_aaune_time = findViewById(R.id.rg_khanepani_lyaunalagne_time);
+        khanepaani_quality = findViewById(R.id.rg_khanepani_gunastar);
+        pani_purify_garne_gareko = findViewById(R.id.rg_khanepani_suddhikaran);
+        rain_water_collect_gareko = findViewById(R.id.rg_aakhaspani_sankalan_yesno);
+        rainwater_ko_use = findViewById(R.id.rg_aakhaspani_sankalan_ifyes);
+        ghaar_ma_dhaal_attach_bhayeko = findViewById(R.id.rg_gharma_dhal_yesno);
+        dhaal_attach_bhayeko_type = findViewById(R.id.rg_ghar_dhal_ifyes);
+        waste_water_management = findViewById(R.id.rg_fohorpani_byawastha);
+        decompose_nodecompose_separate_garne = findViewById(R.id.rg_kuhiney_fohor_chuttuney_yesno);
+
+
+    }
+
+    private void getDetials2CheckboxValues() {
+        Integer paani_tataune_upakaranIDs[] = {R.id.cb_heat_water_gas, R.id.cb_heat_water_param, R.id.cb_heat_water_sudhars,
+                R.id.cb_heat_water_kerosene, R.id.cb_heat_water_induct, R.id.cb_heat_water_elec, R.id.cb_heat_water_solar,
+                R.id.cb_heat_water_heat_normal};
+        Integer room_heating_upakaranIDs[] = {R.id.cb_room_heat_gas, R.id.cb_room_heat_elech, R.id.cb_room_heat_kerosenes,
+                R.id.cb_room_heat_wood};
+        Integer room_cooling_upakaranIDs[] = {R.id.cb_room_cool_fan, R.id.cb_room_cool_cooler, R.id.cb_room_cool_none};
+        Integer solid_waste_managementIDs[] = {R.id.cb_fhoro_compoundma_jalauney, R.id.cb_fohor_thuparney_container,
+                R.id.cb_fohor_lina_aauxa, R.id.cb_fohor_compost, R.id.cb_fohor_sadakma, R.id.cb_fohor_sarbajanik,
+                R.id.cb_fohor_nadi};
+
+        CheckBox[] pani_tataune = new CheckBox[paani_tataune_upakaranIDs.length];
+        StringBuilder sbPaani = new StringBuilder();
+        for (int i = 0; i < paani_tataune_upakaranIDs.length; i++) {
+            pani_tataune[i] = findViewById(paani_tataune_upakaranIDs[i]);
+            if (pani_tataune[i].isChecked()) {
+                sbPaani.append(pani_tataune[i].getText().toString());
+                sbPaani.append(" , ");
+            }
+        }
+        details2.setPaani_tataune_upakaran(sbPaani.toString());
+
+        CheckBox[] room_tataune = new CheckBox[room_heating_upakaranIDs.length];
+        StringBuilder sbRoomHeat = new StringBuilder();
+        for (int i = 0; i < room_heating_upakaranIDs.length; i++) {
+            room_tataune[i] = findViewById(room_heating_upakaranIDs[i]);
+            if (room_tataune[i].isChecked()) {
+                sbRoomHeat.append(room_tataune[i].getText().toString());
+                sbRoomHeat.append(" , ");
+            }
+        }
+        details2.setRoom_heating_upakaran(sbRoomHeat.toString());
+
+        CheckBox[] room_cool = new CheckBox[room_cooling_upakaranIDs.length];
+        StringBuilder sbRoomCool = new StringBuilder();
+        for (int i = 0; i < room_cooling_upakaranIDs.length; i++) {
+            room_cool[i] = findViewById(room_cooling_upakaranIDs[i]);
+            if (room_cool[i].isChecked()) {
+                sbRoomCool.append(room_cool[i].getText().toString());
+                sbRoomCool.append(" , ");
+            }
+        }
+        details2.setRoom_cooling_upakaran(sbRoomCool.toString());
+
+        CheckBox[] wasteMgmt = new CheckBox[solid_waste_managementIDs.length];
+        StringBuilder sbWaste = new StringBuilder();
+        for (int i = 0; i < solid_waste_managementIDs.length; i++) {
+            wasteMgmt[i] = findViewById(solid_waste_managementIDs[i]);
+            if (wasteMgmt[i].isChecked()) {
+                sbWaste.append(wasteMgmt[i].getText().toString());
+                sbWaste.append(" , ");
+            }
+        }
+        details2.setSolid_waste_management(sbWaste.toString());
 
     }
 
@@ -1740,7 +2094,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     private void renderFamilyInputDataLayout() {
 
         // Initialize all layout first
-        int MAX_FAMILY_COUNT = 3;
+        int MAX_FAMILY_COUNT = 10;
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         for (int i = 0; i < MAX_FAMILY_COUNT; i++) {
@@ -1766,7 +2120,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             }
         });
 
-        /*listenChangeFamilyData0(0);        // and hide layout for each views
+        listenChangeFamilyData0(0);        // and hide layout for each views
         listenChangeFamilyData1(1);
         listenChangeFamilyData2(2);
         listenChangeFamilyData3(3);
@@ -1776,11 +2130,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         listenChangeFamilyData7(7);
         listenChangeFamilyData8(8);
         listenChangeFamilyData9(9);
-        listenChangeFamilyData10(10);
-        listenChangeFamilyData11(11);
-        listenChangeFamilyData12(12);
-        listenChangeFamilyData13(13);
-        listenChangeFamilyData14(14);
 
         handleValueChanges0(0);       //for radio buttons
         handleValueChanges1(1);       //for radio buttons
@@ -1792,11 +2141,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         handleValueChanges7(7);
         handleValueChanges8(8);
         handleValueChanges9(9);
-        handleValueChanges10(10);
-        handleValueChanges11(11);
-        handleValueChanges12(12);
-        handleValueChanges13(13);
-        handleValueChanges14(14);*/
     }
 
     private void handleValueChanges0(final int familyIndex) {
@@ -6439,2326 +6783,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
         });
     }
 
-    private void handleValueChanges10(final int familyIndex) {
-        RadioGroup rgGender = familyMember[familyIndex].findViewById(R.id.t3_rg_gender);
-        RadioGroup rgRelationToOwner = familyMember[familyIndex].findViewById(R.id.t3_rg_relationToOwner);
-
-        RadioGroup rgEmail = familyMember[familyIndex].findViewById(R.id.t3_rg_email);
-        RadioGroup rgLeaveHouse = familyMember[familyIndex].findViewById(R.id.t3_rg_leftHouse);
-        RadioGroup rgLeaveHouseReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveHouse_reason);
-
-        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setGender(value);
-            }
-        });
-
-        rgRelationToOwner.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRelationToOwner(value);
-            }
-        });
-
-
-        rgEmail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rad_email_y) {
-                    familyData[familyIndex].setHasEmail("1");
-                    familyData[familyIndex].setHasNoEmail("0");
-                } else {
-                    familyData[familyIndex].setHasEmail("0");
-                    familyData[familyIndex].setHasNoEmail("1");
-                }
-            }
-        });
-
-        rgLeaveHouse.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_radio_leftHouse_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.VISIBLE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("1");
-                    familyData[familyIndex].setHasNotLeftHome6Month("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("0");
-                    familyData[familyIndex].setHasNotLeftHome6Month("1");
-                    familyData[familyIndex].setLeaveHome_place("0");
-                    familyData[familyIndex].setLeaveHome_reason("0");
-                    EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-                    editLeaveHouseLocation.setText("");
-                }
-            }
-        });
-
-        rgLeaveHouseReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveHome_reason(reason);
-            }
-        });
-
-        //education
-        RadioGroup rgEducation = familyMember[familyIndex].findViewById(R.id.t3_rg_education);
-        RadioGroup rgSchoolType = familyMember[familyIndex].findViewById(R.id.t3_rg_school_type);
-        RadioGroup rgSchoolLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_school_level);
-        final RadioGroup rgSchoolLeaveReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveSchool_reason);
-
-        rgEducation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String education = selectedValue.getText().toString();
-                familyData[familyIndex].setEducation(education);
-            }
-        });
-
-        rgSchoolType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String type = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolType(type);
-
-                if (i == R.id.t3_rb_leaveSchool) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-                    familyData[familyIndex].setLeaveSchool_reason("0");
-                }
-            }
-        });
-
-        rgSchoolLeaveReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveSchool_reason(reason);
-            }
-        });
-
-        rgSchoolLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String level = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolLevel(level);
-            }
-        });
-
-        //rojgari
-        RadioGroup rgJobs = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobs);
-        RadioGroup rgJobAbroadCountries = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobCountry);
-        RadioGroup rgRemittance = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_remittance);
-
-        rgJobs.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_job_abroad) {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-                }
-
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String jobType = selectedValue.getText().toString();
-                familyData[familyIndex].setIncomeSource(jobType);
-            }
-        });
-
-        rgJobAbroadCountries.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String country = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_country(country);
-            }
-        });
-
-        rgRemittance.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_moneyTransfer(value);
-            }
-        });
-
-        RadioGroup rgBankAC = familyMember[familyIndex].findViewById(R.id.t3_rg_bankAC);
-        RadioGroup rgATM = familyMember[familyIndex].findViewById(R.id.t3_rg_atm);
-        RadioGroup rgOnlineBank = familyMember[familyIndex].findViewById(R.id.t3_rg_onlineBanking);
-        RadioGroup rgDepositRegular = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular);
-        RadioGroup rgDepositTo = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular_to);
-
-        rgBankAC.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_bankAC_y) {
-                    familyData[familyIndex].setHasBankAC("1");
-                    familyData[familyIndex].setHasNoBankAC("0");
-                } else {
-                    familyData[familyIndex].setHasNoBankAC("1");
-                    familyData[familyIndex].setHasBankAC("0");
-                }
-            }
-        });
-
-        rgATM.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_atm_y) {
-                    familyData[familyIndex].setHasATM("1");
-                    familyData[familyIndex].setHasNoATM("0");
-                } else {
-                    familyData[familyIndex].setHasNoATM("1");
-                    familyData[familyIndex].setHasATM("0");
-                }
-            }
-        });
-
-        rgOnlineBank.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_onlineBanking_y) {
-                    familyData[familyIndex].setUseOnlineBanking("1");
-                    familyData[familyIndex].setNotUseOnlineBanking("0");
-                } else {
-                    familyData[familyIndex].setNotUseOnlineBanking("1");
-                    familyData[familyIndex].setUseOnlineBanking("0");
-                }
-            }
-        });
-
-        rgDepositRegular.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_depositregular_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setRegularDeposit("1");
-                    familyData[familyIndex].setNotRegularDeposit("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotRegularDeposit("1");
-                    familyData[familyIndex].setRegularDeposit("0");
-                    familyData[familyIndex].setRegularDeposit_to("0");
-                }
-            }
-        });
-
-        rgDepositTo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRegularDeposit_to(value);
-            }
-        });
-
-        //health
-        RadioGroup rgHealthStatus = familyMember[familyIndex].findViewById(R.id.t3_health_rg_healthstatus);
-        rgHealthStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabled) {
-                    familyData[familyIndex].setIsDisabled("1");
-                    familyData[familyIndex].setIsHealthy("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setIsHealthy("1");
-                    familyData[familyIndex].setIsDisabled("0");
-                    familyData[familyIndex].setDisabilityType("0");
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgDisabilityType = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitytype);
-        rgDisabilityType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setDisabilityType(value);
-            }
-        });
-
-        RadioGroup rgDisabilityCard = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitycard);
-        rgDisabilityCard.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabilitycard_y) {
-                    familyData[familyIndex].setHasDisabilityCard("1");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                } else {
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("1");
-                }
-            }
-        });
-
-        RadioGroup rgDisease12Month = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disease12month);
-        rgDisease12Month.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_health_rb_disease12month_y) {
-                    familyData[familyIndex].setHasDisease12Month("1");
-                    familyData[familyIndex].setNoDisease12Month("0");
-                } else {
-                    familyData[familyIndex].setHasDisease12Month("0");
-                    familyData[familyIndex].setNoDisease12Month("1");
-                }
-            }
-        });
-
-        RadioGroup rgLongtermDisease = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_disease);
-        rgLongtermDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_rb_longterm_disease_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasLongTermDisease("1");
-                    familyData[familyIndex].setNoLongTermDisease("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-                    familyData[familyIndex].setNoLongTermDisease("1");
-                    familyData[familyIndex].setHasLongTermDisease("0");
-                    familyData[familyIndex].setLongTermDiseaseName("0");
-                }
-            }
-        });
-
-
-        RadioGroup rgLongTermDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_diseaselist);
-        rgLongTermDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setLongTermDiseaseName(value);
-            }
-        });
-
-        RadioGroup rgCommunicableDisease = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_disease);
-        rgCommunicableDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_communicable_disease_y) {
-                    familyData[familyIndex].setHasCommunicableDisease("1");
-                    familyData[familyIndex].setNoCommunicableDisease("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setNoCommunicableDisease("1");
-                    familyData[familyIndex].setHasCommunicableDisease("0");
-                    familyData[familyIndex].setCommunicableDiseaseName("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgCommunicableDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_diseaselist);
-        rgCommunicableDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setCommunicableDiseaseName(value);
-            }
-        });
-
-
-        //social
-        RadioGroup rgSocialIdentity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_identity);
-        rgSocialIdentity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialIdentity(value);
-
-                if (i == R.id.t3_rb_social_security) {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-                    familyData[familyIndex].setSocialSecurity_type("0");
-                }
-            }
-        });
-
-        RadioGroup rgSocialSecurity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_security);
-        rgSocialSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialSecurity_type(value);
-                familyData[familyIndex].setSocialIdentity("0");
-            }
-        });
-
-        RadioGroup rgMaritalStatus = familyMember[familyIndex].findViewById(R.id.t3_rg_marital_status);
-        rgMaritalStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setMaritalStatus(value);
-            }
-        });
-
-        RadioGroup rgHasTraining = familyMember[familyIndex].findViewById(R.id.t3_rg_received_training);
-        rgHasTraining.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_has_received_training) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasReceivedTraining("1");
-                    familyData[familyIndex].setNotReceivedTraining("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotReceivedTraining("1");
-                    familyData[familyIndex].setHasReceivedTraining("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalInvolvement = familyMember[familyIndex].findViewById(R.id.t3_social_rg_politicalinvolvement);
-        rgPoliticalInvolvement.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_social_rb_has_politicalinvolvement) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setIsPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsPoliticalInfluencer("0");
-                    familyData[familyIndex].setPoliticalInfluencerLevel("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_political_level);
-        rgPoliticalLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setPoliticalInfluencerLevel(value);
-            }
-        });
-
-        RadioGroup rgTransportJob = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_job);
-        rgTransportJob.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelWork(value);
-            }
-        });
-        RadioGroup rgTransportBusiness = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_business);
-        rgTransportBusiness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelBusiness(value);
-            }
-        });
-        RadioGroup rgTransportSchool = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_school);
-        rgTransportSchool.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelEducation(value);
-            }
-        });
-        RadioGroup rgTransportOther = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_other);
-        rgTransportOther.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelOthers(value);
-            }
-        });
-    }
-
-    private void handleValueChanges11(final int familyIndex) {
-        RadioGroup rgGender = familyMember[familyIndex].findViewById(R.id.t3_rg_gender);
-        RadioGroup rgRelationToOwner = familyMember[familyIndex].findViewById(R.id.t3_rg_relationToOwner);
-
-        RadioGroup rgEmail = familyMember[familyIndex].findViewById(R.id.t3_rg_email);
-        RadioGroup rgLeaveHouse = familyMember[familyIndex].findViewById(R.id.t3_rg_leftHouse);
-        RadioGroup rgLeaveHouseReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveHouse_reason);
-
-        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setGender(value);
-            }
-        });
-
-        rgRelationToOwner.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRelationToOwner(value);
-            }
-        });
-
-
-        rgEmail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rad_email_y) {
-                    familyData[familyIndex].setHasEmail("1");
-                    familyData[familyIndex].setHasNoEmail("0");
-                } else {
-                    familyData[familyIndex].setHasEmail("0");
-                    familyData[familyIndex].setHasNoEmail("1");
-                }
-            }
-        });
-
-        rgLeaveHouse.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_radio_leftHouse_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.VISIBLE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("1");
-                    familyData[familyIndex].setHasNotLeftHome6Month("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("0");
-                    familyData[familyIndex].setHasNotLeftHome6Month("1");
-                    familyData[familyIndex].setLeaveHome_place("0");
-                    familyData[familyIndex].setLeaveHome_reason("0");
-                    EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-                    editLeaveHouseLocation.setText("");
-                }
-            }
-        });
-
-        rgLeaveHouseReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveHome_reason(reason);
-            }
-        });
-
-        //education
-        RadioGroup rgEducation = familyMember[familyIndex].findViewById(R.id.t3_rg_education);
-        RadioGroup rgSchoolType = familyMember[familyIndex].findViewById(R.id.t3_rg_school_type);
-        RadioGroup rgSchoolLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_school_level);
-        final RadioGroup rgSchoolLeaveReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveSchool_reason);
-
-        rgEducation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String education = selectedValue.getText().toString();
-                familyData[familyIndex].setEducation(education);
-            }
-        });
-
-        rgSchoolType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String type = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolType(type);
-
-                if (i == R.id.t3_rb_leaveSchool) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-                    familyData[familyIndex].setLeaveSchool_reason("0");
-                }
-            }
-        });
-
-        rgSchoolLeaveReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveSchool_reason(reason);
-            }
-        });
-
-        rgSchoolLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String level = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolLevel(level);
-            }
-        });
-
-        //rojgari
-        RadioGroup rgJobs = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobs);
-        RadioGroup rgJobAbroadCountries = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobCountry);
-        RadioGroup rgRemittance = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_remittance);
-
-        rgJobs.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_job_abroad) {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-                }
-
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String jobType = selectedValue.getText().toString();
-                familyData[familyIndex].setIncomeSource(jobType);
-            }
-        });
-
-        rgJobAbroadCountries.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String country = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_country(country);
-            }
-        });
-
-        rgRemittance.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_moneyTransfer(value);
-            }
-        });
-
-        RadioGroup rgBankAC = familyMember[familyIndex].findViewById(R.id.t3_rg_bankAC);
-        RadioGroup rgATM = familyMember[familyIndex].findViewById(R.id.t3_rg_atm);
-        RadioGroup rgOnlineBank = familyMember[familyIndex].findViewById(R.id.t3_rg_onlineBanking);
-        RadioGroup rgDepositRegular = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular);
-        RadioGroup rgDepositTo = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular_to);
-
-        rgBankAC.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_bankAC_y) {
-                    familyData[familyIndex].setHasBankAC("1");
-                    familyData[familyIndex].setHasNoBankAC("0");
-                } else {
-                    familyData[familyIndex].setHasNoBankAC("1");
-                    familyData[familyIndex].setHasBankAC("0");
-                }
-            }
-        });
-
-        rgATM.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_atm_y) {
-                    familyData[familyIndex].setHasATM("1");
-                    familyData[familyIndex].setHasNoATM("0");
-                } else {
-                    familyData[familyIndex].setHasNoATM("1");
-                    familyData[familyIndex].setHasATM("0");
-                }
-            }
-        });
-
-        rgOnlineBank.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_onlineBanking_y) {
-                    familyData[familyIndex].setUseOnlineBanking("1");
-                    familyData[familyIndex].setNotUseOnlineBanking("0");
-                } else {
-                    familyData[familyIndex].setNotUseOnlineBanking("1");
-                    familyData[familyIndex].setUseOnlineBanking("0");
-                }
-            }
-        });
-
-        rgDepositRegular.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_depositregular_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setRegularDeposit("1");
-                    familyData[familyIndex].setNotRegularDeposit("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotRegularDeposit("1");
-                    familyData[familyIndex].setRegularDeposit("0");
-                    familyData[familyIndex].setRegularDeposit_to("0");
-                }
-            }
-        });
-
-        rgDepositTo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRegularDeposit_to(value);
-            }
-        });
-
-        //health
-        RadioGroup rgHealthStatus = familyMember[familyIndex].findViewById(R.id.t3_health_rg_healthstatus);
-        rgHealthStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabled) {
-                    familyData[familyIndex].setIsDisabled("1");
-                    familyData[familyIndex].setIsHealthy("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setIsHealthy("1");
-                    familyData[familyIndex].setIsDisabled("0");
-                    familyData[familyIndex].setDisabilityType("0");
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgDisabilityType = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitytype);
-        rgDisabilityType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setDisabilityType(value);
-            }
-        });
-
-        RadioGroup rgDisabilityCard = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitycard);
-        rgDisabilityCard.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabilitycard_y) {
-                    familyData[familyIndex].setHasDisabilityCard("1");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                } else {
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("1");
-                }
-            }
-        });
-
-        RadioGroup rgDisease12Month = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disease12month);
-        rgDisease12Month.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_health_rb_disease12month_y) {
-                    familyData[familyIndex].setHasDisease12Month("1");
-                    familyData[familyIndex].setNoDisease12Month("0");
-                } else {
-                    familyData[familyIndex].setHasDisease12Month("0");
-                    familyData[familyIndex].setNoDisease12Month("1");
-                }
-            }
-        });
-
-        RadioGroup rgLongtermDisease = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_disease);
-        rgLongtermDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_rb_longterm_disease_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasLongTermDisease("1");
-                    familyData[familyIndex].setNoLongTermDisease("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-                    familyData[familyIndex].setNoLongTermDisease("1");
-                    familyData[familyIndex].setHasLongTermDisease("0");
-                    familyData[familyIndex].setLongTermDiseaseName("0");
-                }
-            }
-        });
-
-
-        RadioGroup rgLongTermDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_diseaselist);
-        rgLongTermDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setLongTermDiseaseName(value);
-            }
-        });
-
-        RadioGroup rgCommunicableDisease = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_disease);
-        rgCommunicableDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_communicable_disease_y) {
-                    familyData[familyIndex].setHasCommunicableDisease("1");
-                    familyData[familyIndex].setNoCommunicableDisease("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setNoCommunicableDisease("1");
-                    familyData[familyIndex].setHasCommunicableDisease("0");
-                    familyData[familyIndex].setCommunicableDiseaseName("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgCommunicableDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_diseaselist);
-        rgCommunicableDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setCommunicableDiseaseName(value);
-            }
-        });
-
-
-        //social
-        RadioGroup rgSocialIdentity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_identity);
-        rgSocialIdentity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialIdentity(value);
-
-                if (i == R.id.t3_rb_social_security) {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-                    familyData[familyIndex].setSocialSecurity_type("0");
-                }
-            }
-        });
-
-        RadioGroup rgSocialSecurity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_security);
-        rgSocialSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialSecurity_type(value);
-                familyData[familyIndex].setSocialIdentity("0");
-            }
-        });
-
-        RadioGroup rgMaritalStatus = familyMember[familyIndex].findViewById(R.id.t3_rg_marital_status);
-        rgMaritalStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setMaritalStatus(value);
-            }
-        });
-
-        RadioGroup rgHasTraining = familyMember[familyIndex].findViewById(R.id.t3_rg_received_training);
-        rgHasTraining.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_has_received_training) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasReceivedTraining("1");
-                    familyData[familyIndex].setNotReceivedTraining("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotReceivedTraining("1");
-                    familyData[familyIndex].setHasReceivedTraining("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalInvolvement = familyMember[familyIndex].findViewById(R.id.t3_social_rg_politicalinvolvement);
-        rgPoliticalInvolvement.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_social_rb_has_politicalinvolvement) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setIsPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsPoliticalInfluencer("0");
-                    familyData[familyIndex].setPoliticalInfluencerLevel("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_political_level);
-        rgPoliticalLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setPoliticalInfluencerLevel(value);
-            }
-        });
-
-        RadioGroup rgTransportJob = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_job);
-        rgTransportJob.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelWork(value);
-            }
-        });
-        RadioGroup rgTransportBusiness = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_business);
-        rgTransportBusiness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelBusiness(value);
-            }
-        });
-        RadioGroup rgTransportSchool = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_school);
-        rgTransportSchool.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelEducation(value);
-            }
-        });
-        RadioGroup rgTransportOther = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_other);
-        rgTransportOther.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelOthers(value);
-            }
-        });
-    }
-
-    private void handleValueChanges12(final int familyIndex) {
-        RadioGroup rgGender = familyMember[familyIndex].findViewById(R.id.t3_rg_gender);
-        RadioGroup rgRelationToOwner = familyMember[familyIndex].findViewById(R.id.t3_rg_relationToOwner);
-
-        RadioGroup rgEmail = familyMember[familyIndex].findViewById(R.id.t3_rg_email);
-        RadioGroup rgLeaveHouse = familyMember[familyIndex].findViewById(R.id.t3_rg_leftHouse);
-        RadioGroup rgLeaveHouseReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveHouse_reason);
-
-        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setGender(value);
-            }
-        });
-
-        rgRelationToOwner.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRelationToOwner(value);
-            }
-        });
-
-
-        rgEmail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rad_email_y) {
-                    familyData[familyIndex].setHasEmail("1");
-                    familyData[familyIndex].setHasNoEmail("0");
-                } else {
-                    familyData[familyIndex].setHasEmail("0");
-                    familyData[familyIndex].setHasNoEmail("1");
-                }
-            }
-        });
-
-        rgLeaveHouse.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_radio_leftHouse_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.VISIBLE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("1");
-                    familyData[familyIndex].setHasNotLeftHome6Month("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("0");
-                    familyData[familyIndex].setHasNotLeftHome6Month("1");
-                    familyData[familyIndex].setLeaveHome_place("0");
-                    familyData[familyIndex].setLeaveHome_reason("0");
-                    EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-                    editLeaveHouseLocation.setText("");
-                }
-            }
-        });
-
-        rgLeaveHouseReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveHome_reason(reason);
-            }
-        });
-
-        //education
-        RadioGroup rgEducation = familyMember[familyIndex].findViewById(R.id.t3_rg_education);
-        RadioGroup rgSchoolType = familyMember[familyIndex].findViewById(R.id.t3_rg_school_type);
-        RadioGroup rgSchoolLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_school_level);
-        final RadioGroup rgSchoolLeaveReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveSchool_reason);
-
-        rgEducation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String education = selectedValue.getText().toString();
-                familyData[familyIndex].setEducation(education);
-            }
-        });
-
-        rgSchoolType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String type = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolType(type);
-
-                if (i == R.id.t3_rb_leaveSchool) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-                    familyData[familyIndex].setLeaveSchool_reason("0");
-                }
-            }
-        });
-
-        rgSchoolLeaveReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveSchool_reason(reason);
-            }
-        });
-
-        rgSchoolLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String level = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolLevel(level);
-            }
-        });
-
-        //rojgari
-        RadioGroup rgJobs = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobs);
-        RadioGroup rgJobAbroadCountries = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobCountry);
-        RadioGroup rgRemittance = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_remittance);
-
-        rgJobs.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_job_abroad) {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-                }
-
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String jobType = selectedValue.getText().toString();
-                familyData[familyIndex].setIncomeSource(jobType);
-            }
-        });
-
-        rgJobAbroadCountries.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String country = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_country(country);
-            }
-        });
-
-        rgRemittance.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_moneyTransfer(value);
-            }
-        });
-
-        RadioGroup rgBankAC = familyMember[familyIndex].findViewById(R.id.t3_rg_bankAC);
-        RadioGroup rgATM = familyMember[familyIndex].findViewById(R.id.t3_rg_atm);
-        RadioGroup rgOnlineBank = familyMember[familyIndex].findViewById(R.id.t3_rg_onlineBanking);
-        RadioGroup rgDepositRegular = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular);
-        RadioGroup rgDepositTo = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular_to);
-
-        rgBankAC.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_bankAC_y) {
-                    familyData[familyIndex].setHasBankAC("1");
-                    familyData[familyIndex].setHasNoBankAC("0");
-                } else {
-                    familyData[familyIndex].setHasNoBankAC("1");
-                    familyData[familyIndex].setHasBankAC("0");
-                }
-            }
-        });
-
-        rgATM.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_atm_y) {
-                    familyData[familyIndex].setHasATM("1");
-                    familyData[familyIndex].setHasNoATM("0");
-                } else {
-                    familyData[familyIndex].setHasNoATM("1");
-                    familyData[familyIndex].setHasATM("0");
-                }
-            }
-        });
-
-        rgOnlineBank.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_onlineBanking_y) {
-                    familyData[familyIndex].setUseOnlineBanking("1");
-                    familyData[familyIndex].setNotUseOnlineBanking("0");
-                } else {
-                    familyData[familyIndex].setNotUseOnlineBanking("1");
-                    familyData[familyIndex].setUseOnlineBanking("0");
-                }
-            }
-        });
-
-        rgDepositRegular.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_depositregular_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setRegularDeposit("1");
-                    familyData[familyIndex].setNotRegularDeposit("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotRegularDeposit("1");
-                    familyData[familyIndex].setRegularDeposit("0");
-                    familyData[familyIndex].setRegularDeposit_to("0");
-                }
-            }
-        });
-
-        rgDepositTo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRegularDeposit_to(value);
-            }
-        });
-
-        //health
-        RadioGroup rgHealthStatus = familyMember[familyIndex].findViewById(R.id.t3_health_rg_healthstatus);
-        rgHealthStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabled) {
-                    familyData[familyIndex].setIsDisabled("1");
-                    familyData[familyIndex].setIsHealthy("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setIsHealthy("1");
-                    familyData[familyIndex].setIsDisabled("0");
-                    familyData[familyIndex].setDisabilityType("0");
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgDisabilityType = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitytype);
-        rgDisabilityType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setDisabilityType(value);
-            }
-        });
-
-        RadioGroup rgDisabilityCard = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitycard);
-        rgDisabilityCard.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabilitycard_y) {
-                    familyData[familyIndex].setHasDisabilityCard("1");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                } else {
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("1");
-                }
-            }
-        });
-
-        RadioGroup rgDisease12Month = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disease12month);
-        rgDisease12Month.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_health_rb_disease12month_y) {
-                    familyData[familyIndex].setHasDisease12Month("1");
-                    familyData[familyIndex].setNoDisease12Month("0");
-                } else {
-                    familyData[familyIndex].setHasDisease12Month("0");
-                    familyData[familyIndex].setNoDisease12Month("1");
-                }
-            }
-        });
-
-        RadioGroup rgLongtermDisease = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_disease);
-        rgLongtermDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_rb_longterm_disease_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasLongTermDisease("1");
-                    familyData[familyIndex].setNoLongTermDisease("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-                    familyData[familyIndex].setNoLongTermDisease("1");
-                    familyData[familyIndex].setHasLongTermDisease("0");
-                    familyData[familyIndex].setLongTermDiseaseName("0");
-                }
-            }
-        });
-
-
-        RadioGroup rgLongTermDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_diseaselist);
-        rgLongTermDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setLongTermDiseaseName(value);
-            }
-        });
-
-        RadioGroup rgCommunicableDisease = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_disease);
-        rgCommunicableDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_communicable_disease_y) {
-                    familyData[familyIndex].setHasCommunicableDisease("1");
-                    familyData[familyIndex].setNoCommunicableDisease("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setNoCommunicableDisease("1");
-                    familyData[familyIndex].setHasCommunicableDisease("0");
-                    familyData[familyIndex].setCommunicableDiseaseName("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgCommunicableDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_diseaselist);
-        rgCommunicableDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setCommunicableDiseaseName(value);
-            }
-        });
-
-
-        //social
-        RadioGroup rgSocialIdentity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_identity);
-        rgSocialIdentity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialIdentity(value);
-
-                if (i == R.id.t3_rb_social_security) {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-                    familyData[familyIndex].setSocialSecurity_type("0");
-                }
-            }
-        });
-
-        RadioGroup rgSocialSecurity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_security);
-        rgSocialSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialSecurity_type(value);
-                familyData[familyIndex].setSocialIdentity("0");
-            }
-        });
-
-        RadioGroup rgMaritalStatus = familyMember[familyIndex].findViewById(R.id.t3_rg_marital_status);
-        rgMaritalStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setMaritalStatus(value);
-            }
-        });
-
-        RadioGroup rgHasTraining = familyMember[familyIndex].findViewById(R.id.t3_rg_received_training);
-        rgHasTraining.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_has_received_training) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasReceivedTraining("1");
-                    familyData[familyIndex].setNotReceivedTraining("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotReceivedTraining("1");
-                    familyData[familyIndex].setHasReceivedTraining("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalInvolvement = familyMember[familyIndex].findViewById(R.id.t3_social_rg_politicalinvolvement);
-        rgPoliticalInvolvement.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_social_rb_has_politicalinvolvement) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setIsPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsPoliticalInfluencer("0");
-                    familyData[familyIndex].setPoliticalInfluencerLevel("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_political_level);
-        rgPoliticalLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setPoliticalInfluencerLevel(value);
-            }
-        });
-
-        RadioGroup rgTransportJob = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_job);
-        rgTransportJob.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelWork(value);
-            }
-        });
-        RadioGroup rgTransportBusiness = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_business);
-        rgTransportBusiness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelBusiness(value);
-            }
-        });
-        RadioGroup rgTransportSchool = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_school);
-        rgTransportSchool.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelEducation(value);
-            }
-        });
-        RadioGroup rgTransportOther = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_other);
-        rgTransportOther.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelOthers(value);
-            }
-        });
-    }
-
-    private void handleValueChanges13(final int familyIndex) {
-        RadioGroup rgGender = familyMember[familyIndex].findViewById(R.id.t3_rg_gender);
-        RadioGroup rgRelationToOwner = familyMember[familyIndex].findViewById(R.id.t3_rg_relationToOwner);
-
-        RadioGroup rgEmail = familyMember[familyIndex].findViewById(R.id.t3_rg_email);
-        RadioGroup rgLeaveHouse = familyMember[familyIndex].findViewById(R.id.t3_rg_leftHouse);
-        RadioGroup rgLeaveHouseReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveHouse_reason);
-
-        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setGender(value);
-            }
-        });
-
-        rgRelationToOwner.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRelationToOwner(value);
-            }
-        });
-
-
-        rgEmail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rad_email_y) {
-                    familyData[familyIndex].setHasEmail("1");
-                    familyData[familyIndex].setHasNoEmail("0");
-                } else {
-                    familyData[familyIndex].setHasEmail("0");
-                    familyData[familyIndex].setHasNoEmail("1");
-                }
-            }
-        });
-
-        rgLeaveHouse.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_radio_leftHouse_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.VISIBLE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("1");
-                    familyData[familyIndex].setHasNotLeftHome6Month("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("0");
-                    familyData[familyIndex].setHasNotLeftHome6Month("1");
-                    familyData[familyIndex].setLeaveHome_place("0");
-                    familyData[familyIndex].setLeaveHome_reason("0");
-                    EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-                    editLeaveHouseLocation.setText("");
-                }
-            }
-        });
-
-        rgLeaveHouseReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveHome_reason(reason);
-            }
-        });
-
-        //education
-        RadioGroup rgEducation = familyMember[familyIndex].findViewById(R.id.t3_rg_education);
-        RadioGroup rgSchoolType = familyMember[familyIndex].findViewById(R.id.t3_rg_school_type);
-        RadioGroup rgSchoolLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_school_level);
-        final RadioGroup rgSchoolLeaveReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveSchool_reason);
-
-        rgEducation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String education = selectedValue.getText().toString();
-                familyData[familyIndex].setEducation(education);
-            }
-        });
-
-        rgSchoolType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String type = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolType(type);
-
-                if (i == R.id.t3_rb_leaveSchool) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-                    familyData[familyIndex].setLeaveSchool_reason("0");
-                }
-            }
-        });
-
-        rgSchoolLeaveReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveSchool_reason(reason);
-            }
-        });
-
-        rgSchoolLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String level = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolLevel(level);
-            }
-        });
-
-        //rojgari
-        RadioGroup rgJobs = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobs);
-        RadioGroup rgJobAbroadCountries = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobCountry);
-        RadioGroup rgRemittance = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_remittance);
-
-        rgJobs.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_job_abroad) {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-                }
-
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String jobType = selectedValue.getText().toString();
-                familyData[familyIndex].setIncomeSource(jobType);
-            }
-        });
-
-        rgJobAbroadCountries.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String country = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_country(country);
-            }
-        });
-
-        rgRemittance.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_moneyTransfer(value);
-            }
-        });
-
-        RadioGroup rgBankAC = familyMember[familyIndex].findViewById(R.id.t3_rg_bankAC);
-        RadioGroup rgATM = familyMember[familyIndex].findViewById(R.id.t3_rg_atm);
-        RadioGroup rgOnlineBank = familyMember[familyIndex].findViewById(R.id.t3_rg_onlineBanking);
-        RadioGroup rgDepositRegular = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular);
-        RadioGroup rgDepositTo = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular_to);
-
-        rgBankAC.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_bankAC_y) {
-                    familyData[familyIndex].setHasBankAC("1");
-                    familyData[familyIndex].setHasNoBankAC("0");
-                } else {
-                    familyData[familyIndex].setHasNoBankAC("1");
-                    familyData[familyIndex].setHasBankAC("0");
-                }
-            }
-        });
-
-        rgATM.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_atm_y) {
-                    familyData[familyIndex].setHasATM("1");
-                    familyData[familyIndex].setHasNoATM("0");
-                } else {
-                    familyData[familyIndex].setHasNoATM("1");
-                    familyData[familyIndex].setHasATM("0");
-                }
-            }
-        });
-
-        rgOnlineBank.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_onlineBanking_y) {
-                    familyData[familyIndex].setUseOnlineBanking("1");
-                    familyData[familyIndex].setNotUseOnlineBanking("0");
-                } else {
-                    familyData[familyIndex].setNotUseOnlineBanking("1");
-                    familyData[familyIndex].setUseOnlineBanking("0");
-                }
-            }
-        });
-
-        rgDepositRegular.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_depositregular_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setRegularDeposit("1");
-                    familyData[familyIndex].setNotRegularDeposit("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotRegularDeposit("1");
-                    familyData[familyIndex].setRegularDeposit("0");
-                    familyData[familyIndex].setRegularDeposit_to("0");
-                }
-            }
-        });
-
-        rgDepositTo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRegularDeposit_to(value);
-            }
-        });
-
-        //health
-        RadioGroup rgHealthStatus = familyMember[familyIndex].findViewById(R.id.t3_health_rg_healthstatus);
-        rgHealthStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabled) {
-                    familyData[familyIndex].setIsDisabled("1");
-                    familyData[familyIndex].setIsHealthy("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setIsHealthy("1");
-                    familyData[familyIndex].setIsDisabled("0");
-                    familyData[familyIndex].setDisabilityType("0");
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgDisabilityType = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitytype);
-        rgDisabilityType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setDisabilityType(value);
-            }
-        });
-
-        RadioGroup rgDisabilityCard = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitycard);
-        rgDisabilityCard.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabilitycard_y) {
-                    familyData[familyIndex].setHasDisabilityCard("1");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                } else {
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("1");
-                }
-            }
-        });
-
-        RadioGroup rgDisease12Month = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disease12month);
-        rgDisease12Month.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_health_rb_disease12month_y) {
-                    familyData[familyIndex].setHasDisease12Month("1");
-                    familyData[familyIndex].setNoDisease12Month("0");
-                } else {
-                    familyData[familyIndex].setHasDisease12Month("0");
-                    familyData[familyIndex].setNoDisease12Month("1");
-                }
-            }
-        });
-
-        RadioGroup rgLongtermDisease = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_disease);
-        rgLongtermDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_rb_longterm_disease_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasLongTermDisease("1");
-                    familyData[familyIndex].setNoLongTermDisease("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-                    familyData[familyIndex].setNoLongTermDisease("1");
-                    familyData[familyIndex].setHasLongTermDisease("0");
-                    familyData[familyIndex].setLongTermDiseaseName("0");
-                }
-            }
-        });
-
-
-        RadioGroup rgLongTermDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_diseaselist);
-        rgLongTermDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setLongTermDiseaseName(value);
-            }
-        });
-
-        RadioGroup rgCommunicableDisease = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_disease);
-        rgCommunicableDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_communicable_disease_y) {
-                    familyData[familyIndex].setHasCommunicableDisease("1");
-                    familyData[familyIndex].setNoCommunicableDisease("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setNoCommunicableDisease("1");
-                    familyData[familyIndex].setHasCommunicableDisease("0");
-                    familyData[familyIndex].setCommunicableDiseaseName("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgCommunicableDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_diseaselist);
-        rgCommunicableDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setCommunicableDiseaseName(value);
-            }
-        });
-
-
-        //social
-        RadioGroup rgSocialIdentity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_identity);
-        rgSocialIdentity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialIdentity(value);
-
-                if (i == R.id.t3_rb_social_security) {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-                    familyData[familyIndex].setSocialSecurity_type("0");
-                }
-            }
-        });
-
-        RadioGroup rgSocialSecurity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_security);
-        rgSocialSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialSecurity_type(value);
-                familyData[familyIndex].setSocialIdentity("0");
-            }
-        });
-
-        RadioGroup rgMaritalStatus = familyMember[familyIndex].findViewById(R.id.t3_rg_marital_status);
-        rgMaritalStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setMaritalStatus(value);
-            }
-        });
-
-        RadioGroup rgHasTraining = familyMember[familyIndex].findViewById(R.id.t3_rg_received_training);
-        rgHasTraining.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_has_received_training) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasReceivedTraining("1");
-                    familyData[familyIndex].setNotReceivedTraining("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotReceivedTraining("1");
-                    familyData[familyIndex].setHasReceivedTraining("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalInvolvement = familyMember[familyIndex].findViewById(R.id.t3_social_rg_politicalinvolvement);
-        rgPoliticalInvolvement.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_social_rb_has_politicalinvolvement) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setIsPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsPoliticalInfluencer("0");
-                    familyData[familyIndex].setPoliticalInfluencerLevel("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_political_level);
-        rgPoliticalLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setPoliticalInfluencerLevel(value);
-            }
-        });
-
-        RadioGroup rgTransportJob = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_job);
-        rgTransportJob.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelWork(value);
-            }
-        });
-        RadioGroup rgTransportBusiness = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_business);
-        rgTransportBusiness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelBusiness(value);
-            }
-        });
-        RadioGroup rgTransportSchool = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_school);
-        rgTransportSchool.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelEducation(value);
-            }
-        });
-        RadioGroup rgTransportOther = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_other);
-        rgTransportOther.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelOthers(value);
-            }
-        });
-    }
-
-    private void handleValueChanges14(final int familyIndex) {
-        RadioGroup rgGender = familyMember[familyIndex].findViewById(R.id.t3_rg_gender);
-        RadioGroup rgRelationToOwner = familyMember[familyIndex].findViewById(R.id.t3_rg_relationToOwner);
-
-        RadioGroup rgEmail = familyMember[familyIndex].findViewById(R.id.t3_rg_email);
-        RadioGroup rgLeaveHouse = familyMember[familyIndex].findViewById(R.id.t3_rg_leftHouse);
-        RadioGroup rgLeaveHouseReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveHouse_reason);
-
-        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setGender(value);
-            }
-        });
-
-        rgRelationToOwner.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRelationToOwner(value);
-            }
-        });
-
-
-        rgEmail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rad_email_y) {
-                    familyData[familyIndex].setHasEmail("1");
-                    familyData[familyIndex].setHasNoEmail("0");
-                } else {
-                    familyData[familyIndex].setHasEmail("0");
-                    familyData[familyIndex].setHasNoEmail("1");
-                }
-            }
-        });
-
-        rgLeaveHouse.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_radio_leftHouse_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.VISIBLE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("1");
-                    familyData[familyIndex].setHasNotLeftHome6Month("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-
-                    familyData[familyIndex].setHasLeftHome6Month("0");
-                    familyData[familyIndex].setHasNotLeftHome6Month("1");
-                    familyData[familyIndex].setLeaveHome_place("0");
-                    familyData[familyIndex].setLeaveHome_reason("0");
-                    EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-                    editLeaveHouseLocation.setText("");
-                }
-            }
-        });
-
-        rgLeaveHouseReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveHome_reason(reason);
-            }
-        });
-
-        //education
-        RadioGroup rgEducation = familyMember[familyIndex].findViewById(R.id.t3_rg_education);
-        RadioGroup rgSchoolType = familyMember[familyIndex].findViewById(R.id.t3_rg_school_type);
-        RadioGroup rgSchoolLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_school_level);
-        final RadioGroup rgSchoolLeaveReason = familyMember[familyIndex].findViewById(R.id.t3_rg_leaveSchool_reason);
-
-        rgEducation.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String education = selectedValue.getText().toString();
-                familyData[familyIndex].setEducation(education);
-            }
-        });
-
-        rgSchoolType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String type = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolType(type);
-
-                if (i == R.id.t3_rb_leaveSchool) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-                    familyData[familyIndex].setLeaveSchool_reason("0");
-                }
-            }
-        });
-
-        rgSchoolLeaveReason.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String reason = selectedValue.getText().toString();
-                familyData[familyIndex].setLeaveSchool_reason(reason);
-            }
-        });
-
-        rgSchoolLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String level = selectedValue.getText().toString();
-                familyData[familyIndex].setSchoolLevel(level);
-            }
-        });
-
-        //rojgari
-        RadioGroup rgJobs = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobs);
-        RadioGroup rgJobAbroadCountries = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_jobCountry);
-        RadioGroup rgRemittance = familyMember[familyIndex].findViewById(R.id.t3_rojgari_rg_remittance);
-
-        rgJobs.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_job_abroad) {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-                }
-
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String jobType = selectedValue.getText().toString();
-                familyData[familyIndex].setIncomeSource(jobType);
-            }
-        });
-
-        rgJobAbroadCountries.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String country = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_country(country);
-            }
-        });
-
-        rgRemittance.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setAbroad_moneyTransfer(value);
-            }
-        });
-
-        RadioGroup rgBankAC = familyMember[familyIndex].findViewById(R.id.t3_rg_bankAC);
-        RadioGroup rgATM = familyMember[familyIndex].findViewById(R.id.t3_rg_atm);
-        RadioGroup rgOnlineBank = familyMember[familyIndex].findViewById(R.id.t3_rg_onlineBanking);
-        RadioGroup rgDepositRegular = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular);
-        RadioGroup rgDepositTo = familyMember[familyIndex].findViewById(R.id.t3_rg_depositregular_to);
-
-        rgBankAC.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_bankAC_y) {
-                    familyData[familyIndex].setHasBankAC("1");
-                    familyData[familyIndex].setHasNoBankAC("0");
-                } else {
-                    familyData[familyIndex].setHasNoBankAC("1");
-                    familyData[familyIndex].setHasBankAC("0");
-                }
-            }
-        });
-
-        rgATM.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_atm_y) {
-                    familyData[familyIndex].setHasATM("1");
-                    familyData[familyIndex].setHasNoATM("0");
-                } else {
-                    familyData[familyIndex].setHasNoATM("1");
-                    familyData[familyIndex].setHasATM("0");
-                }
-            }
-        });
-
-        rgOnlineBank.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rg_onlineBanking_y) {
-                    familyData[familyIndex].setUseOnlineBanking("1");
-                    familyData[familyIndex].setNotUseOnlineBanking("0");
-                } else {
-                    familyData[familyIndex].setNotUseOnlineBanking("1");
-                    familyData[familyIndex].setUseOnlineBanking("0");
-                }
-            }
-        });
-
-        rgDepositRegular.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_depositregular_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setRegularDeposit("1");
-                    familyData[familyIndex].setNotRegularDeposit("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotRegularDeposit("1");
-                    familyData[familyIndex].setRegularDeposit("0");
-                    familyData[familyIndex].setRegularDeposit_to("0");
-                }
-            }
-        });
-
-        rgDepositTo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setRegularDeposit_to(value);
-            }
-        });
-
-        //health
-        RadioGroup rgHealthStatus = familyMember[familyIndex].findViewById(R.id.t3_health_rg_healthstatus);
-        rgHealthStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabled) {
-                    familyData[familyIndex].setIsDisabled("1");
-                    familyData[familyIndex].setIsHealthy("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setIsHealthy("1");
-                    familyData[familyIndex].setIsDisabled("0");
-                    familyData[familyIndex].setDisabilityType("0");
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgDisabilityType = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitytype);
-        rgDisabilityType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setDisabilityType(value);
-            }
-        });
-
-        RadioGroup rgDisabilityCard = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disabilitycard);
-        rgDisabilityCard.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_health_rb_disabilitycard_y) {
-                    familyData[familyIndex].setHasDisabilityCard("1");
-                    familyData[familyIndex].setHasNoDisabilityCard("0");
-                } else {
-                    familyData[familyIndex].setHasDisabilityCard("0");
-                    familyData[familyIndex].setHasNoDisabilityCard("1");
-                }
-            }
-        });
-
-        RadioGroup rgDisease12Month = familyMember[familyIndex].findViewById(R.id.t3_health_rg_disease12month);
-        rgDisease12Month.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_health_rb_disease12month_y) {
-                    familyData[familyIndex].setHasDisease12Month("1");
-                    familyData[familyIndex].setNoDisease12Month("0");
-                } else {
-                    familyData[familyIndex].setHasDisease12Month("0");
-                    familyData[familyIndex].setNoDisease12Month("1");
-                }
-            }
-        });
-
-        RadioGroup rgLongtermDisease = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_disease);
-        rgLongtermDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-                if (i == R.id.t3_rb_longterm_disease_y) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasLongTermDisease("1");
-                    familyData[familyIndex].setNoLongTermDisease("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-                    familyData[familyIndex].setNoLongTermDisease("1");
-                    familyData[familyIndex].setHasLongTermDisease("0");
-                    familyData[familyIndex].setLongTermDiseaseName("0");
-                }
-            }
-        });
-
-
-        RadioGroup rgLongTermDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_health_rg_longterm_diseaselist);
-        rgLongTermDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setLongTermDiseaseName(value);
-            }
-        });
-
-        RadioGroup rgCommunicableDisease = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_disease);
-        rgCommunicableDisease.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_communicable_disease_y) {
-                    familyData[familyIndex].setHasCommunicableDisease("1");
-                    familyData[familyIndex].setNoCommunicableDisease("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.VISIBLE);
-                } else {
-                    familyData[familyIndex].setNoCommunicableDisease("1");
-                    familyData[familyIndex].setHasCommunicableDisease("0");
-                    familyData[familyIndex].setCommunicableDiseaseName("0");
-                    familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-                }
-            }
-        });
-
-        RadioGroup rgCommunicableDiseaseName = familyMember[familyIndex].findViewById(R.id.t3_rg_communicable_diseaselist);
-        rgCommunicableDiseaseName.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setCommunicableDiseaseName(value);
-            }
-        });
-
-
-        //social
-        RadioGroup rgSocialIdentity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_identity);
-        rgSocialIdentity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialIdentity(value);
-
-                if (i == R.id.t3_rb_social_security) {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.VISIBLE);
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-                    familyData[familyIndex].setSocialSecurity_type("0");
-                }
-            }
-        });
-
-        RadioGroup rgSocialSecurity = familyMember[familyIndex].findViewById(R.id.t3_rg_social_security);
-        rgSocialSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setSocialSecurity_type(value);
-                familyData[familyIndex].setSocialIdentity("0");
-            }
-        });
-
-        RadioGroup rgMaritalStatus = familyMember[familyIndex].findViewById(R.id.t3_rg_marital_status);
-        rgMaritalStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setMaritalStatus(value);
-            }
-        });
-
-        RadioGroup rgHasTraining = familyMember[familyIndex].findViewById(R.id.t3_rg_received_training);
-        rgHasTraining.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_rb_has_received_training) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setHasReceivedTraining("1");
-                    familyData[familyIndex].setNotReceivedTraining("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-                    familyData[familyIndex].setNotReceivedTraining("1");
-                    familyData[familyIndex].setHasReceivedTraining("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalInvolvement = familyMember[familyIndex].findViewById(R.id.t3_social_rg_politicalinvolvement);
-        rgPoliticalInvolvement.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.t3_social_rb_has_politicalinvolvement) {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.VISIBLE);
-                    familyData[familyIndex].setIsPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("0");
-                } else {
-                    familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-                    familyData[familyIndex].setIsNotPoliticalInfluencer("1");
-                    familyData[familyIndex].setIsPoliticalInfluencer("0");
-                    familyData[familyIndex].setPoliticalInfluencerLevel("0");
-                }
-            }
-        });
-
-        RadioGroup rgPoliticalLevel = familyMember[familyIndex].findViewById(R.id.t3_rg_political_level);
-        rgPoliticalLevel.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setPoliticalInfluencerLevel(value);
-            }
-        });
-
-        RadioGroup rgTransportJob = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_job);
-        rgTransportJob.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelWork(value);
-            }
-        });
-        RadioGroup rgTransportBusiness = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_business);
-        rgTransportBusiness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelBusiness(value);
-            }
-        });
-        RadioGroup rgTransportSchool = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_school);
-        rgTransportSchool.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelEducation(value);
-            }
-        });
-        RadioGroup rgTransportOther = familyMember[familyIndex].findViewById(R.id.t3_rg_transport_other);
-        rgTransportOther.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton selectedValue = familyMember[familyIndex].findViewById(i);
-                String value = selectedValue.getText().toString();
-                familyData[familyIndex].setTravelOthers(value);
-            }
-        });
-    }
-
     private void getEditTextValues0(int familyIndex) {
         EditText editName = familyMember[familyIndex].findViewById(R.id.t3_edit_name);
         EditText editCast = familyMember[familyIndex].findViewById(R.id.t3_edit_cast);
@@ -9030,156 +7054,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     }
 
     private void getEditTextValues9(int familyIndex) {
-        EditText editName = familyMember[familyIndex].findViewById(R.id.t3_edit_name);
-        EditText editCast = familyMember[familyIndex].findViewById(R.id.t3_edit_cast);
-        EditText editAge = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        EditText editBirthplace = familyMember[familyIndex].findViewById(R.id.t3_edit_birthplace);
-
-        EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-
-        EditText editSkill = familyMember[familyIndex].findViewById(R.id.t3_skill_extra);
-
-        try {
-            familyData[familyIndex].setName(editName.getText().toString());
-            familyData[familyIndex].setCast(editCast.getText().toString());
-            familyData[familyIndex].setAge(editAge.getText().toString());
-            familyData[familyIndex].setBirthplace(editBirthplace.getText().toString());
-
-            if (editLeaveHouseLocation.getText().toString().equals("")) {
-                familyData[familyIndex].setLeaveHome_place("0");
-            } else {
-                familyData[familyIndex].setLeaveHome_place(editLeaveHouseLocation.getText().toString());
-            }
-
-            if (!editSkill.getText().toString().equals("")) {
-                familyData[familyIndex].setSkills(familyData[familyIndex].getSkills() + editSkill.getText().toString() + " , ");
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "ERROR: General Information", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void getEditTextValues10(int familyIndex) {
-        EditText editName = familyMember[familyIndex].findViewById(R.id.t3_edit_name);
-        EditText editCast = familyMember[familyIndex].findViewById(R.id.t3_edit_cast);
-        EditText editAge = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        EditText editBirthplace = familyMember[familyIndex].findViewById(R.id.t3_edit_birthplace);
-
-        EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-
-        EditText editSkill = familyMember[familyIndex].findViewById(R.id.t3_skill_extra);
-
-        try {
-            familyData[familyIndex].setName(editName.getText().toString());
-            familyData[familyIndex].setCast(editCast.getText().toString());
-            familyData[familyIndex].setAge(editAge.getText().toString());
-            familyData[familyIndex].setBirthplace(editBirthplace.getText().toString());
-
-            if (editLeaveHouseLocation.getText().toString().equals("")) {
-                familyData[familyIndex].setLeaveHome_place("0");
-            } else {
-                familyData[familyIndex].setLeaveHome_place(editLeaveHouseLocation.getText().toString());
-            }
-
-            if (!editSkill.getText().toString().equals("")) {
-                familyData[familyIndex].setSkills(familyData[familyIndex].getSkills() + editSkill.getText().toString() + " , ");
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "ERROR: General Information", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void getEditTextValues11(int familyIndex) {
-        EditText editName = familyMember[familyIndex].findViewById(R.id.t3_edit_name);
-        EditText editCast = familyMember[familyIndex].findViewById(R.id.t3_edit_cast);
-        EditText editAge = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        EditText editBirthplace = familyMember[familyIndex].findViewById(R.id.t3_edit_birthplace);
-
-        EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-
-        EditText editSkill = familyMember[familyIndex].findViewById(R.id.t3_skill_extra);
-
-        try {
-            familyData[familyIndex].setName(editName.getText().toString());
-            familyData[familyIndex].setCast(editCast.getText().toString());
-            familyData[familyIndex].setAge(editAge.getText().toString());
-            familyData[familyIndex].setBirthplace(editBirthplace.getText().toString());
-
-            if (editLeaveHouseLocation.getText().toString().equals("")) {
-                familyData[familyIndex].setLeaveHome_place("0");
-            } else {
-                familyData[familyIndex].setLeaveHome_place(editLeaveHouseLocation.getText().toString());
-            }
-
-            if (!editSkill.getText().toString().equals("")) {
-                familyData[familyIndex].setSkills(familyData[familyIndex].getSkills() + editSkill.getText().toString() + " , ");
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "ERROR: General Information", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void getEditTextValues12(int familyIndex) {
-        EditText editName = familyMember[familyIndex].findViewById(R.id.t3_edit_name);
-        EditText editCast = familyMember[familyIndex].findViewById(R.id.t3_edit_cast);
-        EditText editAge = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        EditText editBirthplace = familyMember[familyIndex].findViewById(R.id.t3_edit_birthplace);
-
-        EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-
-        EditText editSkill = familyMember[familyIndex].findViewById(R.id.t3_skill_extra);
-
-        try {
-            familyData[familyIndex].setName(editName.getText().toString());
-            familyData[familyIndex].setCast(editCast.getText().toString());
-            familyData[familyIndex].setAge(editAge.getText().toString());
-            familyData[familyIndex].setBirthplace(editBirthplace.getText().toString());
-
-            if (editLeaveHouseLocation.getText().toString().equals("")) {
-                familyData[familyIndex].setLeaveHome_place("0");
-            } else {
-                familyData[familyIndex].setLeaveHome_place(editLeaveHouseLocation.getText().toString());
-            }
-
-            if (!editSkill.getText().toString().equals("")) {
-                familyData[familyIndex].setSkills(familyData[familyIndex].getSkills() + editSkill.getText().toString() + " , ");
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "ERROR: General Information", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void getEditTextValues13(int familyIndex) {
-        EditText editName = familyMember[familyIndex].findViewById(R.id.t3_edit_name);
-        EditText editCast = familyMember[familyIndex].findViewById(R.id.t3_edit_cast);
-        EditText editAge = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        EditText editBirthplace = familyMember[familyIndex].findViewById(R.id.t3_edit_birthplace);
-
-        EditText editLeaveHouseLocation = familyMember[familyIndex].findViewById(R.id.t3_edit_leftHouse_location);
-
-        EditText editSkill = familyMember[familyIndex].findViewById(R.id.t3_skill_extra);
-
-        try {
-            familyData[familyIndex].setName(editName.getText().toString());
-            familyData[familyIndex].setCast(editCast.getText().toString());
-            familyData[familyIndex].setAge(editAge.getText().toString());
-            familyData[familyIndex].setBirthplace(editBirthplace.getText().toString());
-
-            if (editLeaveHouseLocation.getText().toString().equals("")) {
-                familyData[familyIndex].setLeaveHome_place("0");
-            } else {
-                familyData[familyIndex].setLeaveHome_place(editLeaveHouseLocation.getText().toString());
-            }
-
-            if (!editSkill.getText().toString().equals("")) {
-                familyData[familyIndex].setSkills(familyData[familyIndex].getSkills() + editSkill.getText().toString() + " , ");
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "ERROR: General Information", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void getEditTextValues14(int familyIndex) {
         EditText editName = familyMember[familyIndex].findViewById(R.id.t3_edit_name);
         EditText editCast = familyMember[familyIndex].findViewById(R.id.t3_edit_cast);
         EditText editAge = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
@@ -9750,306 +7624,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     }
 
     private void getCheckBoxValues9(int familyIndex) {
-        CheckBox[] chkBoxes;
-        Integer[] chkBoxesId = {R.id.t3_skill_1, R.id.t3_skill_2, R.id.t3_skill_3, R.id.t3_skill_4, R.id.t3_skill_5,
-                R.id.t3_skill_6, R.id.t3_skill_7, R.id.t3_skill_8, R.id.t3_skill_9, R.id.t3_skill_10,
-                R.id.t3_skill_11, R.id.t3_skill_12, R.id.t3_skill_13, R.id.t3_skill_14, R.id.t3_skill_15,};
-
-        chkBoxes = new CheckBox[chkBoxesId.length];
-        StringBuilder sbSkills = new StringBuilder();
-        for (int i = 0; i < chkBoxesId.length; i++) {
-            chkBoxes[i] = familyMember[familyIndex].findViewById(chkBoxesId[i]);
-            if (chkBoxes[i].isChecked()) {
-                sbSkills.append(chkBoxes[i].getText().toString());
-                sbSkills.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSkills(sbSkills.toString());
-
-        CheckBox[] vaccineChkBoxes;
-        Integer[] vaccineChkId = {R.id.t3_vaccine_0};
-        vaccineChkBoxes = new CheckBox[vaccineChkId.length];
-        StringBuilder sbVaccines = new StringBuilder();
-        for (int i = 0; i < vaccineChkId.length; i++) {
-            vaccineChkBoxes[i] = familyMember[familyIndex].findViewById(vaccineChkId[i]);
-            if (vaccineChkBoxes[i].isChecked()) {
-                sbVaccines.append(vaccineChkBoxes[i].getText().toString());
-                sbVaccines.append(" , ");
-            }
-        }
-        familyData[familyIndex].setUsesVaccine(sbVaccines.toString());
-
-        CheckBox[] socialChkBoxes;
-        Integer[] socialChkId = {
-                R.id.t3_social_inv_1, R.id.t3_social_inv_2, R.id.t3_social_inv_3, R.id.t3_social_inv_4,
-                R.id.t3_social_inv_5, R.id.t3_social_inv_6, R.id.t3_social_inv_7, R.id.t3_social_inv_8,
-                R.id.t3_social_inv_9, R.id.t3_social_inv_10, R.id.t3_social_inv_11, R.id.t3_social_inv_12};
-        socialChkBoxes = new CheckBox[socialChkId.length];
-        StringBuilder sbSocialInv = new StringBuilder();
-        for (int i = 0; i < socialChkId.length; i++) {
-            socialChkBoxes[i] = familyMember[familyIndex].findViewById(socialChkId[i]);
-            if (socialChkBoxes[i].isChecked()) {
-                sbSocialInv.append(socialChkBoxes[i].getText().toString());
-                sbSocialInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSocialInvolvements(sbSocialInv.toString());
-
-        CheckBox[] trainChkBoxes;
-        Integer[] trainChkId = {R.id.t3_train_1, R.id.t3_train_2, R.id.t3_train_3, R.id.t3_train_4, R.id.t3_train_5};
-        trainChkBoxes = new CheckBox[trainChkId.length];
-        StringBuilder sbTrainInv = new StringBuilder();
-        for (int i = 0; i < trainChkId.length; i++) {
-            trainChkBoxes[i] = familyMember[familyIndex].findViewById(trainChkId[i]);
-            if (trainChkBoxes[i].isChecked()) {
-                sbTrainInv.append(trainChkBoxes[i].getText().toString());
-                sbTrainInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setTrainingList(sbTrainInv.toString());
-    }
-
-    private void getCheckBoxValues10(int familyIndex) {
-        CheckBox[] chkBoxes;
-        Integer[] chkBoxesId = {R.id.t3_skill_1, R.id.t3_skill_2, R.id.t3_skill_3, R.id.t3_skill_4, R.id.t3_skill_5,
-                R.id.t3_skill_6, R.id.t3_skill_7, R.id.t3_skill_8, R.id.t3_skill_9, R.id.t3_skill_10,
-                R.id.t3_skill_11, R.id.t3_skill_12, R.id.t3_skill_13, R.id.t3_skill_14, R.id.t3_skill_15,};
-
-        chkBoxes = new CheckBox[chkBoxesId.length];
-        StringBuilder sbSkills = new StringBuilder();
-        for (int i = 0; i < chkBoxesId.length; i++) {
-            chkBoxes[i] = familyMember[familyIndex].findViewById(chkBoxesId[i]);
-            if (chkBoxes[i].isChecked()) {
-                sbSkills.append(chkBoxes[i].getText().toString());
-                sbSkills.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSkills(sbSkills.toString());
-
-        CheckBox[] vaccineChkBoxes;
-        Integer[] vaccineChkId = {R.id.t3_vaccine_0};
-        vaccineChkBoxes = new CheckBox[vaccineChkId.length];
-        StringBuilder sbVaccines = new StringBuilder();
-        for (int i = 0; i < vaccineChkId.length; i++) {
-            vaccineChkBoxes[i] = familyMember[familyIndex].findViewById(vaccineChkId[i]);
-            if (vaccineChkBoxes[i].isChecked()) {
-                sbVaccines.append(vaccineChkBoxes[i].getText().toString());
-                sbVaccines.append(" , ");
-            }
-        }
-        familyData[familyIndex].setUsesVaccine(sbVaccines.toString());
-
-        CheckBox[] socialChkBoxes;
-        Integer[] socialChkId = {
-                R.id.t3_social_inv_1, R.id.t3_social_inv_2, R.id.t3_social_inv_3, R.id.t3_social_inv_4,
-                R.id.t3_social_inv_5, R.id.t3_social_inv_6, R.id.t3_social_inv_7, R.id.t3_social_inv_8,
-                R.id.t3_social_inv_9, R.id.t3_social_inv_10, R.id.t3_social_inv_11, R.id.t3_social_inv_12};
-        socialChkBoxes = new CheckBox[socialChkId.length];
-        StringBuilder sbSocialInv = new StringBuilder();
-        for (int i = 0; i < socialChkId.length; i++) {
-            socialChkBoxes[i] = familyMember[familyIndex].findViewById(socialChkId[i]);
-            if (socialChkBoxes[i].isChecked()) {
-                sbSocialInv.append(socialChkBoxes[i].getText().toString());
-                sbSocialInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSocialInvolvements(sbSocialInv.toString());
-
-        CheckBox[] trainChkBoxes;
-        Integer[] trainChkId = {R.id.t3_train_1, R.id.t3_train_2, R.id.t3_train_3, R.id.t3_train_4, R.id.t3_train_5};
-        trainChkBoxes = new CheckBox[trainChkId.length];
-        StringBuilder sbTrainInv = new StringBuilder();
-        for (int i = 0; i < trainChkId.length; i++) {
-            trainChkBoxes[i] = familyMember[familyIndex].findViewById(trainChkId[i]);
-            if (trainChkBoxes[i].isChecked()) {
-                sbTrainInv.append(trainChkBoxes[i].getText().toString());
-                sbTrainInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setTrainingList(sbTrainInv.toString());
-    }
-
-    private void getCheckBoxValues11(int familyIndex) {
-        CheckBox[] chkBoxes;
-        Integer[] chkBoxesId = {R.id.t3_skill_1, R.id.t3_skill_2, R.id.t3_skill_3, R.id.t3_skill_4, R.id.t3_skill_5,
-                R.id.t3_skill_6, R.id.t3_skill_7, R.id.t3_skill_8, R.id.t3_skill_9, R.id.t3_skill_10,
-                R.id.t3_skill_11, R.id.t3_skill_12, R.id.t3_skill_13, R.id.t3_skill_14, R.id.t3_skill_15,};
-
-        chkBoxes = new CheckBox[chkBoxesId.length];
-        StringBuilder sbSkills = new StringBuilder();
-        for (int i = 0; i < chkBoxesId.length; i++) {
-            chkBoxes[i] = familyMember[familyIndex].findViewById(chkBoxesId[i]);
-            if (chkBoxes[i].isChecked()) {
-                sbSkills.append(chkBoxes[i].getText().toString());
-                sbSkills.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSkills(sbSkills.toString());
-
-        CheckBox[] vaccineChkBoxes;
-        Integer[] vaccineChkId = {R.id.t3_vaccine_0};
-        vaccineChkBoxes = new CheckBox[vaccineChkId.length];
-        StringBuilder sbVaccines = new StringBuilder();
-        for (int i = 0; i < vaccineChkId.length; i++) {
-            vaccineChkBoxes[i] = familyMember[familyIndex].findViewById(vaccineChkId[i]);
-            if (vaccineChkBoxes[i].isChecked()) {
-                sbVaccines.append(vaccineChkBoxes[i].getText().toString());
-                sbVaccines.append(" , ");
-            }
-        }
-        familyData[familyIndex].setUsesVaccine(sbVaccines.toString());
-
-        CheckBox[] socialChkBoxes;
-        Integer[] socialChkId = {
-                R.id.t3_social_inv_1, R.id.t3_social_inv_2, R.id.t3_social_inv_3, R.id.t3_social_inv_4,
-                R.id.t3_social_inv_5, R.id.t3_social_inv_6, R.id.t3_social_inv_7, R.id.t3_social_inv_8,
-                R.id.t3_social_inv_9, R.id.t3_social_inv_10, R.id.t3_social_inv_11, R.id.t3_social_inv_12};
-        socialChkBoxes = new CheckBox[socialChkId.length];
-        StringBuilder sbSocialInv = new StringBuilder();
-        for (int i = 0; i < socialChkId.length; i++) {
-            socialChkBoxes[i] = familyMember[familyIndex].findViewById(socialChkId[i]);
-            if (socialChkBoxes[i].isChecked()) {
-                sbSocialInv.append(socialChkBoxes[i].getText().toString());
-                sbSocialInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSocialInvolvements(sbSocialInv.toString());
-
-        CheckBox[] trainChkBoxes;
-        Integer[] trainChkId = {R.id.t3_train_1, R.id.t3_train_2, R.id.t3_train_3, R.id.t3_train_4, R.id.t3_train_5};
-        trainChkBoxes = new CheckBox[trainChkId.length];
-        StringBuilder sbTrainInv = new StringBuilder();
-        for (int i = 0; i < trainChkId.length; i++) {
-            trainChkBoxes[i] = familyMember[familyIndex].findViewById(trainChkId[i]);
-            if (trainChkBoxes[i].isChecked()) {
-                sbTrainInv.append(trainChkBoxes[i].getText().toString());
-                sbTrainInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setTrainingList(sbTrainInv.toString());
-    }
-
-    private void getCheckBoxValues12(int familyIndex) {
-        CheckBox[] chkBoxes;
-        Integer[] chkBoxesId = {R.id.t3_skill_1, R.id.t3_skill_2, R.id.t3_skill_3, R.id.t3_skill_4, R.id.t3_skill_5,
-                R.id.t3_skill_6, R.id.t3_skill_7, R.id.t3_skill_8, R.id.t3_skill_9, R.id.t3_skill_10,
-                R.id.t3_skill_11, R.id.t3_skill_12, R.id.t3_skill_13, R.id.t3_skill_14, R.id.t3_skill_15,};
-
-        chkBoxes = new CheckBox[chkBoxesId.length];
-        StringBuilder sbSkills = new StringBuilder();
-        for (int i = 0; i < chkBoxesId.length; i++) {
-            chkBoxes[i] = familyMember[familyIndex].findViewById(chkBoxesId[i]);
-            if (chkBoxes[i].isChecked()) {
-                sbSkills.append(chkBoxes[i].getText().toString());
-                sbSkills.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSkills(sbSkills.toString());
-
-        CheckBox[] vaccineChkBoxes;
-        Integer[] vaccineChkId = {R.id.t3_vaccine_0};
-        vaccineChkBoxes = new CheckBox[vaccineChkId.length];
-        StringBuilder sbVaccines = new StringBuilder();
-        for (int i = 0; i < vaccineChkId.length; i++) {
-            vaccineChkBoxes[i] = familyMember[familyIndex].findViewById(vaccineChkId[i]);
-            if (vaccineChkBoxes[i].isChecked()) {
-                sbVaccines.append(vaccineChkBoxes[i].getText().toString());
-                sbVaccines.append(" , ");
-            }
-        }
-        familyData[familyIndex].setUsesVaccine(sbVaccines.toString());
-
-        CheckBox[] socialChkBoxes;
-        Integer[] socialChkId = {
-                R.id.t3_social_inv_1, R.id.t3_social_inv_2, R.id.t3_social_inv_3, R.id.t3_social_inv_4,
-                R.id.t3_social_inv_5, R.id.t3_social_inv_6, R.id.t3_social_inv_7, R.id.t3_social_inv_8,
-                R.id.t3_social_inv_9, R.id.t3_social_inv_10, R.id.t3_social_inv_11, R.id.t3_social_inv_12};
-        socialChkBoxes = new CheckBox[socialChkId.length];
-        StringBuilder sbSocialInv = new StringBuilder();
-        for (int i = 0; i < socialChkId.length; i++) {
-            socialChkBoxes[i] = familyMember[familyIndex].findViewById(socialChkId[i]);
-            if (socialChkBoxes[i].isChecked()) {
-                sbSocialInv.append(socialChkBoxes[i].getText().toString());
-                sbSocialInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSocialInvolvements(sbSocialInv.toString());
-
-        CheckBox[] trainChkBoxes;
-        Integer[] trainChkId = {R.id.t3_train_1, R.id.t3_train_2, R.id.t3_train_3, R.id.t3_train_4, R.id.t3_train_5};
-        trainChkBoxes = new CheckBox[trainChkId.length];
-        StringBuilder sbTrainInv = new StringBuilder();
-        for (int i = 0; i < trainChkId.length; i++) {
-            trainChkBoxes[i] = familyMember[familyIndex].findViewById(trainChkId[i]);
-            if (trainChkBoxes[i].isChecked()) {
-                sbTrainInv.append(trainChkBoxes[i].getText().toString());
-                sbTrainInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setTrainingList(sbTrainInv.toString());
-    }
-
-    private void getCheckBoxValues13(int familyIndex) {
-        CheckBox[] chkBoxes;
-        Integer[] chkBoxesId = {R.id.t3_skill_1, R.id.t3_skill_2, R.id.t3_skill_3, R.id.t3_skill_4, R.id.t3_skill_5,
-                R.id.t3_skill_6, R.id.t3_skill_7, R.id.t3_skill_8, R.id.t3_skill_9, R.id.t3_skill_10,
-                R.id.t3_skill_11, R.id.t3_skill_12, R.id.t3_skill_13, R.id.t3_skill_14, R.id.t3_skill_15,};
-
-        chkBoxes = new CheckBox[chkBoxesId.length];
-        StringBuilder sbSkills = new StringBuilder();
-        for (int i = 0; i < chkBoxesId.length; i++) {
-            chkBoxes[i] = familyMember[familyIndex].findViewById(chkBoxesId[i]);
-            if (chkBoxes[i].isChecked()) {
-                sbSkills.append(chkBoxes[i].getText().toString());
-                sbSkills.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSkills(sbSkills.toString());
-
-        CheckBox[] vaccineChkBoxes;
-        Integer[] vaccineChkId = {R.id.t3_vaccine_0};
-        vaccineChkBoxes = new CheckBox[vaccineChkId.length];
-        StringBuilder sbVaccines = new StringBuilder();
-        for (int i = 0; i < vaccineChkId.length; i++) {
-            vaccineChkBoxes[i] = familyMember[familyIndex].findViewById(vaccineChkId[i]);
-            if (vaccineChkBoxes[i].isChecked()) {
-                sbVaccines.append(vaccineChkBoxes[i].getText().toString());
-                sbVaccines.append(" , ");
-            }
-        }
-        familyData[familyIndex].setUsesVaccine(sbVaccines.toString());
-
-        CheckBox[] socialChkBoxes;
-        Integer[] socialChkId = {
-                R.id.t3_social_inv_1, R.id.t3_social_inv_2, R.id.t3_social_inv_3, R.id.t3_social_inv_4,
-                R.id.t3_social_inv_5, R.id.t3_social_inv_6, R.id.t3_social_inv_7, R.id.t3_social_inv_8,
-                R.id.t3_social_inv_9, R.id.t3_social_inv_10, R.id.t3_social_inv_11, R.id.t3_social_inv_12};
-        socialChkBoxes = new CheckBox[socialChkId.length];
-        StringBuilder sbSocialInv = new StringBuilder();
-        for (int i = 0; i < socialChkId.length; i++) {
-            socialChkBoxes[i] = familyMember[familyIndex].findViewById(socialChkId[i]);
-            if (socialChkBoxes[i].isChecked()) {
-                sbSocialInv.append(socialChkBoxes[i].getText().toString());
-                sbSocialInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setSocialInvolvements(sbSocialInv.toString());
-
-        CheckBox[] trainChkBoxes;
-        Integer[] trainChkId = {R.id.t3_train_1, R.id.t3_train_2, R.id.t3_train_3, R.id.t3_train_4, R.id.t3_train_5};
-        trainChkBoxes = new CheckBox[trainChkId.length];
-        StringBuilder sbTrainInv = new StringBuilder();
-        for (int i = 0; i < trainChkId.length; i++) {
-            trainChkBoxes[i] = familyMember[familyIndex].findViewById(trainChkId[i]);
-            if (trainChkBoxes[i].isChecked()) {
-                sbTrainInv.append(trainChkBoxes[i].getText().toString());
-                sbTrainInv.append(" , ");
-            }
-        }
-        familyData[familyIndex].setTrainingList(sbTrainInv.toString());
-    }
-
-    private void getCheckBoxValues14(int familyIndex) {
         CheckBox[] chkBoxes;
         Integer[] chkBoxesId = {R.id.t3_skill_1, R.id.t3_skill_2, R.id.t3_skill_3, R.id.t3_skill_4, R.id.t3_skill_5,
                 R.id.t3_skill_6, R.id.t3_skill_7, R.id.t3_skill_8, R.id.t3_skill_9, R.id.t3_skill_10,
@@ -10819,360 +8393,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     }
 
-    private void listenChangeFamilyData10(final int familyIndex) {
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-
-        EditText age0 = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        age0.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    int age = Integer.parseInt(charSequence.toString());
-                    if (age > 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.VISIBLE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.VISIBLE);
-                    }
-
-                    if (age >= 15) {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 21) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-                    }
-
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, "Invalid age", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-    }
-
-    private void listenChangeFamilyData11(final int familyIndex) {
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-
-        EditText age0 = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        age0.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    int age = Integer.parseInt(charSequence.toString());
-                    if (age > 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.VISIBLE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.VISIBLE);
-                    }
-
-                    if (age >= 15) {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 21) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-                    }
-
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, "Invalid age", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-    }
-
-    private void listenChangeFamilyData12(final int familyIndex) {
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-
-        EditText age0 = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        age0.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    int age = Integer.parseInt(charSequence.toString());
-                    if (age > 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.VISIBLE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.VISIBLE);
-                    }
-
-                    if (age >= 15) {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 21) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-                    }
-
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, "Invalid age", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-    }
-
-    private void listenChangeFamilyData13(final int familyIndex) {
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-
-        EditText age0 = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        age0.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    int age = Integer.parseInt(charSequence.toString());
-                    if (age > 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.VISIBLE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.VISIBLE);
-                    }
-
-                    if (age >= 15) {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 21) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-                    }
-
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, "Invalid age", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-    }
-
-    private void listenChangeFamilyData14(final int familyIndex) {
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveHome).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifLeaveSchool).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_jobabroad).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_ifDepositregular).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_disabilitytype).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_longterm_diseases).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_health_layout_communicable_diseases).setVisibility(View.GONE);
-
-        familyMember[familyIndex].findViewById(R.id.t3_social_layout_socialsecurity).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_trainings).setVisibility(View.GONE);
-        familyMember[familyIndex].findViewById(R.id.t3_layout_involvement_type).setVisibility(View.GONE);
-
-        EditText age0 = familyMember[familyIndex].findViewById(R.id.t3_edit_age);
-        age0.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                try {
-                    int age = Integer.parseInt(charSequence.toString());
-                    if (age > 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.GONE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.GONE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_type).setVisibility(View.VISIBLE);
-                        familyMember[familyIndex].findViewById(R.id.t3_layout_school_level).setVisibility(View.VISIBLE);
-                    }
-
-                    if (age >= 15) {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_rojgari_layout_age15).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 16) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_maritalstatus).setVisibility(View.GONE);
-                    }
-
-                    if (age >= 21) {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.VISIBLE);
-                    } else {
-                        familyMember[familyIndex].findViewById(R.id.t3_social_layout_political_involvement).setVisibility(View.GONE);
-                    }
-
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, "Invalid age", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-    }
 
     private void renderFamilyDataWithCount(int count) {
 
@@ -11185,4 +8405,5 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
             layout_individualData.addView(familyMember[i], layout_individualData.getChildCount());
         }
     }
+
 }

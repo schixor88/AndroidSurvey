@@ -10,6 +10,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -115,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
                              User user = dataSnapshot.child(login_phone.getText().toString()).getValue(User.class);
 
-                            if (user.getPassword().equals(login_pass.getText().toString())) {
+                            if (!TextUtils.isEmpty(user.getPassword()) && user.getPassword().equals(login_pass.getText().toString())) {
                                 Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(LoginActivity.this,MainActivity.class);
                                 startActivity(i);

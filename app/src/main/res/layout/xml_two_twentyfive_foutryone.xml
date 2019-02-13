@@ -205,15 +205,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/et_time_hidera_hosp"
+                    android:id="@+id/d2_et_healthpost_jana_hidera_time"
                     android:inputType="numberDecimal"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-
-
-
 
             </LinearLayout>
 
@@ -231,7 +227,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/et_time_gadima_hosp"
+                    android:id="@+id/d2_et_healthpost_jana_gaadi_time"
                     android:inputType="numberDecimal"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -334,7 +330,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/et_why_khop_apuro"
+                    android:id="@+id/d2_et_vaccine_nagareko_karan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -742,8 +738,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-
                 <RadioButton
                     android:textSize="18dp"
                     android:id="@+id/rb_pregnent_vitaminyes"
@@ -759,15 +753,6 @@
                     android:layout_height="wrap_content" />
 
             </RadioGroup>
-
-
-
-
-
-
-
-
-
 
         </LinearLayout>
 
@@ -1132,7 +1117,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_yes_deadkid_sex"
+                    android:id="@+id/d2_et_under_5yr_death_gender"
                     android:textSize="18dp"
                     android:textColorHint="@color/colorBlackText"
                     android:hint="लिङ्ग"
@@ -1140,7 +1125,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
-                    android:id="@+id/et_yes_deadkid_age"
+                    android:id="@+id/d2_et_under_5yr_death_age"
                     android:textSize="18dp"
                     android:textColorHint="@color/colorBlackText"
                     android:hint="उमेर (वर्ष)"
@@ -1148,7 +1133,7 @@
                     android:layout_height="wrap_content" />
 
                 <EditText
-                    android:id="@+id/et_yes_deadkid_reason"
+                    android:id="@+id/d2_et_under_5yr_death_karan"
                     android:textSize="18dp"
                     android:textColorHint="@color/colorBlackText"
                     android:hint="कारण"
@@ -1235,9 +1220,6 @@
                     android:text="हुँदैन"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-
-
 
             </RadioGroup>
 

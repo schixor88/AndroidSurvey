@@ -171,6 +171,7 @@
 
             <!--Surname-->
             <EditText
+                android:id="@+id/d2_et_thar"
                 android:padding="15dp"
                 android:textColorHint="@color/colorBlackText"
                 android:hint="थर"

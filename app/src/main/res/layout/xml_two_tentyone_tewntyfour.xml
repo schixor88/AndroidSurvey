@@ -50,16 +50,11 @@
 
 
                 <EditText
-                    android:id="@+id/et_wash_machine_num"
+                    android:id="@+id/d2_et_washingmachine_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-
-
-
-
 
             </LinearLayout>
 
@@ -78,16 +73,11 @@
 
 
                 <EditText
-                    android:id="@+id/et_fridge_num"
+                    android:id="@+id/d2_et_fridge_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-
-
-
-
 
             </LinearLayout>
             <LinearLayout
@@ -105,16 +95,11 @@
 
 
                 <EditText
-                    android:id="@+id/et_solar_num"
+                    android:id="@+id/d2_et_solar_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-
-
-
-
 
             </LinearLayout>
             <LinearLayout
@@ -132,16 +117,11 @@
 
 
                 <EditText
-                    android:id="@+id/et_vaccum_num"
+                    android:id="@+id/d2_et_vacuum_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-
-
-
-
 
             </LinearLayout>
             <LinearLayout
@@ -159,7 +139,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_inverter_num"
+                    android:id="@+id/d2_et_inverter_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -186,7 +166,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_generator_num"
+                    android:id="@+id/d2_et_generator_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -213,7 +193,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_dishwash_num"
+                    android:id="@+id/d2_et_dishwasher_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -240,7 +220,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_cable_num"
+                    android:id="@+id/d2_et_cable_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -267,7 +247,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_other_num"
+                    android:id="@+id/d2_et_other_house_gadget_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -334,7 +314,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_radio_num"
+                    android:id="@+id/d2_et_radio_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -361,7 +341,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_tv_num"
+                    android:id="@+id/d2_et_television_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -388,7 +368,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_telphn_num"
+                    android:id="@+id/d2_et_telephone_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -415,7 +395,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_normalphn_num"
+                    android:id="@+id/d2_et_cellphone_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -442,7 +422,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_smartphn_num"
+                    android:id="@+id/d2_et_smartphone_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -469,7 +449,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_cmplap_num"
+                    android:id="@+id/d2_et_computer_laptop_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -496,7 +476,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_internet_num"
+                    android:id="@+id/d2_et_internet_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -523,7 +503,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_otherdevice_num"
+                    android:id="@+id/d2_et_other_communication_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -550,7 +530,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_mbps_num"
+                    android:id="@+id/d2_et_internet_speed_mbps"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -617,7 +597,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_cycle_num"
+                    android:id="@+id/d2_et_cycle_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -644,7 +624,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_motorcycle_num"
+                    android:id="@+id/d2_et_bike_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -671,7 +651,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_car_num"
+                    android:id="@+id/d2_et_lightweight_vehicle_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -698,7 +678,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_truck_num"
+                    android:id="@+id/d2_et_heavyweight_vehicle_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -725,7 +705,7 @@
 
 
                 <EditText
-                    android:id="@+id/et_bus_num"
+                    android:id="@+id/d2_et_public_transport_vehicle_count"
                     android:inputType="number"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
@@ -829,7 +809,7 @@
 
 
                     <EditText
-                        android:id="@+id/et_licenseHold_num"
+                        android:id="@+id/d2_et_license_bhayeko_count"
                         android:inputType="number"
                         android:textAlignment="center"
                         android:layout_width="match_parent"
@@ -867,7 +847,7 @@
                             android:layout_height="wrap_content" />
 
                         <EditText
-                            android:id="@+id/et_license2wheel_num"
+                            android:id="@+id/d2_et_license_count_2_wheeler"
                             android:inputType="number"
                             android:textAlignment="center"
                             android:layout_width="match_parent"
@@ -897,7 +877,7 @@
                             android:layout_height="wrap_content" />
 
                         <EditText
-                            android:id="@+id/et_licens4wheel_num"
+                            android:id="@+id/d2_et_license_count_4_wheeler"
                             android:inputType="number"
                             android:textAlignment="center"
                             android:layout_width="match_parent"

@@ -44,175 +44,176 @@ public class HouseholdData {
 //    String workingBoyCount, workingGirlCount, hiredBoyCount, hiredGirlCount;
 
 
-    public HouseholdData() {this.hasToilet  = "0";
-        this.hasNoToilet  = "0";
-        this.toiletType  = "0";
-        this.toiletWasteMgmt  = "0";
-        this.onlineServices  = "0";
-        this.primaryIncomeSource  = "0";
-        this.ownsLand  = "0";
-        this.ownsNoLand  = "0";
-        this.landLocation  = "0";
-        this.landOwnedBy  = "0";
-        this.landUsedAs  = "0";
-        this.landOnLease  = "0";
-        this.landOnNoLease  = "0";
-        this.landOnLeaseUsedAs  = "0";
-        this.primaryAgroProductions  = "0";
-        this.lastYearAgroProductions  = "0";
-        this.assetAnimals  = "0";
-        this.assetBirds  = "0";
-        this.assetsFishes  = "0";
-        this.assetsBees  = "0";
-        this.horticultureProductionCounts  = "0";
-        this.sellsProductions  = "0";
-        this.notSellsProductions  = "0";
-        this.sellProductionList  = "0";
-        this.sellProductionTo  = "0";
-        this.hasFruitPlants  = "0";
-        this.hasNoFruitPlants  = "0";
-        this.hasVegetableCrops  = "0";
-        this.hasNoVegetableCrops  = "0";
-        this.lastYearIncome  = "0";
-        this.lastYearExpense  = "0";
-        this.worksAbroad  = "0";
-        this.notWorkAbroad  = "0";
-        this.remittanceSpentOn  = "0";
-        this.lastYearInvestments  = "0";
-        this.productionsSustainableFor  = "0";
-        this.incomeIsSufficient  = "0";
-        this.incomeIsNotSufficient  = "0";
-        this.additionalCashSource  = "0";
-        this.hasTakenLoan  = "0";
-        this.hasNotTakenLoan  = "0";
-        this.loanSource  = "0";
-        this.takenLoanFor  = "0";
-        this.durationToClearLoan  = "0";
-        this.knowsSamhit  = "0";
-        this.notKnowSamhit  = "0";
-        this.builtAsPerSamhit  = "0";
-        this.notBuiltAsPerSamhit  = "0";
-        this.notKnowBuiltAsPerSamhit  = "0";
-        this.hasPermissionBlueprint  = "0";
-        this.hasNoPermissionBlueprint  = "0";
-        this.hasSafeZoneNearHouse  = "0";
-        this.hasNoSafeZoneNearHouse  = "0";
-        this.houseSusceptToCalamity  = "0";
-        this.houseNoSusceptToCalamity  = "0";
-        this.infoAboutEarthquake  = "0";
-        this.noInfoAboutEarthquake  = "0";
-        this.knowSafeZoneInHome  = "0";
-        this.knowsNoSafeZoneInHome  = "0";
-        this.hasSuppliesForSOE  = "0";
-        this.hasNoSuppliesForSOE  = "0";
-        this.affectedByCalamitiesList  = "0";
-        this.lastMajorDisaster  = "0";
-        this.hasAssetInsurance  = "0";
-        this.hasNoAssetInsurance  = "0";
-        this.assetsListWithInsurance  = "0";
-        this.stepsTakenToMinimizeDisasterEffects  = "0";
-        this.isViolenceVictim  = "0";
-        this.isNotViolenceVictim  = "0";
-        this.deathCount  = "0";
-        this.injuryCount  = "0";
-        this.missingCount  = "0";
-        this.assetLossAmountRs  = "0";
-        this.isSued  = "0";
-        this.isNotSued  = "0";
-        this.isShifted  = "0";
-        this.isNotShifted  = "0";
-        this.isSexuallyAbuse  = "0";
-        this.isNotSexuallyAbused  = "0";
-        this.memberMissing  = "0";
-        this.memberNotMissing  = "0";
-        this.feelsSafeInMunicipal  = "0";
-        this.feelsNoSafeInMunicipal  = "0";
-        this.reasonFeelsSafe  = "0";
-        this.reasonNoFeelSafe  = "0";
-        this.wardNoWhereNotFeelSafe  = "0";
-        this.regionNameWhereNotFeelSafe  = "0";
-        this.homeMemberUptoAge16Works  = "0";
-        this.noHomeMemberUptoAge16Works  = "0";
-        this.uptoAge16WoringBoyCount  = "0";
-        this.uptoAge16WorkingGirlCount  = "0";
-        this.memberUptoAge16HiredWork  = "0";
-        this.noMemberUptoAge16HiredWork  = "0";
-        this.uptoAge16HiredBoyCount  = "0";
-        this.uptoAge16HiredGirlCount  = "0";
-        this.childrenIsOnBadInfluence  = "0";
-        this.childrenNotOnBadInfluence  = "0";
-        this.childrenBadInfluenceOn  = "0";
-        this.wayOfMakingFamilyDecision  = "0";
-        this.assetsOnFemaleName  = "0";
-        this.allowanceListTakenByFamily  = "0";
-        this.memberHasInvolvedOnDevelopment  = "0";
-        this.memberHasNotInvolvedOnDevelopment  = "0";
-        this.opinionOnDevelopmentPriority  = "0";
-        this.annabali_muri  = "0";
-        this.dhan_muri  = "0";
-        this.makai_muri  = "0";
-        this.kodo_muri  = "0";
-        this.ghau_muri  = "0";
-        this.fapar_muri  = "0";
-        this.others_muri  = "0";
-        this.oil_kg  = "0";
-        this.daal_kg  = "0";
-        this.tarkari_kg  = "0";
-        this.freshTarkari_kg  = "0";
-        this.aalu_kg  = "0";
-        this.masala_kg  = "0";
-        this.falful_kg  = "0";
-        this.kandamul_kg  = "0";
-        this.others_kg  = "0";
-        this.cow_sthaniya  = "0";
-        this.cow_unnat  = "0";
-        this.buffalo_sthaniya  = "0";
-        this.buffalo_unnat  = "0";
-        this.goat_sthaniya  = "0";
-        this.goat_unnat  = "0";
-        this.sheep_sthaniya  = "0";
-        this.sheep_unnat  = "0";
-        this.pig_sthaniya  = "0";
-        this.pig_unnat  = "0";
-        this.other_animal  = "0";
-        this.hen_sthaniya  = "0";
-        this.hen_unnat  = "0";
-        this.pigeon_count  = "0";
-        this.other_birds  = "0";
-        this.fish_count  = "0";
-        this.beehive_count  = "0";
-        this.other_pasupanchi  = "0";
-        this.milkCurd_litre  = "0";
-        this.ghee_kg  = "0";
-        this.otherDairy_kg  = "0";
-        this.meat_kg  = "0";
-        this.compost_quintal  = "0";
-        this.urine_litre  = "0";
-        this.wool_kg  = "0";
-        this.egg_crate  = "0";
-        this.fish_kg  = "0";
-        this.honey_kg  = "0";
-        this.other_production_kg  = "0";
-        this.incomeAgriculture  = "0";
-        this.incomeBusiness  = "0";
-        this.incomeSalaryPension  = "0";
-        this.incomeSocialAllowance  = "0";
-        this.incomeForeignEmp  = "0";
-        this.incomeWages  = "0";
-        this.incomeRent  = "0";
-        this.incomeInterestInvest  = "0";
-        this.incomeOthers  = "0";
-        this.expenseFood  = "0";
-        this.expenseCloth  = "0";
-        this.expenseEducation  = "0";
-        this.expenseHealth  = "0";
-        this.expenseEntertain  = "0";
-        this.expenseRent  = "0";
-        this.expenseAgriculture  = "0";
-        this.expenseInstallment  = "0";
-        this.expenseFuel  = "0";
-        this.expenseTranport  = "0";
-        this.expenseOthers  = "0";
+    public HouseholdData() {
+        this.hasToilet = "0";
+        this.hasNoToilet = "0";
+        this.toiletType = "0";
+        this.toiletWasteMgmt = "0";
+        this.onlineServices = "0";
+        this.primaryIncomeSource = "0";
+        this.ownsLand = "0";
+        this.ownsNoLand = "0";
+        this.landLocation = "0";
+        this.landOwnedBy = "0";
+        this.landUsedAs = "0";
+        this.landOnLease = "0";
+        this.landOnNoLease = "0";
+        this.landOnLeaseUsedAs = "0";
+        this.primaryAgroProductions = "0";
+        this.lastYearAgroProductions = "0";
+        this.assetAnimals = "0";
+        this.assetBirds = "0";
+        this.assetsFishes = "0";
+        this.assetsBees = "0";
+        this.horticultureProductionCounts = "0";
+        this.sellsProductions = "0";
+        this.notSellsProductions = "0";
+        this.sellProductionList = "0";
+        this.sellProductionTo = "0";
+        this.hasFruitPlants = "0";
+        this.hasNoFruitPlants = "0";
+        this.hasVegetableCrops = "0";
+        this.hasNoVegetableCrops = "0";
+        this.lastYearIncome = "0";
+        this.lastYearExpense = "0";
+        this.worksAbroad = "0";
+        this.notWorkAbroad = "0";
+        this.remittanceSpentOn = "0";
+        this.lastYearInvestments = "0";
+        this.productionsSustainableFor = "0";
+        this.incomeIsSufficient = "0";
+        this.incomeIsNotSufficient = "0";
+        this.additionalCashSource = "0";
+        this.hasTakenLoan = "0";
+        this.hasNotTakenLoan = "0";
+        this.loanSource = "0";
+        this.takenLoanFor = "0";
+        this.durationToClearLoan = "0";
+        this.knowsSamhit = "0";
+        this.notKnowSamhit = "0";
+        this.builtAsPerSamhit = "0";
+        this.notBuiltAsPerSamhit = "0";
+        this.notKnowBuiltAsPerSamhit = "0";
+        this.hasPermissionBlueprint = "0";
+        this.hasNoPermissionBlueprint = "0";
+        this.hasSafeZoneNearHouse = "0";
+        this.hasNoSafeZoneNearHouse = "0";
+        this.houseSusceptToCalamity = "0";
+        this.houseNoSusceptToCalamity = "0";
+        this.infoAboutEarthquake = "0";
+        this.noInfoAboutEarthquake = "0";
+        this.knowSafeZoneInHome = "0";
+        this.knowsNoSafeZoneInHome = "0";
+        this.hasSuppliesForSOE = "0";
+        this.hasNoSuppliesForSOE = "0";
+        this.affectedByCalamitiesList = "0";
+        this.lastMajorDisaster = "0";
+        this.hasAssetInsurance = "0";
+        this.hasNoAssetInsurance = "0";
+        this.assetsListWithInsurance = "0";
+        this.stepsTakenToMinimizeDisasterEffects = "0";
+        this.isViolenceVictim = "0";
+        this.isNotViolenceVictim = "0";
+        this.deathCount = "0";
+        this.injuryCount = "0";
+        this.missingCount = "0";
+        this.assetLossAmountRs = "0";
+        this.isSued = "0";
+        this.isNotSued = "0";
+        this.isShifted = "0";
+        this.isNotShifted = "0";
+        this.isSexuallyAbuse = "0";
+        this.isNotSexuallyAbused = "0";
+        this.memberMissing = "0";
+        this.memberNotMissing = "0";
+        this.feelsSafeInMunicipal = "0";
+        this.feelsNoSafeInMunicipal = "0";
+        this.reasonFeelsSafe = "0";
+        this.reasonNoFeelSafe = "0";
+        this.wardNoWhereNotFeelSafe = "0";
+        this.regionNameWhereNotFeelSafe = "0";
+        this.homeMemberUptoAge16Works = "0";
+        this.noHomeMemberUptoAge16Works = "0";
+        this.uptoAge16WoringBoyCount = "0";
+        this.uptoAge16WorkingGirlCount = "0";
+        this.memberUptoAge16HiredWork = "0";
+        this.noMemberUptoAge16HiredWork = "0";
+        this.uptoAge16HiredBoyCount = "0";
+        this.uptoAge16HiredGirlCount = "0";
+        this.childrenIsOnBadInfluence = "0";
+        this.childrenNotOnBadInfluence = "0";
+        this.childrenBadInfluenceOn = "0";
+        this.wayOfMakingFamilyDecision = "0";
+        this.assetsOnFemaleName = "0";
+        this.allowanceListTakenByFamily = "0";
+        this.memberHasInvolvedOnDevelopment = "0";
+        this.memberHasNotInvolvedOnDevelopment = "0";
+        this.opinionOnDevelopmentPriority = "0";
+        this.annabali_muri = "0";
+        this.dhan_muri = "0";
+        this.makai_muri = "0";
+        this.kodo_muri = "0";
+        this.ghau_muri = "0";
+        this.fapar_muri = "0";
+        this.others_muri = "0";
+        this.oil_kg = "0";
+        this.daal_kg = "0";
+        this.tarkari_kg = "0";
+        this.freshTarkari_kg = "0";
+        this.aalu_kg = "0";
+        this.masala_kg = "0";
+        this.falful_kg = "0";
+        this.kandamul_kg = "0";
+        this.others_kg = "0";
+        this.cow_sthaniya = "0";
+        this.cow_unnat = "0";
+        this.buffalo_sthaniya = "0";
+        this.buffalo_unnat = "0";
+        this.goat_sthaniya = "0";
+        this.goat_unnat = "0";
+        this.sheep_sthaniya = "0";
+        this.sheep_unnat = "0";
+        this.pig_sthaniya = "0";
+        this.pig_unnat = "0";
+        this.other_animal = "0";
+        this.hen_sthaniya = "0";
+        this.hen_unnat = "0";
+        this.pigeon_count = "0";
+        this.other_birds = "0";
+        this.fish_count = "0";
+        this.beehive_count = "0";
+        this.other_pasupanchi = "0";
+        this.milkCurd_litre = "0";
+        this.ghee_kg = "0";
+        this.otherDairy_kg = "0";
+        this.meat_kg = "0";
+        this.compost_quintal = "0";
+        this.urine_litre = "0";
+        this.wool_kg = "0";
+        this.egg_crate = "0";
+        this.fish_kg = "0";
+        this.honey_kg = "0";
+        this.other_production_kg = "0";
+        this.incomeAgriculture = "0";
+        this.incomeBusiness = "0";
+        this.incomeSalaryPension = "0";
+        this.incomeSocialAllowance = "0";
+        this.incomeForeignEmp = "0";
+        this.incomeWages = "0";
+        this.incomeRent = "0";
+        this.incomeInterestInvest = "0";
+        this.incomeOthers = "0";
+        this.expenseFood = "0";
+        this.expenseCloth = "0";
+        this.expenseEducation = "0";
+        this.expenseHealth = "0";
+        this.expenseEntertain = "0";
+        this.expenseRent = "0";
+        this.expenseAgriculture = "0";
+        this.expenseInstallment = "0";
+        this.expenseFuel = "0";
+        this.expenseTranport = "0";
+        this.expenseOthers = "0";
     }
 
     public String getAll() {
@@ -323,175 +324,175 @@ public class HouseholdData {
     }
 
     public String getAll2() {
-        return "this.hasToilet " + this.hasToilet +"\n"+
-                "this.hasNoToilet " + this.hasNoToilet +"\n"+
-                "this.toiletType " + this.toiletType +"\n"+
-                "this.toiletWasteMgmt " + this.toiletWasteMgmt +"\n"+
-                "this.onlineServices " + this.onlineServices +"\n"+
-                "this.primaryIncomeSource " + this.primaryIncomeSource +"\n"+
-                "this.ownsLand " + this.ownsLand +"\n"+
-                "this.ownsNoLand " + this.ownsNoLand +"\n"+
-                "this.landLocation " + this.landLocation +"\n"+
-                "this.landOwnedBy " + this.landOwnedBy +"\n"+
-                "this.landUsedAs " + this.landUsedAs +"\n"+
-                "this.landOnLease " + this.landOnLease +"\n"+
-                "this.landOnNoLease " + this.landOnNoLease +"\n"+
-                "this.landOnLeaseUsedAs " + this.landOnLeaseUsedAs +"\n"+
-                "this.primaryAgroProductions " + this.primaryAgroProductions +"\n"+
-                "this.lastYearAgroProductions " + this.lastYearAgroProductions +"\n"+
-                "this.assetAnimals " + this.assetAnimals +"\n"+
-                "this.assetBirds " + this.assetBirds +"\n"+
-                "this.assetsFishes " + this.assetsFishes +"\n"+
-                "this.assetsBees " + this.assetsBees +"\n"+
-                "this.horticultureProductionCounts " + this.horticultureProductionCounts +"\n"+
-                "this.sellsProductions " + this.sellsProductions +"\n"+
-                "this.notSellsProductions " + this.notSellsProductions +"\n"+
-                "this.sellProductionList " + this.sellProductionList +"\n"+
-                "this.sellProductionTo " + this.sellProductionTo +"\n"+
-                "this.hasFruitPlants " + this.hasFruitPlants +"\n"+
-                "this.hasNoFruitPlants " + this.hasNoFruitPlants +"\n"+
-                "this.hasVegetableCrops " + this.hasVegetableCrops +"\n"+
-                "this.hasNoVegetableCrops " + this.hasNoVegetableCrops +"\n"+
-                "this.lastYearIncome " + this.lastYearIncome +"\n"+
-                "this.lastYearExpense " + this.lastYearExpense +"\n"+
-                "this.worksAbroad " + this.worksAbroad +"\n"+
-                "this.notWorkAbroad " + this.notWorkAbroad +"\n"+
-                "this.remittanceSpentOn " + this.remittanceSpentOn +"\n"+
-                "this.lastYearInvestments " + this.lastYearInvestments +"\n"+
-                "this.productionsSustainableFor " + this.productionsSustainableFor +"\n"+
-                "this.incomeIsSufficient " + this.incomeIsSufficient +"\n"+
-                "this.incomeIsNotSufficient " + this.incomeIsNotSufficient +"\n"+
-                "this.additionalCashSource " + this.additionalCashSource +"\n"+
-                "this.hasTakenLoan " + this.hasTakenLoan +"\n"+
-                "this.hasNotTakenLoan " + this.hasNotTakenLoan +"\n"+
-                "this.loanSource " + this.loanSource +"\n"+
-                "this.takenLoanFor " + this.takenLoanFor +"\n"+
-                "this.durationToClearLoan " + this.durationToClearLoan +"\n"+
-                "this.knowsSamhit " + this.knowsSamhit +"\n"+
-                "this.notKnowSamhit " + this.notKnowSamhit +"\n"+
-                "this.builtAsPerSamhit " + this.builtAsPerSamhit +"\n"+
-                "this.notBuiltAsPerSamhit " + this.notBuiltAsPerSamhit +"\n"+
-                "this.notKnowBuiltAsPerSamhit " + this.notKnowBuiltAsPerSamhit +"\n"+
-                "this.hasPermissionBlueprint " + this.hasPermissionBlueprint +"\n"+
-                "this.hasNoPermissionBlueprint " + this.hasNoPermissionBlueprint +"\n"+
-                "this.hasSafeZoneNearHouse " + this.hasSafeZoneNearHouse +"\n"+
-                "this.hasNoSafeZoneNearHouse " + this.hasNoSafeZoneNearHouse +"\n"+
-                "this.houseSusceptToCalamity " + this.houseSusceptToCalamity +"\n"+
-                "this.houseNoSusceptToCalamity " + this.houseNoSusceptToCalamity +"\n"+
-                "this.infoAboutEarthquake " + this.infoAboutEarthquake +"\n"+
-                "this.noInfoAboutEarthquake " + this.noInfoAboutEarthquake +"\n"+
-                "this.knowSafeZoneInHome " + this.knowSafeZoneInHome +"\n"+
-                "this.knowsNoSafeZoneInHome " + this.knowsNoSafeZoneInHome +"\n"+
-                "this.hasSuppliesForSOE " + this.hasSuppliesForSOE +"\n"+
-                "this.hasNoSuppliesForSOE " + this.hasNoSuppliesForSOE +"\n"+
-                "this.affectedByCalamitiesList " + this.affectedByCalamitiesList +"\n"+
-                "this.lastMajorDisaster " + this.lastMajorDisaster +"\n"+
-                "this.hasAssetInsurance " + this.hasAssetInsurance +"\n"+
-                "this.hasNoAssetInsurance " + this.hasNoAssetInsurance +"\n"+
-                "this.assetsListWithInsurance " + this.assetsListWithInsurance +"\n"+
-                "this.stepsTakenToMinimizeDisasterEffects " + this.stepsTakenToMinimizeDisasterEffects +"\n"+
-                "this.isViolenceVictim " + this.isViolenceVictim +"\n"+
-                "this.isNotViolenceVictim " + this.isNotViolenceVictim +"\n"+
-                "this.deathCount " + this.deathCount +"\n"+
-                "this.injuryCount " + this.injuryCount +"\n"+
-                "this.missingCount " + this.missingCount +"\n"+
-                "this.assetLossAmountRs " + this.assetLossAmountRs +"\n"+
-                "this.isSued " + this.isSued +"\n"+
-                "this.isNotSued " + this.isNotSued +"\n"+
-                "this.isShifted " + this.isShifted +"\n"+
-                "this.isNotShifted " + this.isNotShifted +"\n"+
-                "this.isSexuallyAbuse " + this.isSexuallyAbuse +"\n"+
-                "this.isNotSexuallyAbused " + this.isNotSexuallyAbused +"\n"+
-                "this.memberMissing " + this.memberMissing +"\n"+
-                "this.memberNotMissing " + this.memberNotMissing +"\n"+
-                "this.feelsSafeInMunicipal " + this.feelsSafeInMunicipal +"\n"+
-                "this.feelsNoSafeInMunicipal " + this.feelsNoSafeInMunicipal +"\n"+
-                "this.reasonFeelsSafe " + this.reasonFeelsSafe +"\n"+
-                "this.reasonNoFeelSafe " + this.reasonNoFeelSafe +"\n"+
-                "this.wardNoWhereNotFeelSafe " + this.wardNoWhereNotFeelSafe +"\n"+
-                "this.regionNameWhereNotFeelSafe " + this.regionNameWhereNotFeelSafe +"\n"+
-                "this.homeMemberUptoAge16Works " + this.homeMemberUptoAge16Works +"\n"+
-                "this.noHomeMemberUptoAge16Works " + this.noHomeMemberUptoAge16Works +"\n"+
-                "this.uptoAge16WoringBoyCount " + this.uptoAge16WoringBoyCount +"\n"+
-                "this.uptoAge16WorkingGirlCount " + this.uptoAge16WorkingGirlCount +"\n"+
-                "this.memberUptoAge16HiredWork " + this.memberUptoAge16HiredWork +"\n"+
-                "this.noMemberUptoAge16HiredWork " + this.noMemberUptoAge16HiredWork +"\n"+
-                "this.uptoAge16HiredBoyCount " + this.uptoAge16HiredBoyCount +"\n"+
-                "this.uptoAge16HiredGirlCount " + this.uptoAge16HiredGirlCount +"\n"+
-                "this.childrenIsOnBadInfluence " + this.childrenIsOnBadInfluence +"\n"+
-                "this.childrenNotOnBadInfluence " + this.childrenNotOnBadInfluence +"\n"+
-                "this.childrenBadInfluenceOn " + this.childrenBadInfluenceOn +"\n"+
-                "this.wayOfMakingFamilyDecision " + this.wayOfMakingFamilyDecision +"\n"+
-                "this.assetsOnFemaleName " + this.assetsOnFemaleName +"\n"+
-                "this.allowanceListTakenByFamily " + this.allowanceListTakenByFamily +"\n"+
-                "this.memberHasInvolvedOnDevelopment " + this.memberHasInvolvedOnDevelopment +"\n"+
-                "this.memberHasNotInvolvedOnDevelopment " + this.memberHasNotInvolvedOnDevelopment +"\n"+
-                "this.opinionOnDevelopmentPriority " + this.opinionOnDevelopmentPriority +"\n"+
-                "this.annabali_muri " + this.annabali_muri +"\n"+
-                "this.dhan_muri " + this.dhan_muri +"\n"+
-                "this.makai_muri " + this.makai_muri +"\n"+
-                "this.kodo_muri " + this.kodo_muri +"\n"+
-                "this.ghau_muri " + this.ghau_muri +"\n"+
-                "this.fapar_muri " + this.fapar_muri +"\n"+
-                "this.others_muri " + this.others_muri +"\n"+
-                "this.oil_kg " + this.oil_kg +"\n"+
-                "this.daal_kg " + this.daal_kg +"\n"+
-                "this.tarkari_kg " + this.tarkari_kg +"\n"+
-                "this.freshTarkari_kg " + this.freshTarkari_kg +"\n"+
-                "this.aalu_kg " + this.aalu_kg +"\n"+
-                "this.masala_kg " + this.masala_kg +"\n"+
-                "this.falful_kg " + this.falful_kg +"\n"+
-                "this.kandamul_kg " + this.kandamul_kg +"\n"+
-                "this.others_kg " + this.others_kg +"\n"+
-                "this.cow_sthaniya " + this.cow_sthaniya +"\n"+
-                "this.cow_unnat " + this.cow_unnat +"\n"+
-                "this.buffalo_sthaniya " + this.buffalo_sthaniya +"\n"+
-                "this.buffalo_unnat " + this.buffalo_unnat +"\n"+
-                "this.goat_sthaniya " + this.goat_sthaniya +"\n"+
-                "this.goat_unnat " + this.goat_unnat +"\n"+
-                "this.sheep_sthaniya " + this.sheep_sthaniya +"\n"+
-                "this.sheep_unnat " + this.sheep_unnat +"\n"+
-                "this.pig_sthaniya " + this.pig_sthaniya +"\n"+
-                "this.pig_unnat " + this.pig_unnat +"\n"+
-                "this.other_animal " + this.other_animal +"\n"+
-                "this.hen_sthaniya " + this.hen_sthaniya +"\n"+
-                "this.hen_unnat " + this.hen_unnat +"\n"+
-                "this.pigeon_count " + this.pigeon_count +"\n"+
-                "this.other_birds " + this.other_birds +"\n"+
-                "this.fish_count " + this.fish_count +"\n"+
-                "this.beehive_count " + this.beehive_count +"\n"+
-                "this.other_pasupanchi " + this.other_pasupanchi +"\n"+
-                "this.milkCurd_litre " + this.milkCurd_litre +"\n"+
-                "this.ghee_kg " + this.ghee_kg +"\n"+
-                "this.otherDairy_kg " + this.otherDairy_kg +"\n"+
-                "this.meat_kg " + this.meat_kg +"\n"+
-                "this.compost_quintal " + this.compost_quintal +"\n"+
-                "this.urine_litre " + this.urine_litre +"\n"+
-                "this.wool_kg " + this.wool_kg +"\n"+
-                "this.egg_crate " + this.egg_crate +"\n"+
-                "this.fish_kg " + this.fish_kg +"\n"+
-                "this.honey_kg " + this.honey_kg +"\n"+
-                "this.other_production_kg " + this.other_production_kg +"\n"+
-                "this.incomeAgriculture " + this.incomeAgriculture +"\n"+
-                "this.incomeBusiness " + this.incomeBusiness +"\n"+
-                "this.incomeSalaryPension " + this.incomeSalaryPension +"\n"+
-                "this.incomeSocialAllowance " + this.incomeSocialAllowance +"\n"+
-                "this.incomeForeignEmp " + this.incomeForeignEmp +"\n"+
-                "this.incomeWages " + this.incomeWages +"\n"+
-                "this.incomeRent " + this.incomeRent +"\n"+
-                "this.incomeInterestInvest " + this.incomeInterestInvest +"\n"+
-                "this.incomeOthers " + this.incomeOthers +"\n"+
-                "this.expenseFood " + this.expenseFood +"\n"+
-                "this.expenseCloth " + this.expenseCloth +"\n"+
-                "this.expenseEducation " + this.expenseEducation +"\n"+
-                "this.expenseHealth " + this.expenseHealth +"\n"+
-                "this.expenseEntertain " + this.expenseEntertain +"\n"+
-                "this.expenseRent " + this.expenseRent +"\n"+
-                "this.expenseAgriculture " + this.expenseAgriculture +"\n"+
-                "this.expenseInstallment " + this.expenseInstallment +"\n"+
-                "this.expenseFuel " + this.expenseFuel +"\n"+
-                "this.expenseTranport " + this.expenseTranport +"\n"+
-                "this.expenseOthers " + this.expenseOthers +"\n";
+        return "this.hasToilet " + this.hasToilet + "\n" +
+                "this.hasNoToilet " + this.hasNoToilet + "\n" +
+                "this.toiletType " + this.toiletType + "\n" +
+                "this.toiletWasteMgmt " + this.toiletWasteMgmt + "\n" +
+                "this.onlineServices " + this.onlineServices + "\n" +
+                "this.primaryIncomeSource " + this.primaryIncomeSource + "\n" +
+                "this.ownsLand " + this.ownsLand + "\n" +
+                "this.ownsNoLand " + this.ownsNoLand + "\n" +
+                "this.landLocation " + this.landLocation + "\n" +
+                "this.landOwnedBy " + this.landOwnedBy + "\n" +
+                "this.landUsedAs " + this.landUsedAs + "\n" +
+                "this.landOnLease " + this.landOnLease + "\n" +
+                "this.landOnNoLease " + this.landOnNoLease + "\n" +
+                "this.landOnLeaseUsedAs " + this.landOnLeaseUsedAs + "\n" +
+                "this.primaryAgroProductions " + this.primaryAgroProductions + "\n" +
+                "this.lastYearAgroProductions " + this.lastYearAgroProductions + "\n" +
+                "this.assetAnimals " + this.assetAnimals + "\n" +
+                "this.assetBirds " + this.assetBirds + "\n" +
+                "this.assetsFishes " + this.assetsFishes + "\n" +
+                "this.assetsBees " + this.assetsBees + "\n" +
+                "this.horticultureProductionCounts " + this.horticultureProductionCounts + "\n" +
+                "this.sellsProductions " + this.sellsProductions + "\n" +
+                "this.notSellsProductions " + this.notSellsProductions + "\n" +
+                "this.sellProductionList " + this.sellProductionList + "\n" +
+                "this.sellProductionTo " + this.sellProductionTo + "\n" +
+                "this.hasFruitPlants " + this.hasFruitPlants + "\n" +
+                "this.hasNoFruitPlants " + this.hasNoFruitPlants + "\n" +
+                "this.hasVegetableCrops " + this.hasVegetableCrops + "\n" +
+                "this.hasNoVegetableCrops " + this.hasNoVegetableCrops + "\n" +
+                "this.lastYearIncome " + this.lastYearIncome + "\n" +
+                "this.lastYearExpense " + this.lastYearExpense + "\n" +
+                "this.worksAbroad " + this.worksAbroad + "\n" +
+                "this.notWorkAbroad " + this.notWorkAbroad + "\n" +
+                "this.remittanceSpentOn " + this.remittanceSpentOn + "\n" +
+                "this.lastYearInvestments " + this.lastYearInvestments + "\n" +
+                "this.productionsSustainableFor " + this.productionsSustainableFor + "\n" +
+                "this.incomeIsSufficient " + this.incomeIsSufficient + "\n" +
+                "this.incomeIsNotSufficient " + this.incomeIsNotSufficient + "\n" +
+                "this.additionalCashSource " + this.additionalCashSource + "\n" +
+                "this.hasTakenLoan " + this.hasTakenLoan + "\n" +
+                "this.hasNotTakenLoan " + this.hasNotTakenLoan + "\n" +
+                "this.loanSource " + this.loanSource + "\n" +
+                "this.takenLoanFor " + this.takenLoanFor + "\n" +
+                "this.durationToClearLoan " + this.durationToClearLoan + "\n" +
+                "this.knowsSamhit " + this.knowsSamhit + "\n" +
+                "this.notKnowSamhit " + this.notKnowSamhit + "\n" +
+                "this.builtAsPerSamhit " + this.builtAsPerSamhit + "\n" +
+                "this.notBuiltAsPerSamhit " + this.notBuiltAsPerSamhit + "\n" +
+                "this.notKnowBuiltAsPerSamhit " + this.notKnowBuiltAsPerSamhit + "\n" +
+                "this.hasPermissionBlueprint " + this.hasPermissionBlueprint + "\n" +
+                "this.hasNoPermissionBlueprint " + this.hasNoPermissionBlueprint + "\n" +
+                "this.hasSafeZoneNearHouse " + this.hasSafeZoneNearHouse + "\n" +
+                "this.hasNoSafeZoneNearHouse " + this.hasNoSafeZoneNearHouse + "\n" +
+                "this.houseSusceptToCalamity " + this.houseSusceptToCalamity + "\n" +
+                "this.houseNoSusceptToCalamity " + this.houseNoSusceptToCalamity + "\n" +
+                "this.infoAboutEarthquake " + this.infoAboutEarthquake + "\n" +
+                "this.noInfoAboutEarthquake " + this.noInfoAboutEarthquake + "\n" +
+                "this.knowSafeZoneInHome " + this.knowSafeZoneInHome + "\n" +
+                "this.knowsNoSafeZoneInHome " + this.knowsNoSafeZoneInHome + "\n" +
+                "this.hasSuppliesForSOE " + this.hasSuppliesForSOE + "\n" +
+                "this.hasNoSuppliesForSOE " + this.hasNoSuppliesForSOE + "\n" +
+                "this.affectedByCalamitiesList " + this.affectedByCalamitiesList + "\n" +
+                "this.lastMajorDisaster " + this.lastMajorDisaster + "\n" +
+                "this.hasAssetInsurance " + this.hasAssetInsurance + "\n" +
+                "this.hasNoAssetInsurance " + this.hasNoAssetInsurance + "\n" +
+                "this.assetsListWithInsurance " + this.assetsListWithInsurance + "\n" +
+                "this.stepsTakenToMinimizeDisasterEffects " + this.stepsTakenToMinimizeDisasterEffects + "\n" +
+                "this.isViolenceVictim " + this.isViolenceVictim + "\n" +
+                "this.isNotViolenceVictim " + this.isNotViolenceVictim + "\n" +
+                "this.deathCount " + this.deathCount + "\n" +
+                "this.injuryCount " + this.injuryCount + "\n" +
+                "this.missingCount " + this.missingCount + "\n" +
+                "this.assetLossAmountRs " + this.assetLossAmountRs + "\n" +
+                "this.isSued " + this.isSued + "\n" +
+                "this.isNotSued " + this.isNotSued + "\n" +
+                "this.isShifted " + this.isShifted + "\n" +
+                "this.isNotShifted " + this.isNotShifted + "\n" +
+                "this.isSexuallyAbuse " + this.isSexuallyAbuse + "\n" +
+                "this.isNotSexuallyAbused " + this.isNotSexuallyAbused + "\n" +
+                "this.memberMissing " + this.memberMissing + "\n" +
+                "this.memberNotMissing " + this.memberNotMissing + "\n" +
+                "this.feelsSafeInMunicipal " + this.feelsSafeInMunicipal + "\n" +
+                "this.feelsNoSafeInMunicipal " + this.feelsNoSafeInMunicipal + "\n" +
+                "this.reasonFeelsSafe " + this.reasonFeelsSafe + "\n" +
+                "this.reasonNoFeelSafe " + this.reasonNoFeelSafe + "\n" +
+                "this.wardNoWhereNotFeelSafe " + this.wardNoWhereNotFeelSafe + "\n" +
+                "this.regionNameWhereNotFeelSafe " + this.regionNameWhereNotFeelSafe + "\n" +
+                "this.homeMemberUptoAge16Works " + this.homeMemberUptoAge16Works + "\n" +
+                "this.noHomeMemberUptoAge16Works " + this.noHomeMemberUptoAge16Works + "\n" +
+                "this.uptoAge16WoringBoyCount " + this.uptoAge16WoringBoyCount + "\n" +
+                "this.uptoAge16WorkingGirlCount " + this.uptoAge16WorkingGirlCount + "\n" +
+                "this.memberUptoAge16HiredWork " + this.memberUptoAge16HiredWork + "\n" +
+                "this.noMemberUptoAge16HiredWork " + this.noMemberUptoAge16HiredWork + "\n" +
+                "this.uptoAge16HiredBoyCount " + this.uptoAge16HiredBoyCount + "\n" +
+                "this.uptoAge16HiredGirlCount " + this.uptoAge16HiredGirlCount + "\n" +
+                "this.childrenIsOnBadInfluence " + this.childrenIsOnBadInfluence + "\n" +
+                "this.childrenNotOnBadInfluence " + this.childrenNotOnBadInfluence + "\n" +
+                "this.childrenBadInfluenceOn " + this.childrenBadInfluenceOn + "\n" +
+                "this.wayOfMakingFamilyDecision " + this.wayOfMakingFamilyDecision + "\n" +
+                "this.assetsOnFemaleName " + this.assetsOnFemaleName + "\n" +
+                "this.allowanceListTakenByFamily " + this.allowanceListTakenByFamily + "\n" +
+                "this.memberHasInvolvedOnDevelopment " + this.memberHasInvolvedOnDevelopment + "\n" +
+                "this.memberHasNotInvolvedOnDevelopment " + this.memberHasNotInvolvedOnDevelopment + "\n" +
+                "this.opinionOnDevelopmentPriority " + this.opinionOnDevelopmentPriority + "\n" +
+                "this.annabali_muri " + this.annabali_muri + "\n" +
+                "this.dhan_muri " + this.dhan_muri + "\n" +
+                "this.makai_muri " + this.makai_muri + "\n" +
+                "this.kodo_muri " + this.kodo_muri + "\n" +
+                "this.ghau_muri " + this.ghau_muri + "\n" +
+                "this.fapar_muri " + this.fapar_muri + "\n" +
+                "this.others_muri " + this.others_muri + "\n" +
+                "this.oil_kg " + this.oil_kg + "\n" +
+                "this.daal_kg " + this.daal_kg + "\n" +
+                "this.tarkari_kg " + this.tarkari_kg + "\n" +
+                "this.freshTarkari_kg " + this.freshTarkari_kg + "\n" +
+                "this.aalu_kg " + this.aalu_kg + "\n" +
+                "this.masala_kg " + this.masala_kg + "\n" +
+                "this.falful_kg " + this.falful_kg + "\n" +
+                "this.kandamul_kg " + this.kandamul_kg + "\n" +
+                "this.others_kg " + this.others_kg + "\n" +
+                "this.cow_sthaniya " + this.cow_sthaniya + "\n" +
+                "this.cow_unnat " + this.cow_unnat + "\n" +
+                "this.buffalo_sthaniya " + this.buffalo_sthaniya + "\n" +
+                "this.buffalo_unnat " + this.buffalo_unnat + "\n" +
+                "this.goat_sthaniya " + this.goat_sthaniya + "\n" +
+                "this.goat_unnat " + this.goat_unnat + "\n" +
+                "this.sheep_sthaniya " + this.sheep_sthaniya + "\n" +
+                "this.sheep_unnat " + this.sheep_unnat + "\n" +
+                "this.pig_sthaniya " + this.pig_sthaniya + "\n" +
+                "this.pig_unnat " + this.pig_unnat + "\n" +
+                "this.other_animal " + this.other_animal + "\n" +
+                "this.hen_sthaniya " + this.hen_sthaniya + "\n" +
+                "this.hen_unnat " + this.hen_unnat + "\n" +
+                "this.pigeon_count " + this.pigeon_count + "\n" +
+                "this.other_birds " + this.other_birds + "\n" +
+                "this.fish_count " + this.fish_count + "\n" +
+                "this.beehive_count " + this.beehive_count + "\n" +
+                "this.other_pasupanchi " + this.other_pasupanchi + "\n" +
+                "this.milkCurd_litre " + this.milkCurd_litre + "\n" +
+                "this.ghee_kg " + this.ghee_kg + "\n" +
+                "this.otherDairy_kg " + this.otherDairy_kg + "\n" +
+                "this.meat_kg " + this.meat_kg + "\n" +
+                "this.compost_quintal " + this.compost_quintal + "\n" +
+                "this.urine_litre " + this.urine_litre + "\n" +
+                "this.wool_kg " + this.wool_kg + "\n" +
+                "this.egg_crate " + this.egg_crate + "\n" +
+                "this.fish_kg " + this.fish_kg + "\n" +
+                "this.honey_kg " + this.honey_kg + "\n" +
+                "this.other_production_kg " + this.other_production_kg + "\n" +
+                "this.incomeAgriculture " + this.incomeAgriculture + "\n" +
+                "this.incomeBusiness " + this.incomeBusiness + "\n" +
+                "this.incomeSalaryPension " + this.incomeSalaryPension + "\n" +
+                "this.incomeSocialAllowance " + this.incomeSocialAllowance + "\n" +
+                "this.incomeForeignEmp " + this.incomeForeignEmp + "\n" +
+                "this.incomeWages " + this.incomeWages + "\n" +
+                "this.incomeRent " + this.incomeRent + "\n" +
+                "this.incomeInterestInvest " + this.incomeInterestInvest + "\n" +
+                "this.incomeOthers " + this.incomeOthers + "\n" +
+                "this.expenseFood " + this.expenseFood + "\n" +
+                "this.expenseCloth " + this.expenseCloth + "\n" +
+                "this.expenseEducation " + this.expenseEducation + "\n" +
+                "this.expenseHealth " + this.expenseHealth + "\n" +
+                "this.expenseEntertain " + this.expenseEntertain + "\n" +
+                "this.expenseRent " + this.expenseRent + "\n" +
+                "this.expenseAgriculture " + this.expenseAgriculture + "\n" +
+                "this.expenseInstallment " + this.expenseInstallment + "\n" +
+                "this.expenseFuel " + this.expenseFuel + "\n" +
+                "this.expenseTranport " + this.expenseTranport + "\n" +
+                "this.expenseOthers " + this.expenseOthers + "\n";
     }
 
     public String getHasToilet() {
